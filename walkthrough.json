@@ -1,0 +1,312 @@
+{
+    "walkthroughs": [
+      {
+        "gameName": "Baldur's Gate 3",
+        "questName": "Confront the Elder Brain",
+        "questNumber": 39,
+        "overview": {
+          "description": "This quest is part of the endgame content in 'Baldur's Gate 3' and involves confronting and defeating the Elder Brain, a powerful and dangerous foe. Be prepared for intense combat, strategic planning, and significant decisions."
+        },
+        "preparation": {
+          "levelUpAndGear": [
+            "Ensure your party is at a high level, preferably the maximum level cap.",
+            "Equip your characters with the best possible gear, weapons, and magical items.",
+            "Stock up on healing potions, spell scrolls, and other consumables."
+          ],
+          "partyComposition": [
+            "Choose a balanced party with a mix of melee fighters, spellcasters, and support characters.",
+            "Consider using characters with abilities to counter mind control and psychic attacks."
+          ],
+          "saveGame": "Save your game before embarking on the quest. This is crucial as the upcoming battles can be very challenging."
+        },
+        "steps": [
+          {
+            "stepNumber": 1,
+            "title": "Entering the Mind Flayer Colony",
+            "description": "The entrance to the Mind Flayer Colony is usually found in the Underdark or other deep underground locations. Follow the main storyline and clues to locate the entrance. Interact with NPCs and gather information to pinpoint the exact location."
+          },
+          {
+            "stepNumber": 2,
+            "title": "Navigating the Colony",
+            "description": "Once inside, navigate through the colony while facing off against Mind Flayers and other dangerous creatures. Be cautious of traps and ambushes. Use stealth and scouting abilities to gain an advantage."
+          },
+          {
+            "stepNumber": 3,
+            "title": "Reaching the Elder Brain Chamber",
+            "description": "Make your way through the colony towards the chamber where the Elder Brain is located. Defeat any guardians or elite enemies protecting the chamber entrance."
+          },
+          {
+            "stepNumber": 4,
+            "title": "Final Preparations",
+            "description": "Before entering the chamber, make final preparations. Heal your party, apply buffs, and make sure everyone is ready for the battle."
+          },
+          {
+            "stepNumber": 5,
+            "title": "Confronting the Elder Brain",
+            "description": "Enter the chamber to trigger a cutscene and dialogue with the Elder Brain. Choose your dialogue options carefully as they may affect the outcome of the battle. The Elder Brain will summon waves of enemies, including Mind Flayers and other minions."
+          },
+          {
+            "stepNumber": 6,
+            "title": "Combat Strategy",
+            "description": "Focus on eliminating the minions first to reduce the pressure on your party. Use area-of-effect (AoE) spells and abilities to manage groups of enemies. Keep your distance from the Elder Brain if possible, as it has powerful psychic attacks."
+          },
+          {
+            "stepNumber": 7,
+            "title": "Disabling the Elder Brain",
+            "description": "The Elder Brain will have multiple phases. In the first phase, concentrate on dealing damage while avoiding its powerful attacks. Use abilities and spells that target its weaknesses. Psychic resistance and protection spells are particularly useful. In the second phase, the Elder Brain may become more aggressive and summon additional minions. Stay mobile and adapt your strategy."
+          },
+          {
+            "stepNumber": 8,
+            "title": "Final Phase",
+            "description": "Once the Elder Brain reaches low health, it may enter a final, more desperate phase. It may attempt to mind control your party members or unleash devastating attacks. Keep your party spread out to minimize the impact of AoE attacks. Focus fire on the Elder Brain, using your most powerful abilities and spells."
+          },
+          {
+            "stepNumber": 9,
+            "title": "Victory",
+            "description": "After a tough battle, you will eventually defeat the Elder Brain. A cutscene will play, signifying your victory. Loot the area for any valuable items and gear."
+          },
+          {
+            "stepNumber": 10,
+            "title": "Dialogue and Decisions",
+            "description": "After the battle, there may be important dialogue and decisions to make regarding the fate of the Mind Flayer Colony and any surviving NPCs. Choose your options carefully, as they may affect the game's ending."
+          },
+          {
+            "stepNumber": 11,
+            "title": "Exiting the Colony",
+            "description": "Make your way out of the colony. You may encounter remaining enemies or traps, so stay alert. Return to your base or main hub to conclude the quest."
+          }
+        ],
+        "tipsForSuccess": [
+          "Use spells and abilities that provide immunity or resistance to mind control.",
+          "Apply buffs to your party and debuffs to the Elder Brain and its minions.",
+          "Use crowd control abilities to manage the waves of minions.",
+          "Keep your party's health topped up with healing spells and potions.",
+          "Position your characters strategically to avoid AoE attacks and maximize damage output."
+        ]
+      },
+      {
+        "gameName": "Elden Ring",
+        "questName": "Leyndell, Ashen Capital",
+        "overview": {
+          "description": "Leyndell, Ashen Capital is a significant late-game area in 'Elden Ring.' It features challenging enemies, intricate pathways, and important lore elements. The area is accessible after progressing through the story and defeating key bosses."
+        },
+        "preparation": {
+          "levelUpAndGear": [
+            "Ensure your character is at a high level and equipped with the best possible gear.",
+            "Stock up on healing potions, mana potions, and other consumables.",
+            "Upgrade your weapons and armor for maximum efficiency."
+          ],
+          "partyComposition": [],
+          "saveGame": "Save your game before entering the Ashen Capital. This is crucial as the upcoming battles can be very challenging."
+        },
+        "steps": [
+          {
+            "stepNumber": 1,
+            "title": "Entering Leyndell",
+            "description": "To access Leyndell, Ashen Capital, you must have defeated Morgott, the Omen King, in Leyndell, Royal Capital. After his defeat, you will need to use the Rold Medallion at the Grand Lift of Rold to reach the Mountaintops of the Giants and progress the story until you trigger the burning of the Erdtree."
+          },
+          {
+            "stepNumber": 2,
+            "title": "Starting Point",
+            "description": "You will begin at the 'Ashen Capital' Site of Grace. The landscape will be significantly altered, covered in ash, with many areas from Leyndell, Royal Capital, now inaccessible or changed."
+          },
+          {
+            "stepNumber": 3,
+            "title": "Exploration and Navigation",
+            "description": "From the Site of Grace, head forward, navigating the ashen ruins. Be prepared to face powerful enemies, including Erdtree Avatars and Ashen Knights. Keep an eye out for new items and collectibles scattered around the area."
+          },
+          {
+            "stepNumber": 4,
+            "title": "Towards the Dragon",
+            "description": "Make your way towards the massive dragon corpse in the distance. This dragon marks the path towards your main objective. Be cautious of ambushes and challenging enemy encounters along the way."
+          },
+          {
+            "stepNumber": 5,
+            "title": "Inside the Dragon",
+            "description": "Climb up the dragon’s wing to access the next area. This will lead you to a new part of the city covered in ash. Continue navigating through the ruins, climbing ladders, and taking down enemies."
+          },
+          {
+            "stepNumber": 6,
+            "title": "The Forbidden Lands and Sewer Gaol",
+            "description": "Explore the lower parts of the city to find hidden paths and valuable items. Be thorough in your exploration. Make your way to the Underground Roadside Site of Grace. From here, you can access the sewers and gaols, which house dangerous enemies and powerful loot."
+          },
+          {
+            "stepNumber": 7,
+            "title": "Mohg, the Omen",
+            "description": "In the sewers, you will encounter Mohg, the Omen. This boss can be challenging due to his powerful attacks and blood magic. Use quick dodges to avoid his blood flame attacks, stay close to him to minimize the impact of his ranged attacks, and attack during openings after he finishes his combos."
+          },
+          {
+            "stepNumber": 8,
+            "title": "Climbing the Ashen Capital",
+            "description": "After defeating Mohg, continue to navigate through the city, making your way towards the Erdtree. Look for ladders and paths leading upwards, ensuring you explore thoroughly to find all necessary routes."
+          },
+          {
+            "stepNumber": 9,
+            "title": "Towards the Erdtree Sanctuary",
+            "description": "Head towards the large structure visible in the distance. This will lead you to the Erdtree Sanctuary. Be prepared for powerful enemies guarding the approach."
+          },
+          {
+            "stepNumber": 10,
+            "title": "The Erdtree Sanctuary",
+            "description": "Enter the sanctuary and activate the Site of Grace inside. Prepare for the upcoming boss fight by ensuring you have enough healing items and that your equipment is in top shape."
+          },
+          {
+            "stepNumber": 11,
+            "title": "Godfrey, First Elden Lord",
+            "description": "Godfrey is a formidable boss with a range of powerful melee attacks. Learn his attack patterns and dodge accordingly. Use opportunities to attack when he finishes his combos. Keep your distance during his powerful ground slam attacks and close in when he’s recovering."
+          },
+          {
+            "stepNumber": 12,
+            "title": "Aftermath",
+            "description": "Once you defeat Godfrey, proceed towards the next area leading to the final stages of the game."
+          }
+        ],
+        "tipsForSuccess": [
+          "Thoroughly explore every nook and cranny of the Ashen Capital. There are many hidden items, secret paths, and valuable loot.",
+          "Pay attention to enemy weaknesses and use appropriate weapons and spells to take them down more efficiently.",
+          "Ensure you are adequately leveled up for this area. The enemies and bosses here are significantly tougher.",
+          "Utilize Spirit Ash summons or multiplayer summons to aid you in difficult battles."
+        ]
+      },
+      {
+        "gameName": "Super Mario World",
+        "levelName": "Donut Plains 1",
+        "overview": {
+          "description": "Donut Plains 1 is an early level in 'Super Mario World' that introduces players to the Cape Feather and features both a normal exit and a secret exit."
+        },
+        "preparation": {
+          "levelUpAndGear": [],
+          "partyComposition": [],
+          "saveGame": "Save your game before starting the level if you're playing on a system that allows saving."
+        },
+        "steps": [
+          {
+            "stepNumber": 1,
+            "title": "Starting the Level",
+            "description": "Begin by heading to the right. You will encounter several Koopa Troopas and Goombas. Hit the ? Blocks and the green pipe for power-ups."
+          },
+          {
+            "stepNumber": 2,
+            "title": "Cape Feather",
+            "description": "Shortly after starting, you will see a ? Block with a flashing color. Hit it to reveal a Cape Feather, which allows Mario to fly when you run and jump with enough speed."
+          },
+          {
+            "stepNumber": 3,
+            "title": "First Dragon Coin",
+            "description": "Continue right, and you will see the first Dragon Coin above a row of blocks. Collect it for bonus points."
+          },
+          {
+            "stepNumber": 4,
+            "title": "Second Dragon Coin",
+            "description": "As you move forward, you will encounter a sloped hill. Slide down to defeat enemies and collect the second Dragon Coin near the bottom."
+          },
+          {
+            "stepNumber": 5,
+            "title": "Flying Lesson",
+            "description": "Use the Cape Feather to run and build speed. Run along the ground until Mario starts flashing and then jump to take flight. Practice flying and controlling Mario in the air."
+          },
+          {
+            "stepNumber": 6,
+            "title": "Third Dragon Coin",
+            "description": "Fly up to the high platform on the right to collect the third Dragon Coin."
+          },
+          {
+            "stepNumber": 7,
+            "title": "Secret Exit",
+            "description": "To find the secret exit, continue flying to the right and look for a high pipe that is otherwise unreachable without flying. Enter the pipe and find a key and keyhole to unlock the secret exit leading to the Green Switch Palace."
+          },
+          {
+            "stepNumber": 8,
+            "title": "Checkpoint",
+            "description": "If you choose to continue on the normal path, you will come across the checkpoint midway through the level. Hit it to activate it."
+          },
+          {
+            "stepNumber": 9,
+            "title": "Fourth Dragon Coin",
+            "description": "After the checkpoint, continue right. You will come across a series of pipes. The fourth Dragon Coin is located above one of these pipes."
+          },
+          {
+            "stepNumber": 10,
+            "title": "P-Switch",
+            "description": "Shortly after the pipes, you will find a blue P-Switch. Carry it to the right and hit it to turn blocks into coins and reveal new paths."
+          },
+          {
+            "stepNumber": 11,
+            "title": "Fifth Dragon Coin",
+            "description": "Use the P-Switch to access the fifth Dragon Coin, which is hidden behind a row of blocks that turn into coins when the P-Switch is activated."
+          },
+          {
+            "stepNumber": 12,
+            "title": "Normal Exit",
+            "description": "Continue right, and you will see the goalpost. Jump through it to complete the level via the normal exit."
+          }
+        ],
+        "tipsForSuccess": [
+          "Donut Plains 1 is an excellent level to practice flying with the Cape Feather. Try running and jumping to get a feel for the flight mechanics.",
+          "There are plenty of enemies and opportunities to collect extra lives in this level. Use the cape to defeat multiple enemies in succession for bonus points and 1-Ups.",
+          "Take your time to explore the level thoroughly. There are many hidden areas and items to discover, especially when using the Cape Feather."
+        ]
+      },
+      {
+        "gameName": "Hogwarts Legacy",
+        "questName": "Wand Mastery",
+        "questNumber": 39,
+        "overview": {
+          "description": "This quest involves upgrading your wand with special components gathered from different locations, culminating in a powerful new wand that significantly enhances your magical abilities."
+        },
+        "preparation": {
+          "levelUpAndGear": [
+            "Ensure your character is at a high level and equipped with the best possible gear.",
+            "Stock up on healing potions, spell scrolls, and other consumables."
+          ],
+          "partyComposition": [],
+          "saveGame": "Save your game before embarking on the quest. This is crucial as the upcoming challenges can be very difficult."
+        },
+        "steps": [
+          {
+            "stepNumber": 1,
+            "title": "Meet Ollivander in His Shop",
+            "description": "Head to Ollivander’s Wand Shop in Hogsmeade. The quest marker will guide you to the location. Speak with Ollivander to begin the quest. He will explain the importance of upgrading your wand and the need for rare components."
+          },
+          {
+            "stepNumber": 2,
+            "title": "Follow Ollivander’s Instructions",
+            "description": "Ollivander will provide you with a list of special components needed for the wand upgrade. These components are scattered throughout different areas. The list includes a Phoenix Feather, Dragon Heartstring, and Unicorn Hair."
+          },
+          {
+            "stepNumber": 3,
+            "title": "Retrieve the Phoenix Feather",
+            "description": "Travel to the Forbidden Forest. Follow the quest marker through the forest, defeating or evading magical creatures like Acromantulas and Centaurs. Locate the Phoenix’s nest and collect the Phoenix Feather."
+          },
+          {
+            "stepNumber": 4,
+            "title": "Retrieve the Dragon Heartstring",
+            "description": "Head to the dragon’s lair in the Highlands. The lair is heavily guarded, so use stealth or combat to progress. Defeat the dragon in a challenging battle and take the Dragon Heartstring from its remains."
+          },
+          {
+            "stepNumber": 5,
+            "title": "Retrieve the Unicorn Hair",
+            "description": "Go to the Dark Forest. Use your tracking skills to find a Unicorn. Approach the unicorn carefully, use a calming spell to gain its trust, and collect some of its hair."
+          },
+          {
+            "stepNumber": 6,
+            "title": "Return to Ollivander",
+            "description": "Travel back to Hogsmeade and enter Ollivander’s Shop. Hand over the components to Ollivander. He will guide you through the process of crafting the upgraded wand."
+          },
+          {
+            "stepNumber": 7,
+            "title": "Test Your New Wand",
+            "description": "Ollivander will direct you to a special testing area. Try out various spells with your upgraded wand, noting the increased power and new magical effects. Engage in a duel or combat scenario to fully test the wand’s capabilities."
+          }
+        ],
+        "tipsForSuccess": [
+          "Prepare for battles by ensuring you have enough potions and a well-prepared spell set before embarking on the component retrieval missions.",
+          "Use stealth and strategic planning to avoid unnecessary combat in areas with strong enemies.",
+          "Explore each area thoroughly to find hidden paths and valuable items.",
+          "Ensure your gear is upgraded and suitable for the challenges you will face in each location.",
+          "Save your progress regularly, especially before entering dangerous areas."
+        ]
+      }
+    ]
+  }
+  
