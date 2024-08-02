@@ -1,0 +1,33 @@
+[
+	{
+		
+		"username": "Mario",
+		"email": "mario@nintendoworld.com",
+		"password": "itsameMario123"
+	},
+	{
+		
+		"username": "Link",
+		"email": "link@hyrule.com",
+		"password": "masterSword456"
+	},
+	{
+		
+		"username": "Ellie",
+		"email": "ellie@lastofus.com",
+		"password": "lastOfUs202"
+	},
+	{
+		
+		"username": "Sonic",
+		"email": "sonic@sega.com",
+		"password": "gottaGoFast101"
+	},
+	{
+		
+		"username": "Kratos",
+		"email": "kratos@godofwar.com",
+		"password": "godOfWar404"
+	}
+]
+
