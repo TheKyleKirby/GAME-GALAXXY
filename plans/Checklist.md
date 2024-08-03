@@ -56,7 +56,8 @@
 - [ ] Created Guides List
 - [ ] Edit Profile Form (when button/link clicked)
 
-
+### Not Found Page
+- [ ] Not found page
 
 ## QUERIES(typeDefs)
 ### HomePage Queries:
