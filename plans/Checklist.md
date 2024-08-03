@@ -61,34 +61,34 @@
 
 ## QUERIES(typeDefs)
 ### HomePage Queries:
-- [X] Query for trending guides
+<!-- - [X] Query for trending guides -->
 
 
 ### ResultsPage Queries:
-- [X] Query for search results
-  - [X] Query for users
-  - [TBS] Query for games
-  - [X] Query for guides
-- [G] Query for filter options
+<!-- - [X] Query for search results -->
+  <!-- - [X] Query for users -->
+  <!-- - [TBS] Query for games -->
+  <!-- - [X] Query for guides -->
+<!-- - [G] Query for filter options -->
 
 ### GuidePage Queries:
-- [X] Query for single guide
-- [G] Query for related titles/chapters/levels
-- [X] Query for tags
+<!-- - [X] Query for single guide -->
+<!-- - [G] Query for related titles/chapters/levels -->
+<!-- - [X] Query for tags -->
 
 ### Create Guide Page Queries:
-- [X] Query for games (for dropdown select input field)
-- [X] Query for guide groups from user (for select dropdown)
+<!-- - [X] Query for games (for dropdown select input field) -->
+<!-- - [X] Query for guide groups from user (for select dropdown) -->
 
 ### Dashboard Page Queries:
-- [X] Query for profile details(should show saved Games, FriendsList, CreatorsFollowing, SavedGuides, and Created Guides)
-- [X] Query for friends list
+<!-- - [X] Query for profile details(should show saved Games, FriendsList, CreatorsFollowing, SavedGuides, and Created Guides) -->
+<!-- - [X] Query for friends list -->
 
 
 ## MUTATIONS(typeDefs)
 ### HomePage Mutations:
-- [X] Mutation to addUser
-- [X] Mutation to login
+<!-- - [X] Mutation to addUser -->
+<!-- - [X] Mutation to login -->
 
 ### ResultsPage Mutations:
 - [ ] Mutation to update saved items(friend, guide, creator) on user
@@ -98,10 +98,10 @@
 - [ ] Mutation to add comments on guide/user
 
 ### Create Guide Page Mutations:
-- [X] Mutation to add new guide to database
+<!-- - [X] Mutation to add new guide to database -->
 
 ### Dashboard Page Mutations:
-- [X] Mutation to update user profile
+<!-- - [X] Mutation to update user profile -->
 - [ ] Mutation to remove guide
 - [ ] Mutation to update guide
 - [ ] Mutation to remove friend

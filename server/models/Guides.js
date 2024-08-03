@@ -1,7 +1,7 @@
 // Model for tutorial
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose')
 
-const tutorialSchema = new Schema({
+const guideSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -20,4 +20,8 @@ const tutorialSchema = new Schema({
     required: true,
   },
   
-});
+})
+
+const Guide = model('Guide', guideSchema)
+
+module.exports = Guide

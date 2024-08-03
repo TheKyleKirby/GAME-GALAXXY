@@ -46,7 +46,7 @@
 			// todo Filter options
 		//* Dashboard:
 			// todo Direct to page
-			// todo Query for
+			// todo Query for user
 			// todo Profile info
 			// todo Guides created
 			// todo Friends
