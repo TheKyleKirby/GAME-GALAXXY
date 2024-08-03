@@ -61,41 +61,34 @@
 
 ## QUERIES(typeDefs)
 ### HomePage Queries:
-- [ ] Query for trending guides
-- [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
+- [X] Query for trending guides
+
 
 ### ResultsPage Queries:
-- [ ] Query for search results
-  - [G] Query for users
+- [X] Query for search results
+  - [X] Query for users
   - [TBS] Query for games
-  - [ ] Query for guides
-- [ ] Query for filter options
+  - [X] Query for guides
+- [G] Query for filter options
 
 ### GuidePage Queries:
-- [ ] Query for single guide
-- [ ] Query for related titles/chapters/levels
-- [ ] Query for comments
-- [ ] Query for tags
-- [ ] Query for rating of guide
-- [ ] Query for game info(title, rating, etc)
+- [X] Query for single guide
+- [G] Query for related titles/chapters/levels
+- [X] Query for tags
 
 ### Create Guide Page Queries:
-- [ ] Query for games (for dropdown select input field)
-- [ ] Query for guide groups from user (for select dropdown)
+- [X] Query for games (for dropdown select input field)
+- [X] Query for guide groups from user (for select dropdown)
 
 ### Dashboard Page Queries:
-- [G] Query for profile details
-- [ ] Query for friends list
-- [ ] Query for saved games
-- [ ] Query for creators following list
-- [ ] Query for guides saved list
-- [ ] Query for created guides list
+- [X] Query for profile details(should show saved Games, FriendsList, CreatorsFollowing, SavedGuides, and Created Guides)
+- [X] Query for friends list
 
 
-## MUTATIONS(resolvers)
+## MUTATIONS(typeDefs)
 ### HomePage Mutations:
-- [G] Mutation to addUser
-- [G] Mutation to login
+- [X] Mutation to addUser
+- [X] Mutation to login
 
 ### ResultsPage Mutations:
 - [ ] Mutation to update saved items(friend, guide, creator) on user
@@ -105,10 +98,10 @@
 - [ ] Mutation to add comments on guide/user
 
 ### Create Guide Page Mutations:
-- [ ] Mutation to add new guide to database
+- [X] Mutation to add new guide to database
 
 ### Dashboard Page Mutations:
-- [ ] Mutation to update user profile
+- [X] Mutation to update user profile
 - [ ] Mutation to remove guide
 - [ ] Mutation to update guide
 - [ ] Mutation to remove friend
@@ -183,6 +176,7 @@
 - [ ] Handle search bar submission
 - [ ] Display search results
 - [ ] Filter search results
+- [ ] About us json file & mapping to show on cards on homepage
 
 ### ResultsPage Functions:
 - [ ] Display search results
