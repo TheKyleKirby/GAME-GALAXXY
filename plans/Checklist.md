@@ -1,6 +1,7 @@
 
 ## COMPONENTS
 ### HomePage Components:
+[ ] wireFrame
 - [ ] Navbar
 - [ ] Menu
   - [ ] SearchBar
@@ -16,6 +17,7 @@
 - [ ] Footer
 
 ### ResultsPage(or section) Components:
+[ ] wireFrame
 - [ ] Search results container
 - [ ] Filter options
 - [ ] Guide result cards
@@ -23,12 +25,14 @@
 - [ ] User result cards
 
 ### GuidePage Components:
+[ ] wireFrame
 - [ ] Guide Content (title, author, content, etc)
 - [ ] Comments display
 - [ ] Comment form
 - [ ] Related chapters/levels area
 
 ### Create Guide Page Components:
+[ ] wireFrame
 - [ ] Form
   - [ ] Game input
   - [ ] Console input
@@ -39,6 +43,7 @@
   - [ ] Images input (optional)
 
 ### Dashboard Page Components:
+[ ] wireFrame
 - [ ] Profile Details
   - [ ] Picture
   - [ ] Bio
@@ -53,7 +58,64 @@
 
 
 
-## QUERIES
+## QUERIES(typeDefs)
+### HomePage Queries:
+- [ ] Query for trending guides
+- [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
+
+### ResultsPage Queries:
+- [ ] Query for search results
+  - [G] Query for users
+  - [ ] Query for games
+  - [ ] Query for guides
+- [ ] Query for filter options
+
+### GuidePage Queries:
+- [ ] Query for single guide
+- [ ] Query for related titles/chapters/levels
+- [ ] Query for comments
+- [ ] Query for tags
+- [ ] Query for rating of guide
+- [ ] Query for game info(title, rating, etc)
+
+### Create Guide Page Queries:
+- [ ] Query for games (for dropdown select input field)
+- [ ] Query for guide groups from user (for select dropdown)
+
+### Dashboard Page Queries:
+- [G] Query for profile details
+- [ ] Query for friends list
+- [ ] Query for saved games
+- [ ] Query for creators following list
+- [ ] Query for guides saved list
+- [ ] Query for created guides list
+
+
+## MUTATIONS(resolvers)
+### HomePage Mutations:
+- [G] Mutation to addUser
+- [G] Mutation to login
+
+### ResultsPage Mutations:
+- [ ] Mutation to update saved items(friend, guide, creator) on user
+
+### GuidePage Mutations:
+- [ ] Mutation to update rating on guide
+- [ ] Mutation to add comments on guide/user
+
+### Create Guide Page Mutations:
+- [ ] Mutation to add new guide to database
+
+### Dashboard Page Mutations:
+- [ ] Mutation to update user profile
+- [ ] Mutation to remove guide
+- [ ] Mutation to update guide
+- [ ] Mutation to remove friend
+- [ ] Mutation to unfollow creator
+
+
+
+## QUERIES(resolvers)
 ### HomePage Queries:
 - [ ] Query for trending guides
 - [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
@@ -86,7 +148,8 @@
 - [ ] Query for created guides list
 
 
-## MUTATIONS
+
+## MUTATIONS(resolvers)
 ### HomePage Mutations:
 - [ ] Mutation to addUser
 - [ ] Mutation to login
@@ -107,6 +170,7 @@
 - [ ] Mutation to update guide
 - [ ] Mutation to remove friend
 - [ ] Mutation to unfollow creator
+
 
 
 ## Functions
