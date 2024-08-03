@@ -188,7 +188,7 @@
 // Or have some random avatars to chose from in the database?
 
 // *ICEBOX
-
+// *blog/ forums
 // *live chat
 // *Sell digital assets
 // *sell collectibles
