@@ -66,7 +66,7 @@
 ### ResultsPage Queries:
 - [ ] Query for search results
   - [G] Query for users
-  - [ ] Query for games
+  - [TBS] Query for games
   - [ ] Query for guides
 - [ ] Query for filter options
 
