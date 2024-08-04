@@ -77,8 +77,8 @@ const typeDefs = `
 
 	input GuideInput {
 		title: String!
-		author: User!
-		game: Game!
+		author: ID!
+		game: ID!
 		console: String
 		content: String!
 		belongsToGroup: Boolean
@@ -95,7 +95,7 @@ const typeDefs = `
 		genre: String
 		releaseDate: String
 		rating: Float
-		guides: [Guide]
+		guides: [ID]
 	}
 
 	input GuideFilterInput {
@@ -138,13 +138,21 @@ const typeDefs = `
 	},
 
 	type Mutation {
-	addUser(username: String!, email: String!, password: String!): Auth
-	login(username: String!, password: String!): Auth
-	updateProfile(user: UserInput): User
+		addUser(username: String!, email: String!, password: String!): Auth
+		login(username: String!, password: String!): Auth
+		updateProfile(user: UserInput): User
+		addFriend(friendId: ID!): User
+		followCreator(creatorId: ID!): User
+		removeFriend(friendId: ID!): User
+		unfollowCreator(creatorId: ID!): User
+		
 
-	addGame(game: GameInput!): Game
-	saveGame(_id: ID!) : Game
-	addGuide(guide: GuideInput!): Guide
+		addGame(game: GameInput!): Game
+		saveGame(gameId: ID!) : User
+		addGuide(guide: GuideInput!): Guide
+		updateGuide(_id: ID!, guide: GuideInput) : Guide
+		saveGuide(guideId: ID!) : User
+		deleteGuide(_id: ID!)
 	},
 `
 
