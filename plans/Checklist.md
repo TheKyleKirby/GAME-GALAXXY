@@ -91,21 +91,17 @@
 <!-- - [X] Mutation to login -->
 
 ### ResultsPage Mutations:
-- [ ] Mutation to update saved items(friend, guide, creator) on user
-
-### GuidePage Mutations:
-- [ ] Mutation to update rating on guide
-- [ ] Mutation to add comments on guide/user
+<!-- - [X] Mutation to update saved items(friend, guide, creator) on user -->
 
 ### Create Guide Page Mutations:
 <!-- - [X] Mutation to add new guide to database -->
 
 ### Dashboard Page Mutations:
 <!-- - [X] Mutation to update user profile -->
-- [ ] Mutation to remove guide
-- [ ] Mutation to update guide
-- [ ] Mutation to remove friend
-- [ ] Mutation to unfollow creator
+<!-- - [x] Mutation to remove guide -->
+<!-- - [x] Mutation to update guide(including rating and comments) -->
+<!-- - [x] Mutation to remove friend -->
+<!-- - [x] Mutation to unfollow creator -->
 
 
 
@@ -115,11 +111,11 @@
 - [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
 
 ### ResultsPage Queries:
-- [ ] Query for search results
-  - [ ] Query for users
-  - [ ] Query for games
-  - [ ] Query for guides
-- [ ] Query for filter options
+- [ ] Query for search results(one query using searchInput)
+  - [ ]  users
+  - [ ]  games
+  - [ ]  guides
+- [ ] Query for filter options(one query using filterInput)
 
 ### GuidePage Queries:
 - [ ] Query for single guide
@@ -145,7 +141,7 @@
 
 ## MUTATIONS(resolvers)
 ### HomePage Mutations:
-- [ ] Mutation to addUser
+- [G] Mutation to addUser(need JWT auth)
 - [ ] Mutation to login
 
 ### ResultsPage Mutations:
