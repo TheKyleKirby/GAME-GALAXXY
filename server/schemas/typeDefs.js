@@ -1,5 +1,5 @@
 const typeDefs = `
-	type User{
+	type User {
 		_id: ID!
 		username: String!
 		email: String!
@@ -13,7 +13,7 @@ const typeDefs = `
 		createdGuides: [Guide]
 		isCreator: Boolean
 		profilePicture: String
-	},
+	}
 
 	type Game {
 		_id: ID!
@@ -23,7 +23,7 @@ const typeDefs = `
 		releaseDate: String
 		rating: Float
 		guides: [Guide]
-	},
+	}
 
 	type Guide {
 		_id: ID!
@@ -33,19 +33,19 @@ const typeDefs = `
 		console: String
 		content: String!
 		belongsToGroup: Boolean
-		groupBelongsTo: GuideGroup
+		groupBelongsTo: String
 		section: String
 		tags: [String]
 		rating: Float
 		comments: [Comment]
-	},
+	}
 
 	type GuideGroup {
 		_id: ID!
 		name: String!
 		guides: [Guide]
 		creator: [User]
-	},
+	}
 
 	type Comment {
 		_id: ID!
@@ -56,7 +56,7 @@ const typeDefs = `
 	type Auth {
 		token: ID!
 		user: User
-	},
+	}
 
 	type SearchResults {
 		users: [User]
@@ -73,7 +73,7 @@ const typeDefs = `
 		bio: String
 		topGames: String
 		profilePicture: String
-	},
+	}
 
 	input GuideInput {
 		title: String!
@@ -82,12 +82,12 @@ const typeDefs = `
 		console: String
 		content: String!
 		belongsToGroup: Boolean
-		groupBelongsTo: GuideGroup
+		groupBelongsTo: String
 		section: String
 		tags: [String]
 		rating: Float
-		comments: [Comment]
-	},
+		comments: [ID]
+	}
 
 	input GameInput {
 		title: String!
@@ -102,15 +102,15 @@ const typeDefs = `
 		ids: [ID]!
 		console: String
 		rating: Float
-		author: User
-	},
+		author: String
+	}
 
 	input SearchInput {
 		users: String  
 		games: String  
 		guides: String  
 		tags: [String] 
-	},
+	}
 
 
 
@@ -152,9 +152,8 @@ const typeDefs = `
 		addGuide(guide: GuideInput!): Guide
 		updateGuide(_id: ID!, guide: GuideInput) : Guide
 		saveGuide(guideId: ID!) : User
-		deleteGuide(_id: ID!)
-	},
+		deleteGuide(_id: ID!): User
+	}
+
 `
-
-
-module.exports = typeDefs;
+module.exports = typeDefs

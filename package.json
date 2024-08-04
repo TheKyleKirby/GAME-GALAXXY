@@ -3,25 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "node server/server.js",
-    "watch": "nodemon server/server.js",
-    "seed": "node server/data/seed.js "
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "colors": "^1.4.0",
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
-    "express-graphql": "^0.12.0",
-    "graphql": "^15.9.0",
-    "mongoose": "^8.5.2"
-  },
   "devDependencies": {
-    "dotenv": "^16.4.5",
-    "nodemon": "^3.1.4",
-    "tailwindcss": "^3.4.7"
-  }
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5"
+  },
+  "scripts": {
+    "start": "node server/server.js --ignore client",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build",
+    "root": "cd server && npm run watch"
+  },
+  "author": "",
+  "license": "ISC"
 }
