@@ -111,11 +111,11 @@
 - [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
 
 ### ResultsPage Queries:
-- [ ] Query for search results
-  - [ ] Query for users
-  - [ ] Query for games
-  - [ ] Query for guides
-- [ ] Query for filter options
+- [ ] Query for search results(one query using searchInput)
+  - [ ]  users
+  - [ ]  games
+  - [ ]  guides
+- [ ] Query for filter options(one query using filterInput)
 
 ### GuidePage Queries:
 - [ ] Query for single guide
@@ -141,7 +141,7 @@
 
 ## MUTATIONS(resolvers)
 ### HomePage Mutations:
-- [ ] Mutation to addUser
+- [G] Mutation to addUser(need JWT auth)
 - [ ] Mutation to login
 
 ### ResultsPage Mutations:
