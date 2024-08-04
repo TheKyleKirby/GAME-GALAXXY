@@ -1,4 +1,4 @@
-const User = require('../models')
+const User = require('../models/User')
 
 const resolvers = {
 	Query: {
@@ -8,12 +8,11 @@ const resolvers = {
 	},
 	Mutation: {
 		addUser: async( parent, {username, email, password }) =>{
-			const user = await User.create({
+			return await User.create({
 				username,
 				email,
 				password
 			})
-			return user
 		}
 	}
 }
