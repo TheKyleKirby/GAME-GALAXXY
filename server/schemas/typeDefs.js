@@ -37,7 +37,7 @@ const typeDefs = `
 		section: String
 		tags: [String]
 		rating: Float
-		comments: [Comment]
+		comments: [ID]
 	}
 
 	type GuideGroup {

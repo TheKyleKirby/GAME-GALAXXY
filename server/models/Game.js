@@ -3,23 +3,27 @@ const { Schema, model } = require('mongoose');
 const gameSchema = new Schema({
     title: {
         type: String,
-        require: true,
+        required: true,
     },
     description: {
         type: String,
-        require: true,
     },
     genre: {
         type: String,
-        require: true,
     },
     releaseDate: {
         type: Date,
-        require: true,
     },
+    rating: {
+        type: Number
+    },
+    guides: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Guide'
+    }]
 
-});
+})
 
 const Game = model('Game', gameSchema);
 
-module.exports - Game;
+module.exports = Game;

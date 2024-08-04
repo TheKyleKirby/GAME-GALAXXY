@@ -6,20 +6,42 @@ const guideSchema = new Schema({
     type: String,
     required: true,
   },
-  content: {
-    type: String,
-    required: true,
-  },
-  section: {
-    type: String,
-    required: true,
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
   game: {
     type: Schema.Types.ObjectId,
     ref: 'Game',
     required: true,
   },
-  
+  console: {
+    type: String
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  belongsToGroup:{
+    type: Boolean
+  },
+  groupBelongsTo: {
+    type: String
+  },
+  section: {
+    type: String,
+  },
+  tags: {
+    type: [String]
+  },
+  rating: {
+    type: Number
+  },
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  }]
 })
 
 const Guide = model('Guide', guideSchema)
