@@ -16,5 +16,8 @@
     "root": "cd server && npm run watch"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.11.2"
+  }
 }
