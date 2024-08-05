@@ -14,7 +14,35 @@ const userSchema = new Schema({
 	password: {
 		type: String,
 		required: true,
-	}	
+	},
+	bio: {
+		type: String,
+	},
+	topGames: {
+		type: String,
+	},
+	friends: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	creatorsFollowing: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	savedGuides: {
+		type: Schema.Types.ObjectId,
+		ref: 'Guide'
+	},
+	createdGuides: {
+		type: Schema.Types.ObjectId,
+		ref: 'Guide'
+	},
+	isCreator: {
+		type: Boolean
+	},
+	profilePicture: {
+		type: String
+	}
 
 })
 

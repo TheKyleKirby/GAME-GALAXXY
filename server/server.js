@@ -1,27 +1,44 @@
 require ('dotenv').config()
 const express = require('express')
+const { ApolloServer } =require('@apollo/server')
+const { expressMiddleware } = require('@apollo/server/express4')
+const path = require('path')
+
 const connectDB = require('./config/dbConfig')
-const app = express()
-const PORT = process.env.PORT || 3001
-const { graphqlHTTP } = require('express-graphql')
+
 const { typeDefs, resolvers } = require('./schemas')
+
 const colors = require('colors')
 const cors = require('cors')
 
-// for token
-const { authMiddleware } = require('./utils/auth');
-app.use('/graphql', expressMiddleware(server, {
-    context: authMiddleware
-  }));
-
-
-connectDB()
-
-app.use(cors())
-app.use('/graphql', graphqlHTTP({
+const PORT = process.env.PORT || 3001
+const app = express()
+const server = new ApolloServer({
 	typeDefs,
 	resolvers,
-	graphiql: process.env.NODE_ENV === 'development'
-}))
+	introspection: process.env.NODE_ENV !== 'production',
+    playground: process.env.NODE_ENV !== 'production'
+})
 
-app.listen(PORT, console.log(`server running on http://localhost:${PORT}`.bgCyan))
+const startApolloServer = async () =>{
+	await server.start()
+
+	
+	app.use(express.urlencoded({ extended: true }))
+	app.use(express.json())
+
+	app.use('/graphql', expressMiddleware(server))
+
+	if (process.env.NODE_ENV === 'production') {
+		app.use(express.static(path.join(__dirname, '../client/dist')));
+	}
+
+
+	app.listen(PORT, () =>{
+		console.log(`server running on http://localhost:${PORT}`.bgCyan)
+		console.log(`Use GraphQL at http://localhost:${PORT}/graphql`.bgBlue)
+		})
+
+}
+connectDB().then(() => startApolloServer())
+
