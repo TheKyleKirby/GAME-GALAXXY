@@ -138,7 +138,7 @@ const typeDefs = `
 	},
 
 	type Mutation {
-		addUser(username: String!, email: String!, password: String!): User #will need to change this to Auth when we get JWT going
+		addUser(username: String!, email: String!, password: String!): Auth
 		login(username: String!, password: String!): Auth
 		updateProfile(user: UserInput): User
 		addFriend(friendId: ID!): User
