@@ -9,7 +9,7 @@ const resolvers = {
 	},
 	Mutation: {
 		addUser: async( parent, {username, email, password }) =>{
-			return await User.create({
+			const user = await User.create({
 				username,
 				email,
 				password
@@ -33,6 +33,9 @@ const resolvers = {
 		if (!correctPW) {
 			throw AuthenticationError
 		}
+
+		const token = signToken(user)
+		return { token, user }
 	}
 }
 }
