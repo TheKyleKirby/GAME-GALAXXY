@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
                 {/* Login and My Account Buttons */}
                 <div className="hidden md:flex items-center space-x-4">
                     <button className="text-white">Login</button>
-                    <button className="text-white">My Account</button>
+                    <Link to='/profile' className="text-white">My Account</Link>
                 </div>
             </div>
 
