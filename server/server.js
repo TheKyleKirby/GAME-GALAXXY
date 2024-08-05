@@ -8,6 +8,12 @@ const { typeDefs, resolvers } = require('./schemas')
 const colors = require('colors')
 const cors = require('cors')
 
+// for token
+const { authMiddleware } = require('./utils/auth');
+app.use('/graphql', expressMiddleware(server, {
+    context: authMiddleware
+  }));
+
 
 connectDB()
 
