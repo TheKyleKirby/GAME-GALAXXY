@@ -11,8 +11,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const Homepage = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
-
       {/* Hero Section */}
       <section className="hero bg-cover bg-center h-screen relative" style={{ backgroundImage: 'url("/path-to-your-hero-image.jpg")' }}>
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-4">
@@ -38,8 +36,6 @@ const Homepage = () => {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };
