@@ -5,9 +5,13 @@ import Navbar from './pages/Navbar'
 import Homepage from './pages/Homepage'
 import Footer from './pages/Footer'
 import Profile from './pages/Profile'
-
+import {ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from'@apollo/client'
 //token - authenticates any req and sends to backend while user is logged in
 import {setContext} from '@apollo/client/link/context'
+
+const httpLink = createHttpLink({
+	uri: "http://localhost:5000"
+})
 
 // middleware - setContext - checking link between backend and frontend
 const authLink = setContext((_, { headers }) => {
@@ -28,8 +32,9 @@ const authLink = setContext((_, { headers }) => {
 const App = () => {
     return (
         <>
+          <Navbar />
             <Routes>
-                <Route path='/' element={<TestHome />} />
+                <Route path='/' element={<Homepage />} />
                 <Route path='/homepage' element={<Homepage />} />
                 <Route path='/navbar' element={<Navbar />} />
                 <Route path='/footer' element={<Footer />} />
@@ -42,6 +47,8 @@ const App = () => {
                 <Route path='/test' element={<TestHome />} />
                 <Route path='/other' element={<FakeOther />} />
             </Routes>
+            <Footer />
+
         </>
 
     )

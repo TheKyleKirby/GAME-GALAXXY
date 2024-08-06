@@ -141,8 +141,8 @@
 
 ## MUTATIONS(resolvers)
 ### HomePage Mutations:
-- [G] Mutation to addUser(need JWT auth)
-- [ ] Mutation to login
+<!-- - [X] Mutation to addUser(need JWT auth) -->
+- [K] Mutation to login
 
 ### ResultsPage Mutations:
 - [ ] Mutation to update saved items(friend, guide, creator) on user

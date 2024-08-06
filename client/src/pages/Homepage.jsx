@@ -4,7 +4,6 @@ import Footer from './Footer';
 const Homepage = () => {
     return (
         <div className="min-h-screen bg-gray-100">
-            <Navbar />
             {/* Title Box */}
             <div className="h-40 bg-blue-600 flex items-center justify-center">
                 <h1 className="text-white text-5xl font-bold">Welcome to Our Website</h1>
@@ -25,7 +24,6 @@ const Homepage = () => {
                     <p className="text-gray-600">Learn more about the amazing team behind our success...</p>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 };
