@@ -112,6 +112,12 @@ const typeDefs = `
 		tags: [String] 
 	}
 
+	type IGDBGame {
+	id: Int
+	name: String
+	summary: String
+	rating: Float
+	}
 
 
 
