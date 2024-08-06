@@ -46,7 +46,7 @@ const App = () => {
                 {/* <Route path='*' element={<NotFoundPage />} />  */}
                 <Route path='/test' element={<TestHome />} />
                 <Route path='/other' element={<FakeOther />} />
-            </Routes>
+              </Routes>
             <Footer />
 
         </>
