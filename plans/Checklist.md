@@ -56,62 +56,52 @@
 - [ ] Created Guides List
 - [ ] Edit Profile Form (when button/link clicked)
 
-
+### Not Found Page
+- [ ] Not found page
 
 ## QUERIES(typeDefs)
 ### HomePage Queries:
-- [ ] Query for trending guides
-- [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
+<!-- - [X] Query for trending guides -->
+
 
 ### ResultsPage Queries:
-- [ ] Query for search results
-  - [G] Query for users
-  - [ ] Query for games
-  - [ ] Query for guides
-- [ ] Query for filter options
+<!-- - [X] Query for search results -->
+  <!-- - [X] Query for users -->
+  <!-- - [TBS] Query for games -->
+  <!-- - [X] Query for guides -->
+<!-- - [G] Query for filter options -->
 
 ### GuidePage Queries:
-- [ ] Query for single guide
-- [ ] Query for related titles/chapters/levels
-- [ ] Query for comments
-- [ ] Query for tags
-- [ ] Query for rating of guide
-- [ ] Query for game info(title, rating, etc)
+<!-- - [X] Query for single guide -->
+<!-- - [G] Query for related titles/chapters/levels -->
+<!-- - [X] Query for tags -->
 
 ### Create Guide Page Queries:
-- [ ] Query for games (for dropdown select input field)
-- [ ] Query for guide groups from user (for select dropdown)
+<!-- - [X] Query for games (for dropdown select input field) -->
+<!-- - [X] Query for guide groups from user (for select dropdown) -->
 
 ### Dashboard Page Queries:
-- [G] Query for profile details
-- [ ] Query for friends list
-- [ ] Query for saved games
-- [ ] Query for creators following list
-- [ ] Query for guides saved list
-- [ ] Query for created guides list
+<!-- - [X] Query for profile details(should show saved Games, FriendsList, CreatorsFollowing, SavedGuides, and Created Guides) -->
+<!-- - [X] Query for friends list -->
 
 
-## MUTATIONS(resolvers)
+## MUTATIONS(typeDefs)
 ### HomePage Mutations:
-- [G] Mutation to addUser
-- [G] Mutation to login
+<!-- - [X] Mutation to addUser -->
+<!-- - [X] Mutation to login -->
 
 ### ResultsPage Mutations:
-- [ ] Mutation to update saved items(friend, guide, creator) on user
-
-### GuidePage Mutations:
-- [ ] Mutation to update rating on guide
-- [ ] Mutation to add comments on guide/user
+<!-- - [X] Mutation to update saved items(friend, guide, creator) on user -->
 
 ### Create Guide Page Mutations:
-- [ ] Mutation to add new guide to database
+<!-- - [X] Mutation to add new guide to database -->
 
 ### Dashboard Page Mutations:
-- [ ] Mutation to update user profile
-- [ ] Mutation to remove guide
-- [ ] Mutation to update guide
-- [ ] Mutation to remove friend
-- [ ] Mutation to unfollow creator
+<!-- - [X] Mutation to update user profile -->
+<!-- - [x] Mutation to remove guide -->
+<!-- - [x] Mutation to update guide(including rating and comments) -->
+<!-- - [x] Mutation to remove friend -->
+<!-- - [x] Mutation to unfollow creator -->
 
 
 
@@ -121,11 +111,11 @@
 - [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
 
 ### ResultsPage Queries:
-- [ ] Query for search results
-  - [ ] Query for users
-  - [ ] Query for games
-  - [ ] Query for guides
-- [ ] Query for filter options
+- [ ] Query for search results(one query using searchInput)
+  - [ ]  users
+  - [ ]  games
+  - [ ]  guides
+- [ ] Query for filter options(one query using filterInput)
 
 ### GuidePage Queries:
 - [ ] Query for single guide
@@ -151,8 +141,8 @@
 
 ## MUTATIONS(resolvers)
 ### HomePage Mutations:
-- [ ] Mutation to addUser
-- [ ] Mutation to login
+<!-- - [X] Mutation to addUser(need JWT auth) -->
+- [K] Mutation to login
 
 ### ResultsPage Mutations:
 - [ ] Mutation to update saved items(friend, guide, creator) on user
@@ -182,6 +172,7 @@
 - [ ] Handle search bar submission
 - [ ] Display search results
 - [ ] Filter search results
+- [ ] About us json file & mapping to show on cards on homepage
 
 ### ResultsPage Functions:
 - [ ] Display search results
