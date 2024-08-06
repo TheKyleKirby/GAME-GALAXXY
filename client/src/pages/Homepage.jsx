@@ -6,7 +6,15 @@ import Footer from '../pages/Footer';
 import CustomCarousel from '../components/CustomCarousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
+const staffMembers = [
+    {name: 'Tish Sirface A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Kyle Kirby A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Beth McKinney A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Karina Gonzalez A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Tristan Smith A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Betzaida Taylor A.KA Nyxie96', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
 
+];
 
 const Homepage = () => {
   return (
@@ -31,10 +39,17 @@ const Homepage = () => {
         </div>
 
         {/* Meet the staff */}
-        <div className="flex justify-center mt-8">
-          <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Meet Our Staff</h2>
-            <p className="text-gray-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis similique eaque praesentium odio consequatur repellendus quos totam at laudantium quaerat a assumenda rerum deserunt molestias, vel obcaecati ad impedit dignissimos!</p>
+        <div className="container mx-auto mt-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Meet Our Staff</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {staffMembers.map((member, index) =>(
+                    <div key={index} className="bg-white shadow-lg rounded-lg p-6">
+                        <img src={member.image} alt={member.name} className="w-full h-48 object-cover rounded-t-lg mb-4"/>
+                        <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
+                        <p className="text-gray-600 mb-2">{member.level}</p>
+                        <p className="text-gray-600">{member.bio}</p>
+                       </div> 
+                ))}
           </div>
         </div>
       </main>
