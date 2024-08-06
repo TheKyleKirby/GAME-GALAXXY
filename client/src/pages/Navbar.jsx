@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 
 const Navbar = () => {
@@ -19,43 +18,49 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-gray-800 p-4">
-            <div className="container mx-auto flex items-center justify-between">
-                {/* Hamburger Menu */}
-                <div className="flex items-center">
-                    <button onClick={toggleMenu} className="text-white focus:outline-none md:hidden">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        <>
+            <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                    <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Game Galaxxy</span>
+                    </a>
+                    <div className="flex-1 mx-4">
+                        <input type="text" placeholder="Search..." className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <button
+                        onClick={toggleMenu}
+                        type="button"
+                        className="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="navbar-hamburger"
+                        aria-expanded={isMenuOpen}
+                    >
+                        <span className="sr-only">Open main menu</span>
+                        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
                         </svg>
                     </button>
+                    <button onClick={toggleLoginModal} className="text-white bg-blue-500 px-4 py-2 rounded-md">Login</button>
                 </div>
-
-                {/* Search Bar */}
-                <div className="flex-1 mx-4">
-                    <input type="text" placeholder="Search..." className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
-
-                {/* Login and My Account Buttons */}
-                <div className="hidden md:flex items-center space-x-4">
-                    <button onClick={toggleLoginModal} className="text-white">Login</button>
-                    <button className="text-white">My Account</button>
-                </div>
-            </div>
-
-            {/* Hamburger Menu Items */}
-            {isMenuOpen && (
-                <div className="md:hidden bg-gray-800 text-white p-4">
-                    <ul>
-                        <li className="py-2"><a href="#">Sign up</a></li>
-                        <li className="py-2"><a href="#">Login</a></li>
-                        <li className="py-2"><a href="#">Logout</a></li>
-                        <li className="py-2"><a href="#">Dashboard</a></li>
-                        <li className="py-2"><a href="#">Create New Guide</a></li>
-                        <li className="py-2"><a href="#">Trending Guides</a></li>
-                        <li className="py-2"><a href="#">About Us</a></li>
+                <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full`} id="navbar-hamburger">
+                    <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                        <li>
+                            <a href="./" className="block py-2 px-3 text-white bg-blue-700 rounded dark:bg-blue-600" aria-current="page">Home</a>
+                        </li>
+                        <li>
+                            <a href="./Profile" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Profile</a>
+                        </li>
+                        <li>
+                            <a href="./Results" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white">Results</a>
+                        </li>
+                        <li>
+                            <a href="./Blog.jsx" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Blog</a>
+                        </li>
+                        <li>
+                            <a href="./Tutorial" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Game Tutorials</a>
+                        </li>
                     </ul>
                 </div>
-            )}
+            </nav>
 
             {/* Login Modal */}
             {isLoginModalOpen && (
@@ -68,7 +73,7 @@ const Navbar = () => {
                         <input type="text" placeholder="Username" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
                         <input type="password" placeholder="Password" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
                         <div className="flex justify-between items-center">
-                            <button onClick={() => { toggleLoginModal(); toggleSignUpModal(); }} className="text-blue-500">Sign Up</button>
+                            <button onClick={toggleSignUpModal} className="text-blue-500">Sign Up</button>
                             <button onClick={toggleLoginModal} className="bg-blue-500 text-white px-4 py-2 rounded-md">Login</button>
                         </div>
                     </div>
@@ -84,15 +89,16 @@ const Navbar = () => {
                         </button>
                         <h2 className="text-xl mb-4">Sign Up</h2>
                         <input type="text" placeholder="Username" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                        <input type="password" placeholder="Password" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
                         <input type="email" placeholder="Email" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                        <div className="flex justify-end items-center">
+                        <input type="password" placeholder="Password" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <div className="flex justify-between items-center">
+                            <button onClick={toggleLoginModal} className="text-blue-500">Login</button>
                             <button onClick={toggleSignUpModal} className="bg-blue-500 text-white px-4 py-2 rounded-md">Sign Up</button>
                         </div>
                     </div>
                 </div>
             )}
-        </nav>
+        </>
     );
 };
 
