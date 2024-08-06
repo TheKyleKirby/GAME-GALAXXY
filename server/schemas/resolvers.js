@@ -1,11 +1,20 @@
-const User = require('../models/User')
+const {User, Guide, Game} = require('../models')
 const { signToken, AuthenticationError } = require('../utils/auth')
 
 const resolvers = {
 	Query: {
 		allUsers: async() =>{
 			return User.find({})
+		},
+		allGames: async() => {
+			const game = await Game.find({})
+			return {game}
+		},
+		relatedGuides: async() => {
+			return 
 		}
+
+
 	},
 	Mutation: {
 		addUser: async( parent, {username, email, password }) =>{
@@ -26,9 +35,8 @@ const resolvers = {
 		if (!user) {
 			throw AuthenticationError
 		}
-
 // checking password from bcrypt in models
-		const correctPW = await User.isCorrectPassword(password)
+		const correctPW = await user.isCorrectPassword(password)
 
 		if (!correctPW) {
 			throw AuthenticationError
