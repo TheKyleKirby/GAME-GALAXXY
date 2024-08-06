@@ -1,9 +1,9 @@
 // !WHEN I LOAD THE GVM3 GVLVXXY SITE
 // !THEN I AM PRESENTED WITH A MENU, SEARCHBAR, LOGIN/SIGNUP, HERO, TRENDING GUIDES, ABOUT THE STAFF
 	//* HomePage Components:
-		// todo Navbar
+		// // Navbar
 		// todo Menu
-			// todo SearchBar
+			// // SearchBar
 			// todo Links for Sign up, Login, Logout, Dashboard, Create New Guide, Trending Guides, About Us
 		// todo Logo?
 		// todo Login modal/Signup modal
@@ -32,13 +32,13 @@
 // !THEN I AM PRESENTED WITH LINKS FOR SIGNUP/LOGIN/LOGOUT, SEARCHBAR, DASHBOARD(IF LOGGED IN), CREATE NEW GUIDE
 	//* Functions:
 		// * Signup/login:
-			// todo Open modal
-			// todo Display Login or signup depending on state of button in modal
-			// todo Submit & save user
-			// todo Auth with jwt
-			// todo Login user
-			// todo Auth with jwt
-			// todo Redirect to dashboard after logged in
+			// // Open modal
+			// // Display Login or signup depending on state of button in modal
+			// // Submit & save user
+			// // Auth with jwt
+			// // Login user
+			// // Auth with jwt
+			// // Redirect to dashboard after logged in
 		//* Searchbar:
 			// todo Submit values to query 
 			// todo Query for user, game, guide, tags

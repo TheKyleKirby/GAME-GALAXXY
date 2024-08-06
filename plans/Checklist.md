@@ -115,6 +115,7 @@
   - [ ]  users
   - [ ]  games
   - [ ]  guides
+  - [ ]  tags
 - [ ] Query for filter options(one query using filterInput)
 
 ### GuidePage Queries:
