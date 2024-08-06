@@ -1,12 +1,21 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    const toggleLoginModal = () => {
+        setIsLoginModalOpen(!isLoginModalOpen);
+    };
+
+    const toggleSignUpModal = () => {
+        setIsSignUpModalOpen(!isSignUpModalOpen);
     };
 
     return (
@@ -28,8 +37,8 @@ const Navbar = () => {
 
                 {/* Login and My Account Buttons */}
                 <div className="hidden md:flex items-center space-x-4">
-                    <button className="text-white">Login</button>
-                    <Link to='/profile' className="text-white">My Account</Link>
+                    <button onClick={toggleLoginModal} className="text-white">Login</button>
+                    <button className="text-white">My Account</button>
                 </div>
             </div>
 
@@ -45,6 +54,42 @@ const Navbar = () => {
                         <li className="py-2"><a href="#">Trending Guides</a></li>
                         <li className="py-2"><a href="#">About Us</a></li>
                     </ul>
+                </div>
+            )}
+
+            {/* Login Modal */}
+            {isLoginModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
+                        <button onClick={toggleLoginModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                            &times;
+                        </button>
+                        <h2 className="text-xl mb-4">Login</h2>
+                        <input type="text" placeholder="Username" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="password" placeholder="Password" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <div className="flex justify-between items-center">
+                            <button onClick={() => { toggleLoginModal(); toggleSignUpModal(); }} className="text-blue-500">Sign Up</button>
+                            <button onClick={toggleLoginModal} className="bg-blue-500 text-white px-4 py-2 rounded-md">Login</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Sign Up Modal */}
+            {isSignUpModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
+                        <button onClick={toggleSignUpModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                            &times;
+                        </button>
+                        <h2 className="text-xl mb-4">Sign Up</h2>
+                        <input type="text" placeholder="Username" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="password" placeholder="Password" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="email" placeholder="Email" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <div className="flex justify-end items-center">
+                            <button onClick={toggleSignUpModal} className="bg-blue-500 text-white px-4 py-2 rounded-md">Sign Up</button>
+                        </div>
+                    </div>
                 </div>
             )}
         </nav>
