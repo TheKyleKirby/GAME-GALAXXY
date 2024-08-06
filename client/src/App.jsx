@@ -1,12 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
-import TestHome from './pages/TestHome'
-import FakeOther from './pages/FakeOther'
 import Navbar from './pages/Navbar'
 import Homepage from './pages/Homepage'
 import Footer from './pages/Footer'
 import Profile from './pages/Profile'
 import Tutorial from './pages/Tutorial'
 import Results from './pages/Results'
+import Blog from './pages/Blog'
 import {ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from'@apollo/client'
 //token - authenticates any req and sends to backend while user is logged in
 import {setContext} from '@apollo/client/link/context'
@@ -37,17 +36,10 @@ const App = () => {
           <Navbar />
             <Routes>
                 <Route path='/' element={<Homepage />} />
-                <Route path='/homepage' element={<Homepage />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/tutorial' element={<Tutorial />} />
                 <Route path='/results' element={<Results />} />
-                {/* <Route path='/results' element={<ResultsPage />} /> */}
-                {/* <Route path='/createguide' element={<CreateGuidePage />} /> */}
-                {/* <Route path='/guide/:id' element={<GuidePage />} /> */}
-                {/* <Route path='/dashboard' element={<DashboardPage />} />  */}
-                {/* <Route path='*' element={<NotFoundPage />} />  */}
-                <Route path='/test' element={<TestHome />} />
-                <Route path='/other' element={<FakeOther />} />
+                <Route path='/blog' element={<Blog />} />
             </Routes>
             <Footer />
 
