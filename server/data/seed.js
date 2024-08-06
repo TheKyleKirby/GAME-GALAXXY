@@ -2,8 +2,10 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const connectDB = require('../config/dbConfig')
 const User = require('../models/User')
+const Guide = require('../models/Guide')
 
 const userData = require('./sampleUsers.json')
+const guideData = require('./sampleGuide.json')
 
 const cleanDB = async (modelName, collectionName) => {
 	try {
@@ -28,7 +30,10 @@ const seedDatabase = async () => {
 
 		await User.insertMany(userData)
 
+		await Guide.insertMany(guideData)
+
 		console.log('Users seeded!')
+		console.log('Guides seeded!')
 		process.exit(0)
 	} catch (err) {
 		console.error('Error seeding database:', err)
