@@ -1,8 +1,6 @@
 // src/pages/Homepage.jsx
 
 import React from 'react';
-import Navbar from '../pages/Navbar';
-import Footer from '../pages/Footer';
 import CustomCarousel from '../components/CustomCarousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -11,7 +9,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const Homepage = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
 
       {/* Hero Section */}
       <section className="hero bg-cover bg-center h-screen relative" style={{ backgroundImage: 'url("/path-to-your-hero-image.jpg")' }}>
@@ -39,7 +36,6 @@ const Homepage = () => {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 };
