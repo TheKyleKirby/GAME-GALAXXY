@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 
 const Navbar = () => {
@@ -19,7 +18,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-gray-800 p-4">
+        <nav className="bg-gray-800 p-4 fixed w-full top-0 z-50">
             <div className="container mx-auto flex items-center justify-between">
                 {/* Hamburger Menu */}
                 <div className="flex items-center">
