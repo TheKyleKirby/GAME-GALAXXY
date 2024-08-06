@@ -8,9 +8,9 @@
   - [ ] Links for Sign up, Login, Logout, Dashboard, Create New Guide, Trending Guides, About Us
 - [BT] Logo
 - [ ] Login modal/Signup modal
-- [ ] Hero
-- [ ] Trending section
-- [ ] Guide cards
+- [x ] Hero (just need an image)
+- [x ] Trending section (carousel still needs some tweaking, but is implemented)
+- [x ] Guide cards
 - [ ] Game cards
 - [ ] User cards
 - [ ] About us section
