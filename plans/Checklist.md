@@ -6,7 +6,7 @@
 - [ ] Menu
   - [ ] SearchBar
   - [ ] Links for Sign up, Login, Logout, Dashboard, Create New Guide, Trending Guides, About Us
-- [ ] Logo
+- [BT] Logo
 - [ ] Login modal/Signup modal
 - [ ] Hero
 - [ ] Trending section
