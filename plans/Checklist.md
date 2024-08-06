@@ -1,12 +1,12 @@
 
 ## COMPONENTS
 ### HomePage Components:
-[ ] wireFrame
+[BT] wireFrame
 - [ ] Navbar
 - [ ] Menu
   - [ ] SearchBar
   - [ ] Links for Sign up, Login, Logout, Dashboard, Create New Guide, Trending Guides, About Us
-- [ ] Logo
+- [BT] Logo
 - [ ] Login modal/Signup modal
 - [x ] Hero (just need an image)
 - [x ] Trending section (carousel still needs some tweaking, but is implemented)
@@ -17,7 +17,7 @@
 - [ ] Footer
 
 ### ResultsPage(or section) Components:
-[ ] wireFrame
+[BT] wireFrame
 - [ ] Search results container
 - [ ] Filter options
 - [ ] Guide result cards
@@ -25,14 +25,14 @@
 - [ ] User result cards
 
 ### GuidePage Components:
-[ ] wireFrame
+[BT] wireFrame
 - [ ] Guide Content (title, author, content, etc)
 - [ ] Comments display
 - [ ] Comment form
 - [ ] Related chapters/levels area
 
 ### Create Guide Page Components:
-[ ] wireFrame
+[BT] wireFrame
 - [ ] Form
   - [ ] Game input
   - [ ] Console input
@@ -43,7 +43,7 @@
   - [ ] Images input (optional)
 
 ### Dashboard Page Components:
-[ ] wireFrame
+[BT] wireFrame
 - [ ] Profile Details
   - [ ] Picture
   - [ ] Bio
