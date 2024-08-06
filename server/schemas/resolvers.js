@@ -6,12 +6,12 @@ const resolvers = {
 		allUsers: async() =>{
 			return User.find({})
 		},
-		allGames: async() => {
-			const game = await Game.find({})
-			return {game}
-		},
-		relatedGuides: async() => {
-			return 
+		// going to try to use api for games.
+		// allGames: async() => {
+		// 	return await Game.find({})
+		// },
+		allGuides: async() => {
+			return Guide.find({}).populate('author')
 		}
 
 
@@ -29,8 +29,8 @@ const resolvers = {
 		},
 
 	// find profile, if not found , throw error
-		login: async (parent, {email,password}) => {
-			const user = await User.findOne({email})
+		login: async (parent, {username, password}) => {
+			const user = await User.findOne({username})
 
 		if (!user) {
 			throw AuthenticationError

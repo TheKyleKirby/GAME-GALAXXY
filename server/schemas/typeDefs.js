@@ -139,7 +139,7 @@ const typeDefs = `
 
 	type Mutation {
 		addUser(username: String!, email: String!, password: String!): Auth
-		login(email: String!, password: String!): Auth
+		login(username: String!, password: String!): Auth
 		updateProfile(user: UserInput): User
 		addFriend(friendId: ID!): User
 		followCreator(creatorId: ID!): User
@@ -149,6 +149,7 @@ const typeDefs = `
 
 		addGame(game: GameInput!): Game
 		saveGame(gameId: ID!) : User
+
 		addGuide(guide: GuideInput!): Guide
 		updateGuide(_id: ID!, guide: GuideInput) : Guide
 		saveGuide(guideId: ID!) : User

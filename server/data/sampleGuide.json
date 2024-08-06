@@ -1,68 +1,43 @@
 [
     {
       "title": "Mastering The Witcher 3: Wild Hunt",
-      "author": "64b7f0304b2e4b49b7f0c1a9",
       "game": "64b7f0c04b2e4b49b7f0c1b0",
       "console": "PC",
       "content": "This guide covers everything from basic gameplay mechanics to advanced strategies for completing quests and defeating bosses in The Witcher 3: Wild Hunt.",
-      "belongsToGroup": true,
-      "groupBelongsTo": "RPG Enthusiasts",
-      "section": "Gameplay",
       "tags": ["RPG", "Guide", "Witcher 3"],
-      "rating": 4.8,
-      "comments": ["64b7f0d14b2e4b49b7f0c1b1", "64b7f0d54b2e4b49b7f0c1b2"]
+      "rating": 4.8
     },
     {
       "title": "Complete Guide to Dark Souls III",
-      "author": "64b7f0314b2e4b49b7f0c1aa",
       "game": "64b7f0c14b2e4b49b7f0c1b3",
       "console": "PS4",
       "content": "A comprehensive guide to conquering Dark Souls III, including boss strategies, item locations, and PvP tips.",
-      "belongsToGroup": true,
-      "groupBelongsTo": "Soulsborne Veterans",
-      "section": "Strategy",
       "tags": ["Dark Souls", "Soulsborne", "Strategy"],
-      "rating": 4.9,
-      "comments": ["64b7f0d64b2e4b49b7f0c1b4", "64b7f0d94b2e4b49b7f0c1b5"]
+      "rating": 4.9
     },
     {
       "title": "Animal Crossing: New Horizons - Beginner's Guide",
-      "author": "64b7f0324b2e4b49b7f0c1ab",
       "game": "64b7f0c24b2e4b49b7f0c1b6",
       "console": "Nintendo Switch",
       "content": "This guide provides tips and tricks for new players of Animal Crossing: New Horizons, covering island management, villager interactions, and resource gathering.",
-      "belongsToGroup": false,
-      "groupBelongsTo": null,
-      "section": "Beginner",
       "tags": ["Animal Crossing", "New Horizons", "Beginner"],
-      "rating": 4.7,
-      "comments": ["64b7f0da4b2e4b49b7f0c1b7", "64b7f0db4b2e4b49b7f0c1b8"]
+      "rating": 4.7
     },
     {
       "title": "The Ultimate Guide to Overwatch",
-      "author": "64b7f0334b2e4b49b7f0c1ac",
       "game": "64b7f0c34b2e4b49b7f0c1b9",
       "console": "Xbox One",
       "content": "An in-depth guide to Overwatch, covering hero strategies, team compositions, and tips for climbing the competitive ladder.",
-      "belongsToGroup": true,
-      "groupBelongsTo": "FPS Gamers",
-      "section": "Competitive",
       "tags": ["Overwatch", "FPS", "Competitive"],
-      "rating": 4.6,
-      "comments": ["64b7f0dc4b2e4b49b7f0c1ba", "64b7f0dd4b2e4b49b7f0c1bb"]
+      "rating": 4.6
     },
     {
       "title": "Breath of the Wild: Complete Walkthrough",
-      "author": "64b7f0344b2e4b49b7f0c1ad",
       "game": "64b7f0c44b2e4b49b7f0c1bc",
       "console": "Nintendo Switch",
       "content": "A detailed walkthrough of The Legend of Zelda: Breath of the Wild, including puzzle solutions, shrine locations, and tips for defeating Ganon.",
-      "belongsToGroup": true,
-      "groupBelongsTo": "Zelda Fans",
-      "section": "Walkthrough",
       "tags": ["Zelda", "Breath of the Wild", "Walkthrough"],
-      "rating": 4.9,
-      "comments": ["64b7f0de4b2e4b49b7f0c1bd", "64b7f0df4b2e4b49b7f0c1be"]
+      "rating": 4.9
     }
   ]
   
