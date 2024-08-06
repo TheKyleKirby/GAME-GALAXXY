@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+// import { useQuery } from '@apollo/client'
+// import { GET_TUTORIALS } from '../utils/queries'
+
 
 const guides = [
   {
@@ -30,6 +33,12 @@ const guides = [
 
 const CustomCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // const {loading, error, data} = useQuery(GET_TUTORIALS)
+  // if (loading) return <p>Loading...</p>//can make spinner with react-spinner package
+  // if (error) return <p>Error: {error.message}</p>
+
+  // const guides = data.allGuides
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
