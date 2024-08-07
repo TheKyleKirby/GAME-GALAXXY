@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+const  bcrypt = require('bcrypt')
 
 const userSchema = new Schema({
 	username: {
@@ -47,7 +48,7 @@ const userSchema = new Schema({
 })
 
 // salt rounds - set up presave middleware to create password
-userSchema.pre('sasve', async function (next) {
+userSchema.pre('save', async function (next) {
 	if (this.isNew || this.isModified('password')) {
 		const saltRounds = 10
 		this.password = await bcrypt.hash(this.password, saltRounds)
@@ -56,7 +57,7 @@ userSchema.pre('sasve', async function (next) {
 })
 
 // bcrypt used for the token
-userSchema.method.isCorrectPassword = async function (password) {
+userSchema.methods.isCorrectPassword = async function (password) {
 	return bcrypt.compare(password, this.password)
 }
 

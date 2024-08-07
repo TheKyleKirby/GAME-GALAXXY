@@ -149,6 +149,7 @@ const typeDefs = `
 
 		addGame(game: GameInput!): Game
 		saveGame(gameId: ID!) : User
+
 		addGuide(guide: GuideInput!): Guide
 		updateGuide(_id: ID!, guide: GuideInput) : Guide
 		saveGuide(guideId: ID!) : User

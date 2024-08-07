@@ -4,6 +4,7 @@ class AuthService {
 
 	// if already logged in
 	getProfile() {
+		(console.log(`profile ${decode(this.getToken())}`))
 		return decode(this.getToken());
 	}
 
@@ -26,7 +27,7 @@ class AuthService {
 	// removes token from localstorage when logged out  
 	logout() {
 		localStorage.removeItem('id_token');
-		window.location.reload();
+		window.location.assign('/');
 	}
 }
 
