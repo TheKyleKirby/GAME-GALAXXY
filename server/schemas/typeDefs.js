@@ -115,6 +115,7 @@ const typeDefs = `
 
 
 
+
 	type Query {
 		allUsers: [User]
 		searchedUsers(username: String!): [User]
