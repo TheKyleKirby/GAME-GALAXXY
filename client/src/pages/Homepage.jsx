@@ -5,14 +5,23 @@ import Navbar from '../pages/Navbar';
 import Footer from '../pages/Footer';
 import CustomCarousel from '../components/CustomCarousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import hero from '../assets/images/hero';
+
+//import staffMembers images
+import image1 from '../assets/images/about/tish.jpg';
+import image2 from '../assets/images/about/kyle.jpg';
+import image3 from '../assets/images/about/beth.JPG';
+import image4 from '../assets/images/about/karina.png';
+import image5 from '../assets/images/about/';
+import image6 from '../assets/images/about/betzy.JPG';
 
 const staffMembers = [
-    {name: 'Tish Sirface A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
-    {name: 'Kyle Kirby A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
-    {name: 'Beth McKinney A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
-    {name: 'Karina Gonzalez A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
-    {name: 'Tristan Smith A.KA ', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
-    {name: 'Betzaida Taylor A.KA Nyxie96', image:'(insert profile picture here)' , level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Tish Sirface A.KA ThisTish', image: image1, level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Kyle Kirby A.KA Kirbsteroonie', image: image2, level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Beth McKinney A.KA Corgilicious', image: image3, level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Karina Gonzalez A.KA Aimee_kgl', image: image4, level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Tristan Smith A.KA ', image: image5, level:'Level 1 developer', bio: '(insert bio here)'},
+    {name: 'Betzaida Taylor A.KA Nyxie96', image: image6, level:'Level 1 developer', bio: '(insert bio here)'},
 
 ];
 
