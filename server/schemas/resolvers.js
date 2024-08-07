@@ -1,74 +1,51 @@
-const User = require('../models/User')
-const { signToken, AuthenticationError } = require('../utils/auth')
-const axios = require('axios');
-
-
-// Function to get game details from IGDB
-const getGameDetails = async (name) => {
-	try {
-		const response = await axios.post(
-		'https://api.igdb.com/v4/games',
-		`fields name,summary,rating; search "${name}"; limit 1;`,
-		{
-			headers: {
-			'Client-ID': CLIENT_ID,
-			'Authorization': `Bearer ${ACCESS_TOKEN}`,
-			'Content-Type': 'application/json',
-			},
-		}
-		);
-		return response.data;
-	} catch (error) {
-		console.error('Error fetching game details:', error);
-		throw error;
-	}
-	};
-
+const { User, Guide, Game } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
+const axios = require("axios");
 
 const resolvers = {
-	Query: {
-		allUsers: async() =>{
-			return User.find({})
-		}
-	},
-	
+  Query: {
+    allUsers: async () => {
+      return User.find({});
+    },
+    // going to try to use api for games.
+    // allGames: async() => {
+    // 	return await Game.find({})
+    // },
+    allGuides: async () => {
+      return Guide.find({}).populate("author");
+    },
+  },
 
-	// Added igdbGame query to fetch game details from IGDB
-	igdbGame: async (_, { name }) => {
-		return await getGameDetails(name);
-		},
+  Mutation: {
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({
+        username,
+        email,
+        password,
+      });
+      // if valid token, user will be created
+      const token = signToken(user);
+      return { token, user };
+    },
 
-	Mutation: {
-		addUser: async( parent, {username, email, password }) =>{
-			const user = await User.create({
-				username,
-				email,
-				password
-			})
-		// if valid token, user will be created 
-			const token = signToken(user)
-			return { token, user }
-		},
+    // find profile, if not found , throw error
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
 
-	// find profile, if not found , throw error
-		login: async (parent, {email,password}) => {
-			const user = await User.findOne({email})
+      if (!user) {
+        throw AuthenticationError;
+      }
+      // checking password from bcrypt in models
+      const correctPW = await user.isCorrectPassword(password);
 
-		if (!user) {
-			throw AuthenticationError
-		}
+      if (!correctPW) {
+        throw AuthenticationError;
+      }
 
-// checking password from bcrypt in models
-		const correctPW = await User.isCorrectPassword(password)
+      const token = signToken(user);
+      return { token, user };
+    },
+  },
+};
 
-		if (!correctPW) {
-			throw AuthenticationError
-		}
-
-		const token = signToken(user)
-		return { token, user }
-	}
-}
-}
-
-module.exports = resolvers
+module.exports = resolvers;

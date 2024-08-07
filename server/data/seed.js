@@ -1,9 +1,12 @@
 require('dotenv').config()
+const color = require('colors')
 const mongoose = require('mongoose')
 const connectDB = require('../config/dbConfig')
 const User = require('../models/User')
+const Guide = require('../models/Guide')
 
 const userData = require('./sampleUsers.json')
+const guideData = require('./sampleGuide.json')
 
 const cleanDB = async (modelName, collectionName) => {
 	try {
@@ -24,11 +27,37 @@ const seedDatabase = async () => {
 	try {
 		await connectDB()
 
-		await cleanDB('User', 'users')
+		const seedUsers = async (userData) =>{
+			await cleanDB('User', 'users')
 
-		await User.insertMany(userData)
+			const seededUsers = await User.insertMany(userData)
+		console.log(`Users Seeded!`.magenta)
+		return seededUsers
+		}
 
-		console.log('Users seeded!')
+		
+		const seedGuides = async (guidesArray, usersArray) =>{
+			await cleanDB('Guide', 'guides')
+
+			const guideObjects = guidesArray.map((guide, index) => ({
+				title: guide.title,
+				author: usersArray[index]._id,
+				game: guide.game,
+				console: guide.console,
+				content: guide.content,
+				tags: guide.tags,
+				rating: guide.rating
+			}))
+
+			const insertedGuides = await Guide.insertMany(guideObjects)
+			const populatedGuides = await Guide.find({}).populate('author').exec()
+			console.log(populatedGuides)
+			console.log(`Guides seeded!`.cyan)
+		}
+
+		const seededUsers = await seedUsers(userData);
+		await seedGuides(guideData, seededUsers);
+
 		process.exit(0)
 	} catch (err) {
 		console.error('Error seeding database:', err)

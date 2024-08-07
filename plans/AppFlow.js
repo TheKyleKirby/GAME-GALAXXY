@@ -1,9 +1,9 @@
 // !WHEN I LOAD THE GVM3 GVLVXXY SITE
 // !THEN I AM PRESENTED WITH A MENU, SEARCHBAR, LOGIN/SIGNUP, HERO, TRENDING GUIDES, ABOUT THE STAFF
 	//* HomePage Components:
-		// todo Navbar
+		// // Navbar
 		// todo Menu
-			// todo SearchBar
+			// // SearchBar
 			// todo Links for Sign up, Login, Logout, Dashboard, Create New Guide, Trending Guides, About Us
 		// todo Logo?
 		// todo Login modal/Signup modal
@@ -32,13 +32,13 @@
 // !THEN I AM PRESENTED WITH LINKS FOR SIGNUP/LOGIN/LOGOUT, SEARCHBAR, DASHBOARD(IF LOGGED IN), CREATE NEW GUIDE
 	//* Functions:
 		// * Signup/login:
-			// todo Open modal
-			// todo Display Login or signup depending on state of button in modal
-			// todo Submit & save user
-			// todo Auth with jwt
-			// todo Login user
-			// todo Auth with jwt
-			// todo Redirect to dashboard after logged in
+			// // Open modal
+			// // Display Login or signup depending on state of button in modal
+			// // Submit & save user
+			// // Auth with jwt
+			// // Login user
+			// // Auth with jwt
+			// // Redirect to dashboard after logged in
 		//* Searchbar:
 			// todo Submit values to query 
 			// todo Query for user, game, guide, tags
@@ -176,33 +176,33 @@
 
 
 
+		// ****UPDATE PLANS TO INCLUDE****
+		// todo Remove, unfollow, or delete options.(Delete Mutation needed to meet project Criteria)
+		
+		// todo create an error/404 page
+		
+		// todo  do we want to use an API to retrieve game data instead of leaving it up to the user? then no redundancies will happen, and we won't have to store it on our database
+		
+		// todo are we creating an array of trending guides, or do we want to make a query for top rated guides?
+		
+		// todo what do we want to filter guides by? (console, rating, author....)
+		
 // *IDEAS/QUESTIONS
 
-// ? Remove, unfollow, or delete options.(Delete Mutation needed to meet project Criteria)
 
-// ? create an error/404 page
 
-// ? do we want to use an API to retrieve game data instead of leaving it up to the user? then no redundancies will happen, and we won't have to store it on our database
-
-// ? are we creating an array of trending guides, or do we want to make a query for top rated guides?
-
-// ? what do we want to filter guides by? (console, rating, author....)
-
-// ? when no results show, maybe have a way to find a guide else where?
-// Can't find it here? 
-// Add your own. Or search from other databases.
-
-// ? avatars/pics
+// TODO avatars/pics
 	// How to upload images
 	//* https://www.apollographql.com/docs/react/data/file-uploads/
 	// *https://github.com/jaydenseric/apollo-upload-client
 
 
-// Or random shape/color/image package
-// Or have some random avatars to chose from in the database?
+// *ICEBOX*
 
-// *ICEBOX
-// *blog/ forums
-// *live chat
-// *Sell digital assets
-// *sell collectibles
+	// *icebox-youtube API when no results show, maybe have a way to find a guide else where?
+	// Can't find it here? 
+	// Add your own. Or search from other databases.
+	// *blog/ forums
+	// *live chat
+	// *Sell digital assets
+	// *sell collectibles
