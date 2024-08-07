@@ -3,15 +3,16 @@
 import React from 'react';
 import CustomCarousel from '../components/CustomCarousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import hero from '../assets/images/hero';
+// import hero from '../assets/images/hero';
+
 
 //import staffMembers images
-import image1 from '../assets/images/about/tish.jpg';
-import image2 from '../assets/images/about/kyle.jpg';
-import image3 from '../assets/images/about/beth.JPG';
-import image4 from '../assets/images/about/karina.png';
-import image5 from '../assets/images/about/';
-import image6 from '../assets/images/about/betzy.JPG';
+import image1 from '../../public/images/about/tish.jpg';
+import image2 from '../../public/images/about/kyle.jpg';
+import image3 from '../../public/images/about/beth.jpg';
+import image4 from '../../public/images/about/karina.png';
+import image5 from '../../public/images/about/tristan.png';
+import image6 from '../../public/images/about/betzy.jpg';
 
 const staffMembers = [
     {name: 'Tish Sirface A.KA ThisTish', image: image1, level:'Level 1 developer', bio: '(insert bio here)'},
@@ -64,4 +65,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Homepage()
