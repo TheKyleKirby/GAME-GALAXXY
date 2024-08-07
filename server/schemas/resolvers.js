@@ -2,6 +2,33 @@ const { User, Guide, Game } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const axios = require("axios");
 
+// Resolvers.js 
+// // Added igdbGame query to fetch game details from IGDB
+// 	igdbGame: async (_, { name }) => {
+// 		return await getGameDetails(name);
+// 		},
+
+// // Function to get game details from IGDB
+// const getGameDetails = async (name) => {
+// 	try {
+// 		const response = await axios.post(
+// 		'https://api.igdb.com/v4/games',
+// 		`fields name,summary,rating; search "${name}"; limit 1;`,
+// 		{
+// 			headers: {
+// 			'Client-ID': CLIENT_ID,
+// 			'Authorization': `Bearer ${ACCESS_TOKEN}`,
+// 			'Content-Type': 'application/json',
+// 			},
+// 		}
+// 		);
+// 		return response.data;
+// 	} catch (error) {
+// 		console.error('Error fetching game details:', error);
+// 		throw error;
+// 	}
+// 	};
+
 const resolvers = {
   Query: {
     allUsers: async () => {
