@@ -4,7 +4,7 @@ const { Schema, model } = require('mongoose')
 const guideSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: true
   },
   author: {
     type: Schema.Types.ObjectId,
@@ -12,16 +12,15 @@ const guideSchema = new Schema({
     required: true
   },
   game: {
-    type: Schema.Types.ObjectId,
-    ref: 'Game',
-    required: true,
+    type: String,
+    required: true
   },
   console: {
     type: String
   },
   content: {
     type: String,
-    required: true,
+    required: true
   },
   belongsToGroup:{
     type: Boolean

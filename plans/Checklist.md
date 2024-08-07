@@ -5,12 +5,12 @@
 - [ ] Navbar
 - [ ] Menu
   - [ ] SearchBar
-  - [ ] Links for Sign up, Login, Logout, Dashboard, Create New Guide, Trending Guides, About Us
+  - [ ] Links for Sign up, Login, Logout, Dashboard, Create New Tutorial, Trending Tutorials, About Us
 <!-- - [BT] Logo -->
 - [ ] Login modal/Signup modal
 - [x ] Hero (just need an image)
 - [x ] Trending section (carousel still needs some tweaking, but is implemented)
-- [x ] Guide cards
+- [x ] Tutorial cards
 - [ ] Game cards
 - [ ] User cards
 - [ ] About us section
@@ -20,18 +20,18 @@
 <!-- [BT] wireFrame -->
 - [ ] Search results container
 - [ ] Filter options
-- [ ] Guide result cards
+- [ ] Tutorial result cards
 - [ ] Game result cards
 - [ ] User result cards
 
-### GuidePage Components:
+### TutorialPage Components:
 <!-- [BT] wireFrame -->
-- [ ] Guide Content (title, author, content, etc)
+- [ ] Tutorial Content (title, author, content, etc)
 - [ ] Comments display
 - [ ] Comment form
 - [ ] Related chapters/levels area
 
-### Create Guide Page Components:
+### Create Tutorial Page Components:
 <!-- [BT] wireFrame -->
 - [ ] Form
   - [ ] Game input
@@ -52,8 +52,8 @@
 - [ ] Friends List
 - [ ] Saved Games
 - [ ] Creators Following List
-- [ ] Guides Saved List
-- [ ] Created Guides List
+- [ ] Tutorials Saved List
+- [ ] Created Tutorials List
 - [ ] Edit Profile Form (when button/link clicked)
 
 ### Not Found Page
@@ -61,27 +61,27 @@
 
 ## QUERIES(typeDefs)
 ### HomePage Queries:
-<!-- - [X] Query for trending guides -->
+<!-- - [X] Query for trending tutorials -->
 
 
 ### ResultsPage Queries:
 <!-- - [X] Query for search results -->
   <!-- - [X] Query for users -->
   <!-- - [TBS] Query for games -->
-  <!-- - [X] Query for guides -->
+  <!-- - [X] Query for tutorials -->
 <!-- - [G] Query for filter options -->
 
-### GuidePage Queries:
-<!-- - [X] Query for single guide -->
+### TutorialPage Queries:
+<!-- - [X] Query for single tutorial -->
 <!-- - [G] Query for related titles/chapters/levels -->
 <!-- - [X] Query for tags -->
 
-### Create Guide Page Queries:
+### Create Tutorial Page Queries:
 <!-- - [X] Query for games (for dropdown select input field) -->
-<!-- - [X] Query for guide groups from user (for select dropdown) -->
+<!-- - [X] Query for tutorial groups from user (for select dropdown) -->
 
 ### Dashboard Page Queries:
-<!-- - [X] Query for profile details(should show saved Games, FriendsList, CreatorsFollowing, SavedGuides, and Created Guides) -->
+<!-- - [X] Query for profile details(should show saved Games, FriendsList, CreatorsFollowing, SavedTutorials, and Created Tutorials) -->
 <!-- - [X] Query for friends list -->
 
 
@@ -91,15 +91,15 @@
 <!-- - [X] Mutation to login -->
 
 ### ResultsPage Mutations:
-<!-- - [X] Mutation to update saved items(friend, guide, creator) on user -->
+<!-- - [X] Mutation to update saved items(friend, tutorial, creator) on user -->
 
-### Create Guide Page Mutations:
-<!-- - [X] Mutation to add new guide to database -->
+### Create Tutorial Page Mutations:
+<!-- - [X] Mutation to add new tutorial to database -->
 
 ### Dashboard Page Mutations:
 <!-- - [X] Mutation to update user profile -->
-<!-- - [x] Mutation to remove guide -->
-<!-- - [x] Mutation to update guide(including rating and comments) -->
+<!-- - [x] Mutation to remove tutorial -->
+<!-- - [x] Mutation to update tutorial(including rating and comments) -->
 <!-- - [x] Mutation to remove friend -->
 <!-- - [x] Mutation to unfollow creator -->
 
@@ -107,36 +107,36 @@
 
 ## QUERIES(resolvers)
 ### HomePage Queries:
-- [ ] Query for trending guides
+- [ ] Query for trending tutorials
 - [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
 
 ### ResultsPage Queries:
 - [ ] Query for search results(one query using searchInput)
   - [ ]  users
   - [ ]  games
-  - [ ]  guides
+  - [ ]  tutorials
   - [ ]  tags
 - [ ] Query for filter options(one query using filterInput)
 
-### GuidePage Queries:
-- [ ] Query for single guide
+### TutorialPage Queries:
+- [ ] Query for single tutorial
 - [ ] Query for related titles/chapters/levels
 - [ ] Query for comments
 - [ ] Query for tags
-- [ ] Query for rating of guide
+- [ ] Query for rating of tutorial
 - [ ] Query for game info(title, rating, etc)
 
-### Create Guide Page Queries:
+### Create Tutorial Page Queries:
 - [ ] Query for games (for dropdown select input field)
-- [ ] Query for guide groups from user (for select dropdown)
+- [ ] Query for tutorial groups from user (for select dropdown)
 
 ### Dashboard Page Queries:
 - [ ] Query for profile details
 - [ ] Query for friends list
 - [ ] Query for saved games
 - [ ] Query for creators following list
-- [ ] Query for guides saved list
-- [ ] Query for created guides list
+- [ ] Query for tutorials saved list
+- [ ] Query for created tutorials list
 
 
 
@@ -146,19 +146,19 @@
 - [K] Mutation to login
 
 ### ResultsPage Mutations:
-- [ ] Mutation to update saved items(friend, guide, creator) on user
+- [ ] Mutation to update saved items(friend, tutorial, creator) on user
 
-### GuidePage Mutations:
-- [ ] Mutation to update rating on guide
-- [ ] Mutation to add comments on guide/user
+### TutorialPage Mutations:
+- [ ] Mutation to update rating on tutorial
+- [ ] Mutation to add comments on tutorial/user
 
-### Create Guide Page Mutations:
-- [ ] Mutation to add new guide to database
+### Create Tutorial Page Mutations:
+- [ ] Mutation to add new tutorial to database
 
 ### Dashboard Page Mutations:
 - [ ] Mutation to update user profile
-- [ ] Mutation to remove guide
-- [ ] Mutation to update guide
+- [ ] Mutation to remove tutorial
+- [ ] Mutation to update tutorial
 - [ ] Mutation to remove friend
 - [ ] Mutation to unfollow creator
 
@@ -179,35 +179,35 @@
 - [ ] Display search results
 - [ ] Filter search results
 - [ ] Expand user card on click
-- [ ] Display guides on game click
-- [ ] Redirect to guide page on click
+- [ ] Display tutorials on game click
+- [ ] Redirect to tutorial page on click
 
-### GuidePage Functions:
-- [ ] Display guide content
+### TutorialPage Functions:
+- [ ] Display tutorial content
 - [ ] Display comments
 - [ ] Submit new comment
-- [ ] Update guide rating
-- [ ] Save guide
+- [ ] Update tutorial rating
+- [ ] Save tutorial
 - [ ] Display related titles/chapters/levels
 
-### Create Guide Page Functions:
+### Create Tutorial Page Functions:
 - [ ] Handle form submission
 - [ ] Retrieve input values
-- [ ] Save new guide to database
-- [ ] Redirect to dashboard after guide creation
+- [ ] Save new tutorial to database
+- [ ] Redirect to dashboard after tutorial creation
 - [ ] Fill out dropdown options for game selection
-- [ ] Fill out dropdown options with user's guide groups
+- [ ] Fill out dropdown options with user's tutorial groups
 
 ### Dashboard Page Functions:
 - [ ] Display profile details
 - [ ] Display friends list
 - [ ] Display saved games
 - [ ] Display creators following list
-- [ ] Display guides saved list
-- [ ] Display created guides list
+- [ ] Display tutorials saved list
+- [ ] Display created tutorials list
 - [ ] Open edit profile form
 - [ ] Submit updated profile details
-- [ ] Remove guide
+- [ ] Remove tutorial
 - [ ] Remove game
 - [ ] Remove user
 - [ ] Handle photo upload

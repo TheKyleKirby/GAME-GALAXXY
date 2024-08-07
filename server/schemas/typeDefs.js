@@ -1,5 +1,5 @@
 const typeDefs = `
-	type User {
+	type User {#ADDED
 		_id: ID!
 		username: String!
 		email: String!
@@ -14,18 +14,19 @@ const typeDefs = `
 		isCreator: Boolean
 		profilePicture: String
 	}
-
-	type Game {
-		_id: ID!
-		title: String!
-		description: String
-		genre: String
-		releaseDate: String
-		rating: Float
-		guides: [Guide]
+	type Auth {#ADDED
+		token: ID!
+		user: User
 	}
-
-	type Guide {
+	input UserInput {#ADDED
+		username: String!
+		email: String!
+		bio: String
+		topGames: String
+		profilePicture: String
+		
+	}
+	type Guide { ###ADDED
 		_id: ID!
 		title: String!
 		author: User!
@@ -39,43 +40,19 @@ const typeDefs = `
 		rating: Float
 		comments: [ID]
 	}
-
-	type GuideGroup {
+	type GuideGroup {### Added
 		_id: ID!
 		name: String!
 		guides: [Guide]
 		creator: [User]
 	}
-
-	type Comment {
+	type Comment { ###ADDED
 		_id: ID!
 		content: String!
 		author: User!
 	}
 
-	type Auth {
-		token: ID!
-		user: User
-	}
-
-	type SearchResults {
-		users: [User]
-		games: [Game]
-		guides: [Guide]
-		tags: [Guide]
-	}
-
-	
-	
-	input UserInput {
-		username: String!
-		email: String!
-		bio: String
-		topGames: String
-		profilePicture: String
-	}
-
-	input GuideInput {
+	input GuideInput { ### ADDED
 		title: String!
 		author: ID!
 		game: ID!
@@ -89,20 +66,34 @@ const typeDefs = `
 		comments: [ID]
 	}
 
-	input GameInput {
+	
+	type Game {
+		_id: ID
 		title: String!
 		description: String
 		genre: String
 		releaseDate: String
 		rating: Float
 		guides: [ID]
+		esrb: String
 	}
 
+
+	type SearchResults {
+		users: [User]
+		games: [Game]
+		guides: [Guide]
+		tags: [Guide]
+	}
+
+	
 	input GuideFilterInput {
 		ids: [ID]!
-		console: String
+		console: String#console
 		rating: Float
-		author: String
+		author: String#all users where isCreator===true
+		esrbRating: String#really enum is on IGDB examples page with values.
+		
 	}
 
 	input SearchInput {
@@ -116,44 +107,44 @@ const typeDefs = `
 
 
 	type Query {
-		allUsers: [User]
-		searchedUsers(username: String!): [User]
-		loggedInUser(_id: ID!): User
-		friends(_id: ID!): [User]
+		allUsers: [User]## ADDED
+		loggedInUser(_id: ID!): User ## ADDED
+		allGuides: [Guide]#ADDED
+		guideById(_id: ID!): Guide ###ADDED
+		trendingGuides(rating: Float): [Game]###ADDED
+		relatedGuides(_id: ID!, belongsToGroup: Boolean): [Guide] ###ADDED
+		
 
 		allGames: [Game]
 		gameById(id:ID!): Game
 		gameByTitle(title: String!): Game
 
-		allGuides: [Guide]
-		guideById(_id: ID!): Guide
+
 		search(filter: SearchInput): SearchResults
-		filteredGuides(filter: GuideFilterInput): [Guide]		trendingGuides(rating: Float): [Game]
+		filteredGuides(filter: GuideFilterInput): [Guide]		
 
-		relatedGuides(_id: ID!, belongsToGroup: Boolean): [Guide]
-		guideGroupsByUser(_id: ID!) : GuideGroup
 
-		searchedTags(tags: [String]): [Guide]
 
 	},
 
 	type Mutation {
-		addUser(username: String!, email: String!, password: String!): Auth
-		login(username: String!, password: String!): Auth
-		updateProfile(user: UserInput): User
-		addFriend(friendId: ID!): User
-		followCreator(creatorId: ID!): User
-		removeFriend(friendId: ID!): User
-		unfollowCreator(creatorId: ID!): User
+		signUp(username: String!, email: String!, password: String!): Auth ##ADDED
+		login(username: String!, password: String!): Auth  ##ADDED
+		updateProfile(user: UserInput): User ###ADDED
+		addFriend(friendId: ID!): User ###ADDED
+		followCreator(creatorId: ID!): User ###ADDED
+		removeFriend(friendId: ID!): User ###ADDED
+		unfollowCreator(creatorId: ID!): User ###ADDED
+		saveGame(gameId: ID!) : User  ###ADDED
+		saveGuide(guideId: ID!) : User ###ADDED
+		removedSavedTutorial(_id: ID!): User ###ADDED
 		
 
-		addGame(game: GameInput!): Game
-		saveGame(gameId: ID!) : User
+		
 
-		addGuide(guide: GuideInput!): Guide
-		updateGuide(_id: ID!, guide: GuideInput) : Guide
-		saveGuide(guideId: ID!) : User
-		deleteGuide(_id: ID!): User
+		createTutorial(guide: GuideInput!): Guide
+		updateTutorial(_id: ID!, guide: GuideInput) : Guide
+		deleteCreatedTutorial(_id: ID!): User
 	}
 
 `
