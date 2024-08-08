@@ -51,7 +51,6 @@ const typeDefs = `
 		content: String!
 		author: User!
 	}
-
 	input GuideInput { ### ADDED
 		title: String!
 		author: ID!
@@ -92,7 +91,6 @@ const typeDefs = `
 		console: String#console
 		rating: Float
 		author: String#all users where isCreator===true
-		esrbRating: String#really enum is on IGDB examples page with values.
 		
 	}
 
@@ -138,13 +136,13 @@ const typeDefs = `
 		saveGame(gameId: ID!) : User  ###ADDED
 		saveGuide(guideId: ID!) : User ###ADDED
 		removedSavedTutorial(_id: ID!): User ###ADDED
+		createTutorial(guide: GuideInput!): Guide  ###ADDED
+		updateTutorial(_id: ID!, guide: GuideInput) : Guide ###ADDED
+		deleteCreatedTutorial(_id: ID!): User ###ADDED
 		
 
 		
 
-		createTutorial(guide: GuideInput!): Guide
-		updateTutorial(_id: ID!, guide: GuideInput) : Guide
-		deleteCreatedTutorial(_id: ID!): User
 	}
 
 `

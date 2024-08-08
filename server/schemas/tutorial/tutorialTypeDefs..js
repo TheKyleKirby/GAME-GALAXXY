@@ -12,6 +12,7 @@ const typeDefs = `
 		chapter: Int
 		tags: [Tag]
 		rating: Float
+		youtubeEmbeddedLink: String
 		comments: [Comment]
 	}
 #tutorial group tutorial belongs to
@@ -88,6 +89,9 @@ const typeDefs = `
 	}
 
 	type Mutation {
-		
+		createTutorial(tutorial: TutorialInput!): Tutorial
+		updateTutorial(tutorial: TutorialInput!): Tutorial
+		deleteCreatedTutorial(_id: ID!): User
+		addComment(comments: Comment!): Tutorial 
 	}
 `
