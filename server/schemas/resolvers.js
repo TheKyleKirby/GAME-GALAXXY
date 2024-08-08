@@ -3,17 +3,30 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const axios = require("axios");
 // Added the query for gameByName. I nested it inside the Query objext that was already there. -Tristan
 const resolvers = {
-  Query: {
-    allUsers: async () => {
-      return User.find({});
-    },
-    // going to try to use api for games.
-    // allGames: async() => {
-    // 	return await Game.find({})
-    // },
-    allGuides: async () => {
-      return Guide.find({}).populate("author");
-    },
+
+	Query: {
+		allUsers: async() =>{
+			return User.find({})
+		},
+		// going to try to use api for games.
+		// allGames: async() => {
+		// 	return await Game.find({})
+		// },
+		allGuides: async() => {
+			return Guide.find({}).populate('author')
+		},
+		// fetch the profile of the currently authenticated user - A user wants to view or edit their own profile information. (add populate profile or populate something else ?)
+		me: async (parent, args, context) => {
+			if (context.user) {
+			  return Profile.findOne({ _id: context.user._id });
+			}  
+			throw AuthenticationError;
+		},
+		// to view the profile of a specific user by providing their profile ID. (maybe change this to username...?)
+		user: async (parent, { userId }) => {
+			return User.findOne({ _id: userId });
+		},
+
     gameByName: async (_, { name }) => {
       try {
         const response = await axios.post(
@@ -27,7 +40,6 @@ const resolvers = {
           }
         );
         console.log('IGDB API response:', response.data);
-
 
         return response.data.map(game => ({
           id: game.id,

@@ -126,6 +126,8 @@ const typeDefs = `
 		searchedUsers(username: String!): [User]
 		loggedInUser(_id: ID!): User
 		friends(_id: ID!): [User]
+		me: User
+		user: User
 
 		allGames: [Game]
 		gameById(id:ID!): Game
