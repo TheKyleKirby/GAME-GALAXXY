@@ -1,5 +1,6 @@
 	const typeDefs = `
-#Everything we can get basically
+	
+	#Everything we can get basically
 	type WholeGame {
 		id: Int
 		category: Int
@@ -25,8 +26,10 @@
 		involved_companies: [Int]
 		genres: [Int]
 		game_modes: [Int]
-		alternative_names: [Int] }
+		alternative_names: [Int] 
 	}
+
+
 
 	type GameResultCard {
 		id: ID
@@ -37,12 +40,15 @@
 		url: String
 		tags: [Int]
 		similar_games: [Int]
-
-
 	}
 
 	type Query {
-		gameByName(name: String!): Game
+		gameById(id: ID!): GameResultCard
+		gameByName(name: String!): [GameResultCard]
+		gameBySlug(slug: String!): GameResultCard
 	}
+`
 
-	`
+// ?field for ESRB?
+
+module.exports = typeDefs

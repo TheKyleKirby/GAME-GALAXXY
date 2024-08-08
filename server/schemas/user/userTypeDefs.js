@@ -16,22 +16,26 @@ const typeDefs = `
 		isCreator: Boolean
 		profilePicture: String
 	}
+
 #for Authorizing Result
 	type Auth {
 		token: ID!
 		user: User
 	}
+
 #for sign up info
 	input SignUpInput {
 		username: String!
 		email: String!
 		password: String!
 	}
+
 # for login info
 	input LoginInput {
 		username: String!
 		password: String
 	}
+
 #for editing your profile
 	input EditProfileInput {
 		username: String
@@ -44,14 +48,16 @@ const typeDefs = `
 
 	type Query {
 		allUsers: [User]
-		loggedInUser(_id: ID!): User
+		me: User
+		user(_id: ID!): User
 	}
+		
 
 	type Mutation {
 	#basic profile stuff
-		signUp(input: SignUpInput!): Auth
-		login(input: LoginInput!): Auth
-		editProfile(input: EditProfileInput!): User
+		signUp(user: SignUpInput!): Auth
+		login(user: LoginInput!): Auth
+		editProfile(user: EditProfileInput!): User
 
 	#friends & creators
 		addFriend(friends: ID!): User
@@ -62,7 +68,6 @@ const typeDefs = `
 	#Games & Tutorials
 		saveGame(savedGames: ID!): User
 		saveTutorial(savedTutorials: ID!): User
-		createTutorial()
 		removeSavedGame(savedGames: ID!): User
 		removeSavedTutorial(savedTutorials: ID!): User
 	}

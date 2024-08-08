@@ -4,72 +4,53 @@ const typeDefs = `
 		_id: ID!
 		title: String!
 		author: User!
-		game: Game!
+		game: GameResultCard!
 		content: String!
-		console: Console
+		console: Int
 		belongsToGroup: Boolean
-		tutorialGroup: TutorialGroup
+		tutorialGroup: ID
 		chapter: Int
 		tags: [Tag]
 		rating: Float
 		youtubeEmbeddedLink: String
 		comments: [Comment]
 	}
+
 #tutorial group tutorial belongs to
 	type TutorialGroup {
 		_id: ID!
 		title: String!
 		creator: User!
 	}
+
 #Tutorial Tags
 	type Tag {
 		_id: ID!
 		tag: String!
 	}
+
 # Tutorial Comments
 	type Comment {
 		_id: ID!
 		comment: String!
 		commenter: User!
 	}
-# options for consoles# will match up with platform ID's below is what will show, id's will be in here.
-	enum Console{
-		SONY PLAYSTATION 2 (PS2)
-		SONY PLAYSTATION 4 (PS4)
-		NINTENDO SWITCH
-		SONY PLAYSTATION (PS1)
-		NINTENDO WII
-		SONY PLAYSTATION 3 (PS3)
-		MICROSOFT XBOX 360
-		NINTENDO ENTERTAINMENT SYSTEM (NES)
-		SUPER NINTENDO ENTERTAINMENT SYSTEM (SNES)
-		MICROSOFT XBOX ONE
-		NINTENDO GAMECUBE
-		SEGA GENESIS (MEGA DRIVE)
-		SONY PLAYSTATION 5 (PS5)
-		MICROSOFT XBOX
-		NINTENDO 3DS
-		SONY PSP 
-		ATARI 2600
-		NINTENDO DS
-		SEGA DREAMCAST
-		NEO GEO
-		OTHER
-	}
+
 
 #Input type for creating/updating Tutorial
 	input TutorialInput {
 		title: String!
-		author: User!
+		author: ID!
 		game: ID!
 		content: String
-		console: Console
+		console: Int
 		belongsToGroup: Boolean
-		tutorialGroup: TutorialGroup
+		tutorialGroup: ID
 		chapter: Int
-		tags: [Tag]
+		tags: [ID]
 		rating: Float
 	}
+
 #Results for tutorial cards(main/results page)
 	type TutorialCardResults { #might need to update this depending on what we decide on.
 		_id: ID
@@ -84,14 +65,19 @@ const typeDefs = `
 	type Query {
 		allTutorials: [Tutorial]
 		tutorialById(_id: ID!): Tutorial
-		trendingTutorials(author: [User]): [Tutorial] #get ones made by us
-		otherChapters(belongsToGroup: Boolean!, tutorialGroup: TutorialGroup ): [Tutorials]
+
+	#tutorials written by us. will provide an array of our _ids
+		trendingTutorials(author: [ID]!): [Tutorial] #get ones made by us
+		
+		otherChapters(belongsToGroup: Boolean!, tutorialGroup: String! ): [Tutorial]
 	}
 
 	type Mutation {
 		createTutorial(tutorial: TutorialInput!): Tutorial
 		updateTutorial(tutorial: TutorialInput!): Tutorial
 		deleteCreatedTutorial(_id: ID!): User
-		addComment(comments: Comment!): Tutorial 
+		addComment(comments: ID!): Tutorial 
 	}
 `
+
+module.exports = typeDefs
