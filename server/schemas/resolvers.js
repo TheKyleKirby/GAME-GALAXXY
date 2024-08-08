@@ -1,34 +1,7 @@
 const { User, Guide, Game } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const axios = require("axios");
-
-// Resolvers.js 
-// // Added igdbGame query to fetch game details from IGDB
-// 	igdbGame: async (_, { name }) => {
-// 		return await getGameDetails(name);
-// 		},
-
-// // Function to get game details from IGDB
-// const getGameDetails = async (name) => {
-// 	try {
-// 		const response = await axios.post(
-// 		'https://api.igdb.com/v4/games',
-// 		`fields name,summary,rating; search "${name}"; limit 1;`,
-// 		{
-// 			headers: {
-// 			'Client-ID': CLIENT_ID,
-// 			'Authorization': `Bearer ${ACCESS_TOKEN}`,
-// 			'Content-Type': 'application/json',
-// 			},
-// 		}
-// 		);
-// 		return response.data;
-// 	} catch (error) {
-// 		console.error('Error fetching game details:', error);
-// 		throw error;
-// 	}
-// 	};
-
+// Added the query for gameByName. I nested it inside the Query objext that was already there. -Tristan
 const resolvers = {
   Query: {
     allUsers: async () => {
@@ -41,6 +14,36 @@ const resolvers = {
     allGuides: async () => {
       return Guide.find({}).populate("author");
     },
+    gameByName: async (_, { name }) => {
+      try {
+        const response = await axios.post(
+          'https://api.igdb.com/v4/games',
+          `search "${name}"; fields id, name, slug, cover, platforms, url, tags, similar_games;`,
+          {
+            headers: {
+              'Client-ID': process.env.IGDB_CLIENT_ID,
+              Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+            }
+          }
+        );
+        console.log('IGDB API response:', response.data);
+
+
+        return response.data.map(game => ({
+          id: game.id,
+          name: game.name,
+          slug: game.slug,
+          cover: game.cover,
+          platforms: game.platforms,
+          url: game.url,
+          tags: game.tags,
+          similar_games: game.similar_games
+        }));
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch games from IGDB');
+      }
+    }
   },
 
   Mutation: {
