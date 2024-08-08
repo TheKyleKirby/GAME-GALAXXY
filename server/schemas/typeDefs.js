@@ -101,9 +101,6 @@ const typeDefs = `
 		tags: [String] 
 	}
 
-
-
-
 	type Query {
 		allUsers: [User]## ADDED
 		loggedInUser(_id: ID!): User ## ADDED
@@ -112,6 +109,8 @@ const typeDefs = `
 		trendingGuides(rating: Float): [Game]###ADDED
 		relatedGuides(_id: ID!, belongsToGroup: Boolean): [Guide] ###ADDED
 		
+		me: User
+		user: User
 
 		allGames: [Game]
 		gameById(id:ID!): Game
@@ -123,7 +122,8 @@ const typeDefs = `
 
 
 
-	},
+		gameByName(name: String!): [GameResultCard]  # Added this line
+	}
 
 	type Mutation {
 		signUp(username: String!, email: String!, password: String!): Auth ##ADDED
@@ -144,6 +144,6 @@ const typeDefs = `
 		
 
 	}
-
 `
+
 module.exports = typeDefs
