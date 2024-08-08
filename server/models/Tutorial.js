@@ -1,10 +1,10 @@
 // Model for tutorial
 const { Schema, model } = require('mongoose')
 
-const guideSchema = new Schema({
+const tutorialSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: true
   },
   author: {
     type: Schema.Types.ObjectId,
@@ -12,16 +12,15 @@ const guideSchema = new Schema({
     required: true
   },
   game: {
-    type: Schema.Types.ObjectId,
-    ref: 'Game',
-    required: true,
+    type: String,
+    required: true
   },
   console: {
     type: String
   },
   content: {
     type: String,
-    required: true,
+    required: true
   },
   belongsToGroup:{
     type: Boolean
@@ -44,6 +43,6 @@ const guideSchema = new Schema({
   }]
 })
 
-const Guide = model('Guide', guideSchema)
+const Tutorial = model('Tutorial', tutorialSchema)
 
-module.exports = Guide
+module.exports = Tutorial
