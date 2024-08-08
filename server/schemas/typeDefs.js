@@ -65,7 +65,16 @@ const typeDefs = `
 		tags: [Guide]
 	}
 
-	
+	type GameResultCard {
+		id: ID
+		name: String
+		slug: String
+		cover: Int
+		platforms: [Int]
+		url: String
+		tags: [Int]
+		similar_games: [Int]
+	}
 	
 	input UserInput {
 		username: String!
@@ -112,14 +121,13 @@ const typeDefs = `
 		tags: [String] 
 	}
 
-
-
-
 	type Query {
 		allUsers: [User]
 		searchedUsers(username: String!): [User]
 		loggedInUser(_id: ID!): User
 		friends(_id: ID!): [User]
+		me: User
+		user: User
 
 		allGames: [Game]
 		gameById(id:ID!): Game
@@ -128,14 +136,16 @@ const typeDefs = `
 		allGuides: [Guide]
 		guideById(_id: ID!): Guide
 		search(filter: SearchInput): SearchResults
-		filteredGuides(filter: GuideFilterInput): [Guide]		trendingGuides(rating: Float): [Game]
+		filteredGuides(filter: GuideFilterInput): [Guide]		
+		trendingGuides(rating: Float): [Game]
 
 		relatedGuides(_id: ID!, belongsToGroup: Boolean): [Guide]
 		guideGroupsByUser(_id: ID!) : GuideGroup
 
 		searchedTags(tags: [String]): [Guide]
 
-	},
+		gameByName(name: String!): [GameResultCard]  # Added this line
+	}
 
 	type Mutation {
 		addUser(username: String!, email: String!, password: String!): Auth
@@ -145,7 +155,6 @@ const typeDefs = `
 		followCreator(creatorId: ID!): User
 		removeFriend(friendId: ID!): User
 		unfollowCreator(creatorId: ID!): User
-		
 
 		addGame(game: GameInput!): Game
 		saveGame(gameId: ID!) : User
@@ -155,6 +164,6 @@ const typeDefs = `
 		saveGuide(guideId: ID!) : User
 		deleteGuide(_id: ID!): User
 	}
-
 `
+
 module.exports = typeDefs
