@@ -7,10 +7,36 @@ import Tutorial from './pages/Tutorial'
 import Results from './pages/Results'
 import Blog from './pages/Blog'
 
+// authenticate any request sent by the user to backend while user is logged in
+import { setContext } from '@apollo/client/link/context';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
+
+// Construct our main GraphQL API endpoint
+const httpLink = createHttpLink({
+    uri: '/graphql',
+  });
+
+// check link between front end and backend
+const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem('id_token');
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    };
+  });
+
+  const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+  });
+  
 
 const App = () => {
     return (
         <>
+        <ApolloProvider client={client}>
             <Navbar />
                 <Routes>
                     <Route path='/' element={<Homepage />} />
@@ -20,7 +46,7 @@ const App = () => {
                     <Route path='/blog' element={<Blog />} />
                 </Routes>
             <Footer />
-
+        </ApolloProvider>
         </>
 
     )

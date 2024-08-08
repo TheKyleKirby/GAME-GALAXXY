@@ -12,8 +12,18 @@ const resolvers = {
 		// },
 		allGuides: async() => {
 			return Guide.find({}).populate('author')
-		}
-
+		},
+		// fetch the profile of the currently authenticated user - A user wants to view or edit their own profile information. (add populate profile or populate something else ?)
+		me: async (parent, args, context) => {
+			if (context.user) {
+			  return Profile.findOne({ _id: context.user._id });
+			}  
+			throw AuthenticationError;
+		},
+		// to view the profile of a specific user by providing their profile ID. (maybe change this to username...?)
+		user: async (parent, { userId }) => {
+			return User.findOne({ _id: userId });
+		},
 
 	},
 	Mutation: {
