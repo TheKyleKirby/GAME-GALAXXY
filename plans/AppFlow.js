@@ -1,16 +1,16 @@
 // !WHEN I LOAD THE GVM3 GVLVXXY SITE
-// !THEN I AM PRESENTED WITH A MENU, SEARCHBAR, LOGIN/SIGNUP, HERO, TRENDING GUIDES, ABOUT THE STAFF
+// !THEN I AM PRESENTED WITH A MENU, SEARCHBAR, LOGIN/SIGNUP, HERO, TRENDING TUTORIALS, ABOUT THE STAFF
 	//* HomePage Components:
 		// // Navbar
 		// todo Menu
 			// // SearchBar
-			// todo Links for Sign up, Login, Logout, Dashboard, Create New Guide, Trending Guides, About Us
+			// todo Links for Sign up, Login, Logout, Dashboard, Create New Tutorial, Trending Tutorials, About Us
 		// todo Logo?
 		// todo Login modal/Signup modal
 		// todo Hero
 		// todo Trending section
 		// ? search results page, or populate home page?
-		// todo Guide cards
+		// todo Tutorial cards
 		// todo Game cards
 		// todo User cards
 
@@ -29,7 +29,7 @@
 
 
 // !WHEN I CLICK THE MENU
-// !THEN I AM PRESENTED WITH LINKS FOR SIGNUP/LOGIN/LOGOUT, SEARCHBAR, DASHBOARD(IF LOGGED IN), CREATE NEW GUIDE
+// !THEN I AM PRESENTED WITH LINKS FOR SIGNUP/LOGIN/LOGOUT, SEARCHBAR, DASHBOARD(IF LOGGED IN), CREATE NEW TUTORIAL
 	//* Functions:
 		// * Signup/login:
 			// // Open modal
@@ -41,23 +41,23 @@
 			// // Redirect to dashboard after logged in
 		//* Searchbar:
 			// todo Submit values to query 
-			// todo Query for user, game, guide, tags
-			// todo Organize to render by type-users, games, guides
+			// todo Query for user, game, tutorial, tags
+			// todo Organize to render by type-users, games, tutorials
 			// todo Filter options
 		//* Dashboard:
 			// todo Direct to page
 			// todo Query for user
 			// todo Profile info
-			// todo Guides created
+			// todo Tutorials created
 			// todo Friends
 			// todo Games saved
-			// todo Guides saved
+			// todo Tutorials saved
 			// todo Render to appropriate areas
 			// todo Edit profile submit form
 			// todo Mutation to update user
-			// todo Options to remove guide, game,or user
+			// todo Options to remove tutorial, game,or user
 			// todo Mutation to remove appropriate subject
-		//* New guide:
+		//* New tutorial:
 			// todo Direct to page
 			// todo Query games for drop down select input field
 			// todo Handle submit form
@@ -83,16 +83,16 @@
 // !THEN I AM PRESENTED WITH RESULTS TO VIEW, AND CLICK ON. MUST BE LOGGED IN TO RATE, COMMENT, SAVE ETC
 	//* Functions:
 		// todo mutation for updating saved items on user
-		// todo mutation for updating rating on guide
-		// todo mutation for comments on guide and user
+		// todo mutation for updating rating on tutorial
+		// todo mutation for comments on tutorial and user
 	
 
 // !WHEN I AM PRESENTED WITH THE RESULTS
-// !THEN I WILL SEE RESULTS FOR CREATORS, USERS, GAMES/GUIDES
+// !THEN I WILL SEE RESULTS FOR CREATORS, USERS, GAMES/TUTORIALS
 	// ? what do we want on each results card?
 		// USERS-
 		// GAMES-
-		// GUIDES-
+		// TUTORIALS-
 	// todo Style
 	// todo Create
 	// todo Queries
@@ -101,10 +101,10 @@
 
 
 // !WHEN I CLICK ON USER
-// !THEN CARD EXPANDS TO INCLUDE A PIC, BIO, BUTTON TO ADD/FOLLOW, TOP 3 GAMES, GUIDES CREATED
+// !THEN CARD EXPANDS TO INCLUDE A PIC, BIO, BUTTON TO ADD/FOLLOW, TOP 3 GAMES, TUTORIALS CREATED
 	// todo function to expand
 
-// !WHEN I CLICK ON A GUIDE/TUTORIAL
+// !WHEN I CLICK ON A TUTORIAL/TUTORIAL
 // !THEN I AM PRESENTED WITH A PAGE THAT DISPLAYS
 	// *AUTHOR
 	// *GAME
@@ -120,19 +120,19 @@
 	// *RATE OPTION
 	// *COMMENT OPTION
 
-	// *Single Guide Page Components:
-		// todo Guide Content(title, author, content, etc)
+	// *Single Tutorial Page Components:
+		// todo Tutorial Content(title, author, content, etc)
 		// todo Comments display
 		// todo Comment form
 		// todo chapters/levels area
 	// todo Style
 	// todo Create
-	// todo Query for single guide
+	// todo Query for single tutorial
 
 
-// !WHEN I CLICK CREATE NEW GUIDE(WHILE LOGGED IN)
+// !WHEN I CLICK CREATE NEW TUTORIAL(WHILE LOGGED IN)
 // !THEN I AM PRESENTED WITH A PAGE WITH A FORM
-	// *Create New Guide Page Components:
+	// *Create New Tutorial Page Components:
 		// todo Form(might break down more for function purposes)
 
 	// *INPUTS:
@@ -146,7 +146,7 @@
 		// ? images?
 	// todo Create
 	// todo Style
-	// ? query for "guide groups" from user for select dropdown
+	// ? query for "tutorial groups" from user for select dropdown
 	// todo query for games for select dropdown
 	// todo Functions to retrieve input values
 	// todo Mutation to add to database
@@ -165,8 +165,8 @@
 		// todo Friends List
 		// todo Saved Games
 		// todo Creators Following List
-		// todo Guides Saved List
-		// todo Created Guides List
+		// todo Tutorials Saved List
+		// todo Created Tutorials List
 		// todo Edit Profile Form(when button/link clicked)
 	// todo find the best way to upload photos:
 		//* https://www.apollographql.com/docs/react/data/file-uploads/
@@ -183,9 +183,9 @@
 		
 		// todo  do we want to use an API to retrieve game data instead of leaving it up to the user? then no redundancies will happen, and we won't have to store it on our database
 		
-		// todo are we creating an array of trending guides, or do we want to make a query for top rated guides?
+		// todo are we creating an array of trending tutorials, or do we want to make a query for top rated tutorials?
 		
-		// todo what do we want to filter guides by? (console, rating, author....)
+		// todo what do we want to filter tutorials by? (console, rating, author....)
 		
 // *IDEAS/QUESTIONS
 
@@ -199,7 +199,7 @@
 
 // *ICEBOX*
 
-	// *icebox-youtube API when no results show, maybe have a way to find a guide else where?
+	// *icebox-youtube API when no results show, maybe have a way to find a tutorial else where?
 	// Can't find it here? 
 	// Add your own. Or search from other databases.
 	// *blog/ forums
