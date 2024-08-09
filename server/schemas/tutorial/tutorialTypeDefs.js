@@ -58,6 +58,7 @@ const typeDefs = `
 		author: User
 		game: ID
 		content: String #truncate(useState to expand)
+		console: String #enum
 		tags: [Tag]
 		rating: Float
 	}

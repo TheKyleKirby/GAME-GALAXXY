@@ -40,12 +40,11 @@ const SignupModal = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
-
   const toggleLoginModal = () => {
     setIsLoginModalOpen(!isLoginModalOpen);
 };
 
-  const toggleSignUpModal = () => {
+const toggleSignUpModal = () => {
     setIsSignUpModalOpen(!isSignUpModalOpen);
 
     
@@ -73,7 +72,7 @@ const SignupModal = () => {
 
 
 </>
-                
+
   )
 };
 
