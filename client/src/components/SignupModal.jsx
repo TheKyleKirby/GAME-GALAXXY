@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { SIGN_UP } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 const SignupModal = () => {
+
+  const navigate = useNavigate();
+
 
   const [formState, setFormState] = useState({
     username: '',
@@ -11,7 +15,7 @@ const SignupModal = () => {
     password: '',
   });
   
-  const [addUser] = useMutation(ADD_USER);
+  const [signUp, { loading, error }] = useMutation(SIGN_UP);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -24,16 +28,23 @@ const SignupModal = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+console.log(formState);
 
     try {
-      const { data } = await addUser({
+      const { data } = await signUp({
         variables: { ...formState },
       });
+console.log(data);
+      
 
-      Auth.login(data.addUser.token);
-    } catch (e) {
-      console.error(e);
+      Auth.login(data.signUp.token);
+
+  // redirect to homepage once signed up 
+    navigate('/profile')
+
+
+    } catch (error) {
+      console.error('ERROR:', error);
     }
   };
 
