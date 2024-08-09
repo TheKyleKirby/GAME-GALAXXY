@@ -38,13 +38,12 @@ const CustomCarousel = () => {
   const {loading, error, data} = useQuery(GET_TUTORIALS)
   const [trendingTutorials, setTrendingTutorials] = useState([])
   useEffect(() => {
-    console.log('Query data:', data); // Log the entire data object to see the object tree.
     if (data) {
-      setTrendingTutorials(data.allTutorials);
+      setTrendingTutorials(data.allTutorials)
     }else{
       console.log('error in getting tutorial data')
     }
-  }, [data]);
+  }, [data])
   if (loading) return <p>Loading...</p>//can make spinner with react-spinner package
   if (error) return <p>Error: {error.message}</p>
 

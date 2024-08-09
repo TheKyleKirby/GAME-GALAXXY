@@ -108,6 +108,7 @@ const Navbar = () => {
                         <button onClick={toggleLoginModal} className="text-white bg-blue-500 px-4 py-2 rounded-md">Login</button>
                     }
                 </div>
+                {/* transitions & ease-in-out for smooth drop down? */}
                 <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full`} id="navbar-hamburger">
                     <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                         <li>
@@ -124,7 +125,7 @@ const Navbar = () => {
                             <Link to="/Blog" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Blog</Link>
                         </li>
                         <li>
-                            <Link to="/Tutorial" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Game Tutorials</Link>
+                            <Link to="/Tutorial" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Game Tutorial</Link>
 
                         </li>
                     </ul>
