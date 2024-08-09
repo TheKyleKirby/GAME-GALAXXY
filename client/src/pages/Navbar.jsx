@@ -81,7 +81,7 @@ console.log(isLoggedIn);
 
     return (
         <>
-            <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+            <nav className="border-gray-200  bg-tealBlue-dark">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Game Galaxxy</span>
@@ -114,16 +114,18 @@ console.log(isLoggedIn);
                             <Link to="/" className="block py-2 px-3 text-white bg-blue-700 rounded dark:bg-blue-600" aria-current="page">Home</Link>
                         </li>
                         <li>
-                            <Link to="/Profile" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Profile</Link>
+
+                            <Link to="/Profile" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Profile</Link>
                         </li>
                         <li>
-                            <Link to="/Results" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white">Results</Link>
+                            <Link to="/Results" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Results</Link>
                         </li>
                         <li>
-                            <Link to="/Blog" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Blog</Link>
+                            <Link to="/Blog" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Blog</Link>
                         </li>
                         <li>
-                            <Link to="/Tutorial" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Game Tutorials</Link>
+                            <Link to="/Tutorial" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Game Tutorials</Link>
+
                         </li>
                     </ul>
                 </div>
