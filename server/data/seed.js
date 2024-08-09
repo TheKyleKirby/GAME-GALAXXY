@@ -3,10 +3,10 @@ const color = require('colors')
 const mongoose = require('mongoose')
 const connectDB = require('../config/dbConfig')
 const User = require('../models/User')
-const Guide = require('../models/Guide')
+const Tutorial = require('../models/Tutorial')
 
 const userData = require('./sampleUsers.json')
-const guideData = require('./sampleGuide.json')
+const tutorialData = require('./sampleTutorial.json')
 
 const cleanDB = async (modelName, collectionName) => {
 	try {
@@ -36,27 +36,27 @@ const seedDatabase = async () => {
 		}
 
 		
-		const seedGuides = async (guidesArray, usersArray) =>{
-			await cleanDB('Guide', 'guides')
+		const seedTutorials = async (tutorialsArray, usersArray) =>{
+			await cleanDB('Tutorial', 'tutorials')
 
-			const guideObjects = guidesArray.map((guide, index) => ({
-				title: guide.title,
+			const tutorialObjects = tutorialsArray.map((tutorial, index) => ({
+				title: tutorial.title,
 				author: usersArray[index]._id,
-				game: guide.game,
-				console: guide.console,
-				content: guide.content,
-				tags: guide.tags,
-				rating: guide.rating
+				game: tutorial.game,
+				console: tutorial.console,
+				content: tutorial.content,
+				tags: tutorial.tags,
+				rating: tutorial.rating
 			}))
 
-			const insertedGuides = await Guide.insertMany(guideObjects)
-			const populatedGuides = await Guide.find({}).populate('author').exec()
-			console.log(populatedGuides)
-			console.log(`Guides seeded!`.cyan)
+			const insertedTutorials = await Tutorial.insertMany(tutorialObjects)
+			const populatedTutorials = await Tutorial.find({}).populate('author').exec()
+			console.log(populatedTutorials)
+			console.log(`Tutorials seeded!`.cyan)
 		}
 
 		const seededUsers = await seedUsers(userData);
-		await seedGuides(guideData, seededUsers);
+		await seedTutorials(tutorialData, seededUsers);
 
 		process.exit(0)
 	} catch (err) {

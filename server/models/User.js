@@ -30,11 +30,11 @@ const userSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	savedGuides: {
+	savedTutorials: {
 		type: Schema.Types.ObjectId,
 		ref: 'Guide'
 	},
-	createdGuides: {
+	createdTutorials: {
 		type: Schema.Types.ObjectId,
 		ref: 'Guide'
 	},

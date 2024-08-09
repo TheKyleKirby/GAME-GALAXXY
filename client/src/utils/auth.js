@@ -1,17 +1,26 @@
-import { decode } from "jsonwebtoken";
+import {jwtDecode} from 'jwt-decode'
 
 class AuthService {
 
 	// if already logged in
 	getProfile() {
-		(console.log(`profile ${decode(this.getToken())}`))
-		return decode(this.getToken());
+		(console.log(`profile ${jwtDecode(this.getToken())}`))
+		return jwtDecode(this.getToken());
 	}
 
 	// if token exists (logged in) is true, if not is false and goes to login()
 	loggedIn() {
 		const token = this.getToken();
 		return token ? true : false;
+	}
+
+	isTokenExpired(token) {
+		const decoded = jwtDecode(token);
+		if (decoded.exp < Date.now() / 1000) {
+		localStorage.removeItem('id_token');
+		return true;
+		}
+		return false;
 	}
 
 	// gets token from localstorage

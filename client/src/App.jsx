@@ -8,6 +8,9 @@ import Results from './pages/Results'
 import Blog from './pages/Blog'
 
 
+  
+
+
 const App = () => {
     return (
         <>
@@ -20,7 +23,6 @@ const App = () => {
                     <Route path='/blog' element={<Blog />} />
                 </Routes>
             <Footer />
-
         </>
 
     )

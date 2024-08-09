@@ -2,8 +2,8 @@ import { gql } from "@apollo/client"
 
 export
 	const GET_TUTORIALS = gql`
-		query allGuides {
-	allGuides {
+		query allTutorials {
+	allTutorials {
     _id
     author {
     	_id
