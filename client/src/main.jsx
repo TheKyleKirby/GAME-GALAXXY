@@ -2,8 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
-import { ApolloProvider, InMemoryCache, createHttpLink, ApolloClient  } from '@apollo/client'
+import { ApolloProvider, InMemoryCache, createHttpLink, ApolloClient, ApolloLink  } from '@apollo/client'
 import { setContext} from '@apollo/client/link/context'
+
+
 
 
 const httpLink = createHttpLink({
@@ -21,8 +23,8 @@ const authLink = setContext((_, {headers} ) =>{
 })
 
 const client = new ApolloClient({
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache()
+    link: ApolloLink.from([authLink, httpLink]),
+    cache: new InMemoryCache(),
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
