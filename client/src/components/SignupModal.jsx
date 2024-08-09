@@ -98,10 +98,10 @@ const toggleSignUpModal = () => {
             className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
             />
             <div className="flex justify-between items-center">
-              <button onClick={toggleSignUpModal} className="text-blue-500">Login</button>
+              <button onClick={toggleSignUpModal} className="text-royalBlurp-dark">Login</button>
               <button 
                 onClick={handleFormSubmit} 
-                className="bg-blue-500 text-white px-4 py-2 rounded-md">Sign Up</button>
+                className="bg-royalBlurp-dark text-white px-4 py-2 rounded-md">Sign Up</button>
             </div>
           </div>
         </div>
