@@ -8,12 +8,12 @@
   - [ ] Links for Sign up, Login, Logout, Dashboard, Create New Tutorial, Trending Tutorials, About Us
 <!-- - [BT] Logo -->
 - [ ] Login modal/Signup modal
-- [x ] Hero (just need an image)
-- [x ] Trending section (carousel still needs some tweaking, but is implemented)
-- [x ] Tutorial cards
+<!-- - [BT - BM ] Hero -->
+<!-- - [BM ] Trending section (carousel still needs some tweaking, but is implemented) -->
+<!-- - [BM ] Tutorial cards -->
 - [ ] Game cards
 - [ ] User cards
-- [ ] About us section
+<!-- - [BT ] About us section -->
 - [ ] Footer
 
 ### ResultsPage(or section) Components:
