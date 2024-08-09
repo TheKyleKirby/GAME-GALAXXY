@@ -11,7 +11,7 @@ import image1 from '../../public/images/about/tish.jpg';
 import image2 from '../../public/images/about/kyle.jpg';
 import image3 from '../../public/images/about/beth.jpg';
 import image4 from '../../public/images/about/karina.png';
-import image5 from '../../public/images/about/tristan.png';
+import image5 from '../../public/images/about/tristan.jpg';
 import image6 from '../../public/images/about/betzy.jpg';
 
 const staffMembers = [
