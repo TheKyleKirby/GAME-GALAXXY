@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGN_UP } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const SignupModal = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
   const [formState, setFormState] = useState({
@@ -15,7 +15,7 @@ const SignupModal = () => {
     password: '',
   });
   
-  const [signUp, { loading, error }] = useMutation(SIGN_UP);
+  const [signUp] = useMutation(SIGN_UP);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,7 +40,7 @@ console.log(data);
       Auth.login(data.signUp.token);
 
   // redirect to homepage once signed up 
-    navigate('/profile')
+    // navigate('/results')
 
 
     } catch (error) {
@@ -76,9 +76,27 @@ console.log(data);
               &times;
             </button>
             <h2 className="text-xl mb-4">Sign Up</h2>
-            <input onChange={handleChange} type="text" name="username" placeholder="Username" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <input onChange={handleChange} type="email" name="email" placeholder="Email" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <input onChange={handleChange} type="password" name="password" placeholder="Password" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input 
+            onChange={handleChange} 
+            type="text" 
+            name="username" 
+            placeholder="Username" 
+            className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            />
+            <input 
+            onChange={handleChange} 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            />
+            <input 
+            onChange={handleChange} 
+            type="password" 
+            name="password" 
+            placeholder="Password" 
+            className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            />
             <div className="flex justify-between items-center">
               <button onClick={toggleSignUpModal} className="text-blue-500">Login</button>
               <button 
