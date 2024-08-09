@@ -27,7 +27,7 @@ const staffMembers = [
 
 const Homepage = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ">
 
       {/* Hero Section */}
       <Hero />
