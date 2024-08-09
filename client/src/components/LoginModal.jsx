@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginModal = () => {
 
-  const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
     username: '',
@@ -37,8 +36,6 @@ console.log(formState);
 
       Auth.login(data.login.token);
 
-  // redirect to homepage once signed up 
-    navigate('/profile')
 
     } catch (e) {
       console.error(e);

@@ -31,53 +31,53 @@ const Navbar = () => {
         setIsMenuOpen(false);
     }, [location]);
 
-//-----------------------------------------------------
+    //-----------------------------------------------------
 
-  const [formState, setFormState] = useState({
-    username: '',
-    password: '',
-  });
-  
-  const [login] = useMutation(LOG_IN);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
+    const [formState, setFormState] = useState({
+        username: '',
+        password: '',
     });
-  };
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-console.log(formState);
+    const [login] = useMutation(LOG_IN);
 
-    try {
-      const { data } = await login({
-        variables: { ...formState },
-    });
-console.log(data);
+    const handleChange = (event) => {
+        const { name, value } = event.target;
 
-      Auth.login(data.login.token);
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
 
-      setIsLoggedIn(true)
-console.log(isLoggedIn);
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
 
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+            console.log(data);
 
-    } catch (e) {
-      console.error(e);
-    }
-  };
+            Auth.login(data.login.token);
 
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-    setIsLoggedIn(false)
-  };
+            setIsLoggedIn(true)
+            console.log(isLoggedIn);
 
 
-// ---------------------------------------------------------------
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+        setIsLoggedIn(false)
+    };
+
+
+    // ---------------------------------------------------------------
 
     return (
         <>
@@ -102,12 +102,13 @@ console.log(isLoggedIn);
                         </svg>
                     </button>
 
-                    {isLoggedIn ? 
-                    <button className="text-white bg-blue-500 px-4 py-2 rounded-md" onClick={logout}>Logout</button> 
-                    :
-                    <button onClick={toggleLoginModal} className="text-white bg-blue-500 px-4 py-2 rounded-md">Login</button>
+                    {isLoggedIn ?
+                        <button className="text-white bg-blue-500 px-4 py-2 rounded-md" onClick={logout}>Logout</button>
+                        :
+                        <button onClick={toggleLoginModal} className="text-white bg-blue-500 px-4 py-2 rounded-md">Login</button>
                     }
                 </div>
+                {/* transitions & ease-in-out for smooth drop down? */}
                 <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full`} id="navbar-hamburger">
                     <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                         <li>
@@ -124,7 +125,7 @@ console.log(isLoggedIn);
                             <Link to="/Blog" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Blog</Link>
                         </li>
                         <li>
-                            <Link to="/Tutorial" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Game Tutorials</Link>
+                            <Link to="/Tutorial" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-700">Game Tutorial</Link>
 
                         </li>
                     </ul>
@@ -135,29 +136,29 @@ console.log(isLoggedIn);
             {isLoginModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
                     <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
-                        <button 
+                        <button
                             onClick={toggleLoginModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">&times;
                         </button>
                         <h2 className="text-xl mb-4">Login</h2>
-                        <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="username" 
-                        value={formState.username}
-                        placeholder="Username" 
-                        // type="text" 
-                        // placeholder="Username" 
-                        className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        <input
+                            onChange={handleChange}
+                            type="text"
+                            name="username"
+                            value={formState.username}
+                            placeholder="Username"
+                            // type="text" 
+                            // placeholder="Username" 
+                            className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                        <input 
-                        onChange={handleChange} 
-                        type="password" 
-                        name="password" 
-                        value={formState.password}
-                        placeholder="Password" 
-                        // type="password" 
-                        // placeholder="Password" 
-                        className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        <input
+                            onChange={handleChange}
+                            type="password"
+                            name="password"
+                            value={formState.password}
+                            placeholder="Password"
+                            // type="password" 
+                            // placeholder="Password" 
+                            className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <div className="flex justify-between items-center">
                             <button onClick={toggleSignUpModal} className="text-blue-500">Sign Up</button>

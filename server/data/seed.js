@@ -31,7 +31,7 @@ const seedDatabase = async () => {
 			await cleanDB('User', 'users')
 
 			const seededUsers = await User.insertMany(userData)
-		console.log(`Users Seeded!`.magenta)
+		console.log(`Users Seeded! ${seededUsers}`.magenta)
 		return seededUsers
 		}
 
@@ -52,11 +52,12 @@ const seedDatabase = async () => {
 			const insertedTutorials = await Tutorial.insertMany(tutorialObjects)
 			const populatedTutorials = await Tutorial.find({}).populate('author').exec()
 			console.log(populatedTutorials)
-			console.log(`Tutorials seeded!`.cyan)
+			console.log(`Tutorials seeded!${insertedTutorials}`.cyan)
+			return insertedTutorials
 		}
 
-		const seededUsers = await seedUsers(userData);
-		await seedTutorials(tutorialData, seededUsers);
+		const seededUsers = await seedUsers(userData)
+		await seedTutorials(tutorialData, seededUsers)
 
 		process.exit(0)
 	} catch (err) {

@@ -4,9 +4,11 @@ const resolvers = {
 
 	Query: {
 
-	//to test database
+	//to test database(using for trending tutorials right now)
 		allTutorials: async() =>{
-			return Tutorial.find({}).populate('author')
+			return Tutorial.find({})
+			.populate('author')
+			.populate('tags')
 		}
 	}
 }

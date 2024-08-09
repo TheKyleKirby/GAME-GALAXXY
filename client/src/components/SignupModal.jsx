@@ -55,7 +55,7 @@ console.log(data);
   //   setIsLoginModalOpen(!isLoginModalOpen);
   // };
 
-  const toggleSignUpModal = () => {
+const toggleSignUpModal = () => {
     setIsSignUpModalOpen(!isSignUpModalOpen);
   };
 

@@ -2,19 +2,19 @@
 ## COMPONENTS
 ### HomePage Components:
 <!-- [BT] wireFrame -->
-- [ ] Navbar
-- [ ] Menu
-  - [ ] SearchBar
-  - [ ] Links for Sign up, Login, Logout, Dashboard, Create New Tutorial, Trending Tutorials, About Us
+<!-- - [KK] Navbar -->
+<!-- - [KK] Menu -->
+  <!-- - [KK] SearchBar -->
+  <!-- - [KK] Links for Sign up, Login, Logout, Dashboard, Create New Tutorial, Trending Tutorials, About Us -->
 <!-- - [BT] Logo -->
-- [ ] Login modal/Signup modal
+<!-- - [KK] Login modal/Signup modal -->
 <!-- - [BT - BM ] Hero -->
 <!-- - [BM ] Trending section (carousel still needs some tweaking, but is implemented) -->
 <!-- - [BM ] Tutorial cards -->
 - [ ] Game cards
 - [ ] User cards
 <!-- - [BT ] About us section -->
-- [ ] Footer
+<!-- - [KK] Footer -->
 
 ### ResultsPage(or section) Components:
 <!-- [BT] wireFrame -->
@@ -42,7 +42,7 @@
   - [ ] Tags input
   - [ ] Images input (optional)
 
-### Dashboard Page Components:
+### Profile Page Components:
 <!-- [BT] wireFrame -->
 - [ ] Profile Details
   - [ ] Picture
@@ -121,9 +121,6 @@
 ### TutorialPage Queries:
 - [ ] Query for single tutorial
 - [ ] Query for related titles/chapters/levels
-- [ ] Query for comments
-- [ ] Query for tags
-- [ ] Query for rating of tutorial
 - [ ] Query for game info(title, rating, etc)
 
 ### Create Tutorial Page Queries:
@@ -132,11 +129,6 @@
 
 ### Dashboard Page Queries:
 - [ ] Query for profile details
-- [ ] Query for friends list
-- [ ] Query for saved games
-- [ ] Query for creators following list
-- [ ] Query for tutorials saved list
-- [ ] Query for created tutorials list
 
 
 
@@ -166,20 +158,20 @@
 
 ## Functions
 ### HomePage Functions:
-- [ ] Open login/signup modal
-- [ ] Submit login/signup form
-- [ ] Authenticate user with JWT
-- [ ] Redirect to dashboard after login/signup
+<!-- - [KK] Open login/signup modal -->
+<!-- - [KG] Submit login/signup form -->
+<!-- - [KG] Authenticate user with JWT -->
+<!-- - [KG] Redirect to dashboard after login/signup -->
 - [ ] Handle search bar submission
 - [ ] Display search results
 - [ ] Filter search results
-- [ ] About us json file & mapping to show on cards on homepage
+<!-- - [BT] About us json file & mapping to show on cards on homepage -->
 
 ### ResultsPage Functions:
 - [ ] Display search results
 - [ ] Filter search results
-- [ ] Expand user card on click
-- [ ] Display tutorials on game click
+- [ ] Expand user card on click(truncate-> isFullDescription? toggle)
+- [ ] Display tutorials on game click (filter allGames by Game) ICEBOX
 - [ ] Redirect to tutorial page on click
 
 ### TutorialPage Functions:
@@ -200,11 +192,6 @@
 
 ### Dashboard Page Functions:
 - [ ] Display profile details
-- [ ] Display friends list
-- [ ] Display saved games
-- [ ] Display creators following list
-- [ ] Display tutorials saved list
-- [ ] Display created tutorials list
 - [ ] Open edit profile form
 - [ ] Submit updated profile details
 - [ ] Remove tutorial

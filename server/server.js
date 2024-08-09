@@ -22,7 +22,6 @@ const server = new ApolloServer({
 	introspection: process.env.NODE_ENV !== 'production',
     playground: process.env.NODE_ENV !== 'production'
 })
-
 const startApolloServer = async () =>{
 	await server.start()
 
@@ -30,6 +29,10 @@ const startApolloServer = async () =>{
 	app.use(express.urlencoded({ extended: true }))
 	app.use(express.json())
 	app.use(cors())
+	// app.use(cors({
+	// 	origin: 'https://studio.apollographql.com',
+	// 	credentials: true
+	// }))
 	app.use('/graphql', expressMiddleware(server, {context: authMiddleware}))
 
 	if (process.env.NODE_ENV === 'production') {
