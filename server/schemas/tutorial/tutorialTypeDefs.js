@@ -3,10 +3,10 @@ const typeDefs = `
 	type Tutorial {
 		_id: ID!
 		title: String!
-		author: User!
-		game: GameResultCard!
+		author: User
+		game: ID
 		content: String!
-		console: Int
+		console: String
 		belongsToGroup: Boolean
 		tutorialGroup: ID
 		chapter: Int
@@ -26,7 +26,7 @@ const typeDefs = `
 #Tutorial Tags
 	type Tag {
 		_id: ID!
-		tag: String!
+		tag: [String]
 	}
 
 # Tutorial Comments
@@ -58,13 +58,13 @@ const typeDefs = `
 		author: User
 		game: ID
 		content: String #truncate(useState to expand)
-		console: String #enum
-		tags: [Tag]
+		console: String #enum-change to int when we get that.
+		tags: Tag
 		rating: Float
 	}
 
 	type Query {
-		allTutorials: [Tutorial]
+		allTutorials: [TutorialCardResults]
 		tutorialById(_id: ID!): Tutorial
 
 	#tutorials written by us. will provide an array of our _ids

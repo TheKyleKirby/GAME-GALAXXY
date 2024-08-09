@@ -31,53 +31,53 @@ const Navbar = () => {
         setIsMenuOpen(false);
     }, [location]);
 
-//-----------------------------------------------------
+    //-----------------------------------------------------
 
-  const [formState, setFormState] = useState({
-    username: '',
-    password: '',
-  });
-  
-  const [login] = useMutation(LOG_IN);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
+    const [formState, setFormState] = useState({
+        username: '',
+        password: '',
     });
-  };
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-console.log(formState);
+    const [login] = useMutation(LOG_IN);
 
-    try {
-      const { data } = await login({
-        variables: { ...formState },
-    });
-console.log(data);
+    const handleChange = (event) => {
+        const { name, value } = event.target;
 
-      Auth.login(data.login.token);
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
 
-      setIsLoggedIn(true)
-console.log(isLoggedIn);
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
 
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+            console.log(data);
 
-    } catch (e) {
-      console.error(e);
-    }
-  };
+            Auth.login(data.login.token);
 
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-    setIsLoggedIn(false)
-  };
+            setIsLoggedIn(true)
+            console.log(isLoggedIn);
 
 
-// ---------------------------------------------------------------
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+        setIsLoggedIn(false)
+    };
+
+
+    // ---------------------------------------------------------------
 
     return (
         <>
@@ -102,10 +102,10 @@ console.log(isLoggedIn);
                         </svg>
                     </button>
 
-                    {isLoggedIn ? 
-                    <button className="text-white bg-blue-500 px-4 py-2 rounded-md" onClick={logout}>Logout</button> 
-                    :
-                    <button onClick={toggleLoginModal} className="text-white bg-blue-500 px-4 py-2 rounded-md">Login</button>
+                    {isLoggedIn ?
+                        <button className="text-white bg-blue-500 px-4 py-2 rounded-md" onClick={logout}>Logout</button>
+                        :
+                        <button onClick={toggleLoginModal} className="text-white bg-blue-500 px-4 py-2 rounded-md">Login</button>
                     }
                 </div>
                 <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full`} id="navbar-hamburger">
@@ -135,29 +135,29 @@ console.log(isLoggedIn);
             {isLoginModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
                     <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
-                        <button 
+                        <button
                             onClick={toggleLoginModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">&times;
                         </button>
                         <h2 className="text-xl mb-4">Login</h2>
-                        <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="username" 
-                        value={formState.username}
-                        placeholder="Username" 
-                        // type="text" 
-                        // placeholder="Username" 
-                        className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        <input
+                            onChange={handleChange}
+                            type="text"
+                            name="username"
+                            value={formState.username}
+                            placeholder="Username"
+                            // type="text" 
+                            // placeholder="Username" 
+                            className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                        <input 
-                        onChange={handleChange} 
-                        type="password" 
-                        name="password" 
-                        value={formState.password}
-                        placeholder="Password" 
-                        // type="password" 
-                        // placeholder="Password" 
-                        className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        <input
+                            onChange={handleChange}
+                            type="password"
+                            name="password"
+                            value={formState.password}
+                            placeholder="Password"
+                            // type="password" 
+                            // placeholder="Password" 
+                            className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <div className="flex justify-between items-center">
                             <button onClick={toggleSignUpModal} className="text-blue-500">Sign Up</button>

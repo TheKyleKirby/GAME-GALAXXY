@@ -5,18 +5,19 @@ export
 		query allTutorials {
 	allTutorials {
     _id
+    title
     author {
     	_id
     	username
     }
-    console
+    game
     content
-    game {
-    	_id
+    console
+    tags{
+        tag
     }
     rating
-    tags
-    title
+    
 	}
 }
 `

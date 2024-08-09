@@ -8,7 +8,6 @@ import Results from './pages/Results'
 import Blog from './pages/Blog'
 
 
-  
 
 
 const App = () => {
