@@ -42,7 +42,7 @@
   - [ ] Tags input
   - [ ] Images input (optional)
 
-### Dashboard Page Components:
+### Profile Page Components:
 <!-- [BT] wireFrame -->
 - [ ] Profile Details
   - [ ] Picture

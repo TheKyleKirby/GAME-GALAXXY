@@ -6,8 +6,10 @@ import { useQuery } from "@apollo/client"
 import { useState, useEffect } from "react"
 
 const Results = () => {
+
+
 // ---------------------sample data from here-------------------------------
-  const {loading, error, data} = useQuery(GET_TUTORIALS)//this can be deleted when search results are being passed.
+  const {loading, error, data} = useQuery(GET_TUTORIALS)
   const [tutorials, setTutorials] = useState([]) 
   useEffect(() => {
   console.log('Query data:', data); // Log the entire data object to see the object tree to help construct
@@ -33,22 +35,23 @@ const Results = () => {
       <div className="bg-white shadow-md rounded p-4 mb-4 w-full">
         <h2 className="text-2xl font-bold">Results Page</h2>
       </div>
-      {/* if there's tutorials, this section will show and populate */}
       <div className="grid grid-cols-4 gap-4">
+
       {tutorials.length > 0 && (
         <div className="bg-white shadow-md rounded p-4">
           <h2 className="text-xl font-bold">Tutorials</h2>
-
           <SearchTutorialCard tutorials={tutorials} />
-          {/*<SearchTutorialCard tutorials={mainSearch.tutorials} /> */}
         </div>
         )}
+
         <div className="bg-white shadow-md rounded p-4">
           <h2 className="text-xl font-bold">Users</h2>
         </div>
+
         <div className="bg-white shadow-md rounded p-4">
           <h2 className="text-xl font-bold">Blogs</h2>
         </div>
+
         <div className="bg-white shadow-md rounded p-4">
           <h2 className="text-xl font-bold">Games</h2>
         </div>
