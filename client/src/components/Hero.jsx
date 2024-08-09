@@ -5,7 +5,7 @@ const Hero = () => {
 		<>
 
 			<section className="hero relative bg-deepBlue-dark">
-				<video className="w-full h-screen object-contain" autoPlay loop>
+				<video className="w-full h-screen object-contain" autoPlay loop muted>
 					<source  src={hero} type ="video/mp4"/></video>
 				<div className="absolute inset-0 flex flex-col items-center justify-center">
 					<div className="flex justify-center space-x-40">

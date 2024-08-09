@@ -2,30 +2,30 @@
 // !THEN I AM PRESENTED WITH A MENU, SEARCHBAR, LOGIN/SIGNUP, HERO, TRENDING TUTORIALS, ABOUT THE STAFF
 	//* HomePage Components:
 		// // Navbar
-		// todo Menu
+		// // Menu
 			// // SearchBar
-			// todo Links for Sign up, Login, Logout, Dashboard, Create New Tutorial, Trending Tutorials, About Us
-		// todo Logo?
-		// todo Login modal/Signup modal
-		// todo Hero
-		// todo Trending section
+			// // Links for Sign up, Login, Logout, Dashboard, Create New Tutorial, Trending Tutorials, About Us
+		// // Logo?
+		// // Login modal/Signup modal
+		// // Hero
+		// // Trending section
 		// ? search results page, or populate home page?
-		// todo Tutorial cards
+		// // Tutorial cards
 		// todo Game cards
 		// todo User cards
 
 		// todo About us section
-		// todo Footer
+		//// Footer
 
 	
 
 // !WHEN I VIEW THE HERO
 // !THEN I CAN SEE A PICTURE, A BLURB AND SMALLER BLURB, AND CALL TO ACTION
 	// *Style:
-		// todo Find/create picture
-		// todo Come up with quip to grab attention
-		// todo Come up with smaller BLURB that explains what we are
-		// todo Create button to sign up or start searching?
+		// // Find/create picture
+		// // Come up with quip to grab attention
+		// // Come up with smaller BLURB that explains what we are
+		// // Create button to sign up or start searching?
 
 
 // !WHEN I CLICK THE MENU
@@ -45,18 +45,13 @@
 			// todo Organize to render by type-users, games, tutorials
 			// todo Filter options
 		//* Dashboard:
-			// todo Direct to page
-			// todo Query for user
+			// // Direct to page
+			// // Query for user
 			// todo Profile info
-			// todo Tutorials created
-			// todo Friends
-			// todo Games saved
-			// todo Tutorials saved
 			// todo Render to appropriate areas
 			// todo Edit profile submit form
 			// todo Mutation to update user
 			// todo Options to remove tutorial, game,or user
-			// todo Mutation to remove appropriate subject
 		//* New tutorial:
 			// todo Direct to page
 			// todo Query games for drop down select input field
@@ -67,16 +62,16 @@
 
 // !WHEN I CLICK SIGNUP/LOGIN
 // !THEN I AM PRESENTED WITH A MODAL FOR THE OPTION TO LOGIN/SIGNUP
-	// todo Create
+	// // Create
 	// todo Style
-	// todo Functions to operate modal
-	// todo Functions to take in values
-	// todo Mutations to database
+	// // Functions to operate modal
+	// // Functions to take in values
+	// // Mutations to database
 
 
 // !WHEN I LOGIN/SIGNUP 
 // !THEN MY INFO IS SAVED, AND I RECEIVE AN AUTH TOKEN, THEN I AM TAKEN TO MY DASHBOARD
-	// todo jwt functions and implementation on server
+	// // jwt functions and implementation on server
 	
 
 // !WHEN I SUBMIT A SEARCH INTO THE MAIN SEARCHBAR
@@ -84,7 +79,7 @@
 	//* Functions:
 		// todo mutation for updating saved items on user
 		// todo mutation for updating rating on tutorial
-		// todo mutation for comments on tutorial and user
+		// todo mutation for comments on tutorial(logged in user id added to comment)
 	
 
 // !WHEN I AM PRESENTED WITH THE RESULTS
@@ -126,8 +121,8 @@
 		// todo Comment form
 		// todo chapters/levels area
 	// todo Style
-	// todo Create
-	// todo Query for single tutorial
+	// // Create
+	// todo Query for single tutorial & direct to tutorial page on link
 
 
 // !WHEN I CLICK CREATE NEW TUTORIAL(WHILE LOGGED IN)
@@ -157,11 +152,10 @@
 // !WHEN I CLICK THE DASHBOARD LINK(OR WHEN I AM REDIRECTED AFTER SIGNUP)
 // !THEN I AM PRESENTED WITH MY DASHBOARD THAT DISPLAYS:
 	// *Dashboard Page Components:
-		// todo Profile Details:
+		// // Profile Details:
 			// *pic
 			// *bio
 			// *top games
-			// ?date joined?
 		// todo Friends List
 		// todo Saved Games
 		// todo Creators Following List
@@ -178,15 +172,15 @@
 
 		// ****UPDATE PLANS TO INCLUDE****
 		// todo Remove, unfollow, or delete options.(Delete Mutation needed to meet project Criteria)
-		
+			// *need to add to profile page
 		// todo create an error/404 page
-		
+
 		// todo  do we want to use an API to retrieve game data instead of leaving it up to the user? then no redundancies will happen, and we won't have to store it on our database
-		
+			// *Tristan's all over it!
 		// todo are we creating an array of trending tutorials, or do we want to make a query for top rated tutorials?
-		
+			// *Going to filter by our usernames, and we will create some.
 		// todo what do we want to filter tutorials by? (console, rating, author....)
-		
+			// *console, rating, author, game
 // *IDEAS/QUESTIONS
 
 
