@@ -9,7 +9,7 @@ const Hero = () => {
 					<source  src={hero} type ="video/mp4"/></video>
 				<div className="absolute inset-0 flex flex-col items-center justify-center">
 					<div className="flex justify-center space-x-40 mb-4 lg:mb-2" style={{ marginBottom: '0%' }}>
-						<button className="bg-purple-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Explore the Galaxxy!</button>
+						<button className="bg-fooBar hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Explore the Galaxxy!</button>
 						<button className="bg-purple-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join the Adventure!</button>
 					</div>
 				</div>
