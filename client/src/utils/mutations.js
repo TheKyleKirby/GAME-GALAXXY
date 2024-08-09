@@ -9,15 +9,15 @@ export
         token
         profile {
           _id
-          name
+          username
         }
       }
     }
   `
 
-  export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  export const SIGN_UP = gql`
+  mutation signUp($username: String!, $email: String!, $password: String!) {
+    signUp(username: $username, email: $email, password: $password) {
       token
       user {
         _id
