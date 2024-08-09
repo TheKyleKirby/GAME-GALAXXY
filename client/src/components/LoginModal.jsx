@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import { LOG_IN } from '../utils/mutations';
 import Auth from '../utils/auth';
+
+import { useNavigate } from 'react-router-dom';
+
 
 const LoginModal = () => {
 
+  const navigate = useNavigate();
+
   const [formState, setFormState] = useState({
-    email: '',
+    username: '',
     password: '',
   });
   
-  const [loginUser] = useMutation(LOGIN_USER);
+  const [loginUser] = useMutation(LOG_IN);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,7 +28,7 @@ const LoginModal = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+console.log(formState);
 
     try {
       const { data } = await loginUser({
@@ -31,6 +36,10 @@ const LoginModal = () => {
       });
 
       Auth.login(data.login.token);
+
+  // redirect to homepage once signed up 
+    navigate('/profile')
+
     } catch (e) {
       console.error(e);
     }
@@ -49,22 +58,38 @@ const LoginModal = () => {
 
   return (
     <>
+    {isLoginModalOpen && (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30">
         <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
           <button onClick={toggleLoginModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
             &times;
           </button>
           <h2 className="text-xl mb-4">Login</h2>
-          <input onChange={handleChange} type="email" name="email" placeholder="Email" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <input onChange={handleChange} type="password" name="password" placeholder="Password" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <input 
+          onChange={handleChange} 
+          type="text" 
+          name="username" 
+          value={formState.username}
+          placeholder="Username" 
+          className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <input 
+          onChange={handleChange} 
+          type="password" 
+          name="password" 
+          value={formState.password}
+          placeholder="Password" 
+          className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <div className="flex justify-between items-center">
-            <button onClick={toggleSignUpModal} className="text-blue-500">Sign Up</button>
+            <button 
+            onClick={toggleSignUpModal} 
+            className="text-blue-500">Sign Up</button>
             <button 
               onClick={handleFormSubmit} 
               className="bg-blue-500 text-white px-4 py-2 rounded-md">Login</button>
           </div>
         </div>
       </div>
+    )}
     </>
   );
 };

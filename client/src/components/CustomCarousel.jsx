@@ -66,10 +66,10 @@ const CustomCarousel = () => {
             key={index}
             className={`w-1/2 transition-opacity duration-500 ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-100'}`}
           >
-            <div className="bg-white shadow-lg rounded-lg p-6 mx-4">
+            <div className="bg-darkPurple-dark shadow-lg rounded-lg p-6 mx-4">
               <div className="font-bold text-xl mb-2">{tutorial.title}</div>
               <p className="text-gray-700 text-base mb-4">{tutorial.content}</p>
-              <span className="text-gray-600 text-sm block mb-4">
+              <span className="text-white text-sm block mb-4">
                 {/* make author username clickable to see their card? or add a follow creator button somewhere? */}
                 Author: {tutorial.author.username}
               </span>
@@ -77,7 +77,7 @@ const CustomCarousel = () => {
               Read Tutorial</Link>... when detailed tutorial page done.*/}
               <a
                 href={tutorial.link}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-[#814C75] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
                 Read Tutorial
               </a>
