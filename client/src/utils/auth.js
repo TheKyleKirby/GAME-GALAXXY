@@ -31,7 +31,7 @@ class AuthService {
 	// builds token and saves to localstorage
 	login(idToken) {
 		localStorage.setItem('id_token', idToken);
-		window.location.assign('/');
+		window.location.assign('/profile');
 	}
 	// removes token from localstorage when logged out  
 	logout() {
