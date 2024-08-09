@@ -3,7 +3,7 @@ const Tutorial = () => {
     <div className="p-4">
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="bg-white shadow-md rounded p-4">
-          <h2 className="text-xl font-bold">Game Guide Author</h2>
+          <h2 className="text-xl font-bold">Game Tutorial Author</h2>
         </div>
         <div className="bg-white shadow-md rounded p-4">
           <h2 className="text-xl font-bold">Game Name/PC Console</h2>

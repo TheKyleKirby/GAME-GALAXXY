@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'
-import Signup from './Signup';
+import SignUpModal from '../components/SignupModal'
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -90,7 +90,7 @@ const Navbar = () => {
 
             {/* Sign Up Modal */}
             {isSignUpModalOpen && (
-                <Signup />
+                <SignUpModal />
                 // <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30">
                 //     <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
                 //         <button onClick={toggleSignUpModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">

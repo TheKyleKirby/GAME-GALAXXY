@@ -3,7 +3,8 @@
 import React from 'react';
 import CustomCarousel from '../components/CustomCarousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import hero from '../../public/images/hero/hero.mp4';
+
+import Hero from '../components/Hero'
 
 
 //import staffMembers images
@@ -29,21 +30,13 @@ const Homepage = () => {
     <div className="min-h-screen flex flex-col">
 
       {/* Hero Section */}
-      <section className="hero relative bg-black">
-          <video className="w-full h-screen object-contain" src={hero} autoPlay loop/>
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="flex justify-center space-x-40 mb-4 lg:mb-2" style={{marginBottom: '0%'}}> 
-          <button className="bg-purple-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Explore the Galaxxy!</button>
-          <button className="bg-purple-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join the Adventure!</button>
-        </div>
-      </div>  
-    </section>
+      <Hero />
 
       {/* Main Content */}
       <main className="bg-gray-100 p-8">
-        {/* Trending Guides Section */}
+        {/* Trending Tutorials Section */}
         <div className="container mx-auto mt-8">
-          <h2 className="text-3xl font-bold mb-4">Trending Guides</h2>
+          <h2 className="text-3xl font-bold mb-4">Trending Tutorials</h2>
           <CustomCarousel />
         </div>
 
@@ -62,7 +55,7 @@ const Homepage = () => {
                         <h3 className="text-xl font-bold text-white">{member.name}</h3>
                         <p className="text-white mb-2">{member.level}</p>
                         <p className="text-white">{member.bio}</p>
-                       </div> 
+                      </div> 
                 ))}
           </div>
         </div>
