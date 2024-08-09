@@ -55,7 +55,7 @@ const typeDefs = `
 
 	type Mutation {
 	#basic profile stuff
-		signUp(user: SignUpInput!): Auth
+		signUp(username: String!, email: String!, password: String!): Auth
 		login(username: String!, password: String!): Auth
 		editProfile(user: EditProfileInput!): User
 

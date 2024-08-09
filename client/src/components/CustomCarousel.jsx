@@ -60,7 +60,7 @@ const CustomCarousel = () => {
 
   return (
     <div className="relative w-full max-w-4xl mx-auto mt-8">
-      <div className="overflow-hidden relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center">
         {getCurrentSlides().map((tutorial, index) => (
           <div
             key={index}
@@ -87,13 +87,13 @@ const CustomCarousel = () => {
       </div>
       <button
         onClick={handlePrev}
-        className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-l-lg -ml-6"
       >
         &#8592;
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-r-lg -mr-6"
       >
         &#8594;
       </button>
