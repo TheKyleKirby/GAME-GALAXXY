@@ -5,11 +5,12 @@ const typeDefs = gql`
     id: ID!
     name: String!
     slug: String!
-    cover: [Int]
+    cover: Int
     platforms: [Int]
     url: String
     tags: [Int]
     similar_games: [Int]
+    esrb: Int
   }
 
   type WholeGame {
@@ -37,12 +38,14 @@ const typeDefs = gql`
     involved_companies: [Int]
     genres: [Int]
     game_modes: [Int]
-    alternative_names: [Int] 
+    alternative_names: [Int]
+    esrb: Int
   }
 
   type Query {
     gameByName(name: String!): [GameResultCard]
     gameById(id: ID!): WholeGame
+    gamesByEsrbRating(rating: Int!): [GameResultCard]
   }
 `;
 
