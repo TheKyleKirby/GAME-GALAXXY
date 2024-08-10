@@ -33,23 +33,39 @@ const resolvers = {
       }
     },
 
-    consoleInfo: async (_, { ids }) => {
+    gameById: async (_, { id }) => {
       try {
         const response = await axios.post(
-          'https://api.igdb.com/v4/platforms',
-          `fields id, name, generation, platform_logo, release_dates, manufacturer; where id = (${ids.join(', ')});`,
+          'https://api.igdb.com/v4/games',
+          `fields id, name, slug, cover, platforms, url, tags, similar_games; where id = ${id};`,
           {
             headers: {
               'Client-ID': process.env.IGDB_CLIENT_ID,
-              Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`,
-            },
+              Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+            }
           }
         );
 
-        return response.data;
+        console.log('IGDB API response for gameById:', response.data);
+
+        if (response.data.length > 0) {
+          const game = response.data[0]; // There should only be one game with this ID
+          return {
+            id: game.id,
+            name: game.name,
+            slug: game.slug,
+            cover: game.cover,
+            platforms: game.platforms,
+            url: game.url,
+            tags: game.tags,
+            similar_games: game.similar_games
+          };
+        } else {
+          return null;
+        }
       } catch (error) {
-        console.error('Error fetching console information:', error.response ? error.response.data : error.message);
-        throw new Error('Failed to fetch console information from IGDB');
+        console.error('Error fetching game by ID from IGDB:', error.response ? error.response.data : error.message);
+        throw new Error('Failed to fetch game by ID from IGDB');
       }
     }
   }
