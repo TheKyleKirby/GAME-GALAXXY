@@ -25,6 +25,9 @@ export const SIGN_UP = gql`
   }
 `
 
+
+
+// todo, not working yet.
 export const UPLOAD_PROFILE_PICTURE = gql`
   mutation uploadProfilePicture($file: Upload!) {
     uploadProfilePicture(file: $file) {

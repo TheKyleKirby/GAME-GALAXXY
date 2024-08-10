@@ -13,9 +13,7 @@ export
     game
     content
     console
-    tags{
-        tag
-    }
+    tags
     rating
     
 	}
