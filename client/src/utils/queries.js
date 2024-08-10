@@ -21,3 +21,8 @@ export
 	}
 }
 `
+export const FILES_QUERY = gql`
+    {
+        files
+    }
+`

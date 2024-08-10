@@ -161,7 +161,7 @@
 		// todo Creators Following List
 		// todo Tutorials Saved List
 		// todo Created Tutorials List
-		// todo Edit Profile Form(when button/link clicked)
+		// todo Edit Profile Form(when button/link clicked)'
 	// todo find the best way to upload photos:
 		//* https://www.apollographql.com/docs/react/data/file-uploads/
 		// *https://github.com/jaydenseric/apollo-upload-client

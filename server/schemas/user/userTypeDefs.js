@@ -46,11 +46,22 @@ const typeDefs = `
 		profilePicture: String
 	}
 
+#testing drop upload
+	scalar Upload
+
+
 	type Query {
 		allUsers: [User]
 		me: User
 		user(_id: ID!): User
+
+	#testing drop upload
+		files: [String]
 	}
+	#testing drop upload
+		input Upload {
+			file: String
+		}	
 		
 
 	type Mutation {
@@ -70,8 +81,12 @@ const typeDefs = `
 		saveTutorial(savedTutorials: ID!): User
 		removeSavedGame(savedGames: ID!): User
 		removeSavedTutorial(savedTutorials: ID!): User
+	
+	#Testing picture upload
+		uploadFile(file: Upload): Boolean
 	}
 
+#####Need to make scalar#####
 
 `
 
