@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGN_UP } from '../utils/mutations';
 import Auth from '../utils/auth';
-// import { useNavigate } from 'react-router-dom';
 
 const SignupModal = () => {
 
-  // const navigate = useNavigate();
-
+  const [error, setError] = useState('');
 
   const [formState, setFormState] = useState({
     username: '',
@@ -15,7 +13,9 @@ const SignupModal = () => {
     password: '',
   });
   
+
   const [signUp] = useMutation(SIGN_UP);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -26,25 +26,19 @@ const SignupModal = () => {
     });
   };
 
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-console.log(formState);
 
     try {
       const { data } = await signUp({
         variables: { ...formState },
       });
-console.log(data);
       
-
       Auth.login(data.signUp.token);
 
-  // redirect to homepage once signed up 
-    // navigate('/results')
-
-
     } catch (error) {
-      console.error('ERROR:', error);
+      setError(error.message);
     }
   };
 
@@ -76,6 +70,7 @@ const toggleSignUpModal = () => {
               &times;
             </button>
             <h2 className="text-xl mb-4">Sign Up</h2>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
             <input 
             onChange={handleChange} 
             type="text" 
@@ -98,10 +93,10 @@ const toggleSignUpModal = () => {
             className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
             />
             <div className="flex justify-between items-center">
-              <button onClick={toggleSignUpModal} className="text-blue-500">Login</button>
+              <button onClick={toggleSignUpModal} className="text-royalBlurp-dark">Login</button>
               <button 
                 onClick={handleFormSubmit} 
-                className="bg-blue-500 text-white px-4 py-2 rounded-md">Sign Up</button>
+                className="bg-royalBlurp-dark text-white px-4 py-2 rounded-md">Sign Up</button>
             </div>
           </div>
         </div>
