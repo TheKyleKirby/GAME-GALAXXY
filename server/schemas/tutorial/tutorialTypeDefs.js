@@ -2,15 +2,15 @@ const typeDefs = `
 #main tutorial
 	type Tutorial {
 		_id: ID!
-		title: String!
+		title: String
 		author: User
 		game: ID
-		content: String!
+		content: String
 		console: String
 		belongsToGroup: Boolean
 		tutorialGroup: ID
 		chapter: Int
-		tags: [Tag]
+		tags: [String]
 		rating: Float
 		youtubeEmbeddedLink: String
 		comments: [Comment]
@@ -23,32 +23,31 @@ const typeDefs = `
 		creator: User!
 	}
 
-#Tutorial Tags
-	type Tag {
-		_id: ID!
-		tag: [String]
-	}
-
 # Tutorial Comments
 	type Comment {
-		_id: ID!
-		comment: String!
-		commenter: User!
+		_id: ID
+		content: String
+		commenter: User
 	}
 
+	input CommentInput {
+		content: String!
+		commenter: ID
+	}
 
 #Input type for creating/updating Tutorial
 	input TutorialInput {
-		title: String!
-		author: ID!
-		game: ID!
+		title: String
+		author: ID
+		game: ID
 		content: String
 		console: Int
 		belongsToGroup: Boolean
 		tutorialGroup: ID
 		chapter: Int
-		tags: [ID]
+		tags: [String]
 		rating: Float
+		youtubeEmbeddedLink: String
 	}
 
 #Results for tutorial cards(main/results page)
@@ -59,25 +58,25 @@ const typeDefs = `
 		game: ID
 		content: String #truncate(useState to expand)
 		console: String #enum-change to int when we get that.
-		tags: Tag
+		tags: [String]
 		rating: Float
 	}
 
 	type Query {
-		allTutorials: [TutorialCardResults]
+		allTutorials: [Tutorial]
 		tutorialById(_id: ID!): Tutorial
 
 	#tutorials written by us. will provide an array of our _ids
 		trendingTutorials(author: [ID]!): [Tutorial] #get ones made by us
-		
+	#icebox
 		otherChapters(belongsToGroup: Boolean!, tutorialGroup: String! ): [Tutorial]
 	}
 
 	type Mutation {
 		createTutorial(tutorial: TutorialInput!): Tutorial
-		updateTutorial(tutorial: TutorialInput!): Tutorial
-		deleteCreatedTutorial(_id: ID!): User
-		addComment(comments: ID!): Tutorial 
+		updateTutorial(_id: ID!, tutorial: TutorialInput!): Tutorial
+		deleteCreatedTutorial(_id: ID!): Tutorial
+		addComment(tutorialId: ID! comment: CommentInput! ): Tutorial 
 	}
 `
 

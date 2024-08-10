@@ -13,11 +13,14 @@ export
     game
     content
     console
-    tags{
-        tag
-    }
+    tags
     rating
     
 	}
 }
+`
+export const FILES_QUERY = gql`
+    {
+        files
+    }
 `
