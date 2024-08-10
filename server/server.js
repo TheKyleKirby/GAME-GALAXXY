@@ -3,6 +3,9 @@ const express = require('express')
 const { ApolloServer } =require('@apollo/server')
 const { expressMiddleware } = require('@apollo/server/express4')
 const path = require('path')
+const fs = require('fs')
+// todo, this is not working right...need to read more.
+const graphqlUploadExpress = require('graphql-upload/public/graphqlUploadExpress.js')
 
 const { authMiddleware } = require('./utils/auth');
 
@@ -22,6 +25,7 @@ const server = new ApolloServer({
 	introspection: process.env.NODE_ENV !== 'production',
     playground: process.env.NODE_ENV !== 'production'
 })
+
 const startApolloServer = async () =>{
 	await server.start()
 
@@ -33,6 +37,7 @@ const startApolloServer = async () =>{
 	// 	origin: 'https://studio.apollographql.com',
 	// 	credentials: true
 	// }))
+	app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 1 }))
 	app.use('/graphql', expressMiddleware(server, {context: authMiddleware}))
 
 	if (process.env.NODE_ENV === 'production') {

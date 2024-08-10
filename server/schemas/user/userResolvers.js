@@ -1,5 +1,8 @@
 const { User, Tutorial } = require("../../models");
 const { signToken, AuthenticationError } = require("../../utils/auth");
+const { createWriteStream } = require('fs')
+const path = require('path')
+const { GraphQLUpload } = require('graphql-upload');
 
 const resolvers = {
 	Query: {
@@ -30,23 +33,20 @@ const resolvers = {
 	Mutation: {
 		signUp: async (parent, { username, email, password }) => {
 
-			// todo validate username is not taken
 			const existingUsername = await User.findOne({ username });
-				if (existingUsername) {
+			if (existingUsername) {
 				throw new Error('Username is already taken.');
-				}
+			}
 
-			// todo validate email is not taken
 			const existingEmail = await User.findOne({ email });
-				if (existingEmail) {
+			if (existingEmail) {
 				throw new Error('Email is already taken.');
-				}
+			}
 
-			// todo validate email is in email format
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				if (!emailRegex.test(email)) {
+			if (!emailRegex.test(email)) {
 				throw new Error('Invalid email format.');
-				}
+			}
 
 			const user = await User.create({
 				username,
@@ -75,7 +75,7 @@ const resolvers = {
 			return { token, user };
 		},
 
-	// lets users edit their profile
+		// lets users edit their profile-change to be update bio.
 		editProfile: async (parent, { user }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(context.user._id, user, { new: true });
@@ -84,76 +84,106 @@ const resolvers = {
 		addFriend: async (parent, { friends }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { $addToSet: { friends } },
-			  { new: true }
+				context.user._id,
+				{ $addToSet: { friends } },
+				{ new: true }
 			);
 		},
 
 		followCreator: async (parent, { creatorsFollowing }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { $addToSet: { creatorsFollowing } },
-			  { new: true }
+				context.user._id,
+				{ $addToSet: { creatorsFollowing } },
+				{ new: true }
 			);
 		},
 
 		removeFriend: async (parent, { friends }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { $pull: { friends } },
-			  { new: true }
+				context.user._id,
+				{ $pull: { friends } },
+				{ new: true }
 			);
 		},
 
 		unfollowCreator: async (parent, { creatorsFollowing }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { $pull: { creatorsFollowing } },
-			  { new: true }
+				context.user._id,
+				{ $pull: { creatorsFollowing } },
+				{ new: true }
 			);
 		},
 
 		saveGame: async (parent, { savedGames }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { $addToSet: { savedGames } },
-			  { new: true }
+				context.user._id,
+				{ $addToSet: { savedGames } },
+				{ new: true }
 			);
 		},
 
 		saveTutorial: async (parent, { savedTutorials }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { $addToSet: { savedTutorials } },
-			  { new: true }
+				context.user._id,
+				{ $addToSet: { savedTutorials } },
+				{ new: true }
 			);
 		},
 
 		removeSavedGame: async (parent, { savedGames }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { $pull: { savedGames } },
-			  { new: true }
+				context.user._id,
+				{ $pull: { savedGames } },
+				{ new: true }
 			);
 		},
 
 		removeSavedTutorial: async (parent, { savedTutorials }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { $pull: { savedTutorials } },
-			  { new: true }
+				context.user._id,
+				{ $pull: { savedTutorials } },
+				{ new: true }
 			);
 		},
 
-	}
+		uploadProfilePicture: async (_, { file }, { user }) => {
+			if (!user) {
+				throw AuthenticationError
+			}
+		
+			const { createReadStream, filename } = await file
+		
+			const filePath = path.join(__dirname, ".../uploads", filename)
+		
+			await new Promise((res, rej) =>
+				createReadStream()
+					.pipe(createWriteStream(filePath))
+					.on('finish', res)
+					.on('error', rej)
+			)
+		
+			const profilePictureUrl = `http://localhost:3001/uploads/${filename}`
+		
+			await User.findByIdAndDelete(user._id, { profilePicture: profilePictureUrl })
+		
+			return {
+				success: true,
+				message: 'File uploaded and profile picture saved',
+				profilePictureUrl
+			}
+		
+		}
+	},
+
+
+Upload: GraphQLUpload
 }
 
 module.exports = resolvers

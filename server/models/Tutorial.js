@@ -1,6 +1,12 @@
 // Model for tutorial
 const { Schema, model } = require('mongoose')
 
+const commentSchema = new Schema({
+  content: String,
+  commenter: { type: Schema.Types.ObjectId, ref: 'User' }, // Reference to User schema if needed
+  createdAt: { type: Date, default: Date.now }
+})
+
 const tutorialSchema = new Schema({
   title: {
     type: String,
@@ -37,11 +43,11 @@ const tutorialSchema = new Schema({
   rating: {
     type: Number
   },
-  comments: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Comment'
-  }]
+  comments: [commentSchema]
 })
+
+
+
 
 const Tutorial = model('Tutorial', tutorialSchema)
 

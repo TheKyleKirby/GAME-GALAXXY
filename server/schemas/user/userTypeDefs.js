@@ -23,20 +23,14 @@ const typeDefs = `
 		user: User
 	}
 
-#for sign up info
-	input SignUpInput {
-		username: String!
-		email: String!
-		password: String!
-	}
+#upload reply
+	type UploadResponse {
+		success: Boolean
+		message: String
+		profilePictureUrl: String
+}
 
-# for login info
-	input LoginInput {
-		username: String!
-		password: String
-	}
-
-#for editing your profile
+#for editing your profile-don't think we need this anymore, since we're just going to do a profilePic mutation and a bioUpdate
 	input EditProfileInput {
 		username: String
 		email: String
@@ -46,18 +40,24 @@ const typeDefs = `
 		profilePicture: String
 	}
 
+#testing drop upload
+	scalar Upload
+
+
 	type Query {
 		allUsers: [User]
 		me: User
 		user(_id: ID!): User
-	}
-		
+		userByUsername(username: String): User
+
+}
+
 
 	type Mutation {
 	#basic profile stuff
 		signUp(username: String!, email: String!, password: String!): Auth
 		login(username: String!, password: String!): Auth
-		editProfile(user: EditProfileInput!): User
+		editProfile(user: EditProfileInput!): User#not gonna use-only profile pic and bioUpdate
 
 	#friends & creators
 		addFriend(friends: ID!): User
@@ -70,6 +70,9 @@ const typeDefs = `
 		saveTutorial(savedTutorials: ID!): User
 		removeSavedGame(savedGames: ID!): User
 		removeSavedTutorial(savedTutorials: ID!): User
+	
+	#Testing picture upload
+		uploadProfilePicture(file: Upload!): UploadResponse
 	}
 
 
