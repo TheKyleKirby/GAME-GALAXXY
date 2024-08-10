@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGN_UP } from '../utils/mutations';
 import Auth from '../utils/auth';
-// import { useNavigate } from 'react-router-dom';
 
 const SignupModal = () => {
 
-  // const navigate = useNavigate();
-
+  const [error, setError] = useState('');
 
   const [formState, setFormState] = useState({
     username: '',
@@ -15,7 +13,9 @@ const SignupModal = () => {
     password: '',
   });
   
+
   const [signUp] = useMutation(SIGN_UP);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -26,25 +26,19 @@ const SignupModal = () => {
     });
   };
 
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-console.log(formState);
 
     try {
       const { data } = await signUp({
         variables: { ...formState },
       });
-console.log(data);
       
-
       Auth.login(data.signUp.token);
 
-  // redirect to homepage once signed up 
-    // navigate('/results')
-
-
     } catch (error) {
-      console.error('ERROR:', error);
+      setError(error.message);
     }
   };
 
@@ -76,6 +70,7 @@ const toggleSignUpModal = () => {
               &times;
             </button>
             <h2 className="text-xl mb-4">Sign Up</h2>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
             <input 
             onChange={handleChange} 
             type="text" 

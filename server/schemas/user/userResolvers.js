@@ -31,10 +31,22 @@ const resolvers = {
 		signUp: async (parent, { username, email, password }) => {
 
 			// todo validate username is not taken
+			const existingUsername = await User.findOne({ username });
+				if (existingUsername) {
+				throw new Error('Username is already taken.');
+				}
 
 			// todo validate email is not taken
+			const existingEmail = await User.findOne({ email });
+				if (existingEmail) {
+				throw new Error('Email is already taken.');
+				}
 
 			// todo validate email is in email format
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(email)) {
+				throw new Error('Invalid email format.');
+				}
 
 			const user = await User.create({
 				username,
@@ -61,7 +73,86 @@ const resolvers = {
 
 			const token = signToken(user);
 			return { token, user };
-		}
+		},
+
+	// lets users edit their profile
+		editProfile: async (parent, { user }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(context.user._id, user, { new: true });
+		},
+
+		addFriend: async (parent, { friends }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { $addToSet: { friends } },
+			  { new: true }
+			);
+		},
+
+		followCreator: async (parent, { creatorsFollowing }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { $addToSet: { creatorsFollowing } },
+			  { new: true }
+			);
+		},
+
+		removeFriend: async (parent, { friends }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { $pull: { friends } },
+			  { new: true }
+			);
+		},
+
+		unfollowCreator: async (parent, { creatorsFollowing }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { $pull: { creatorsFollowing } },
+			  { new: true }
+			);
+		},
+
+		saveGame: async (parent, { savedGames }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { $addToSet: { savedGames } },
+			  { new: true }
+			);
+		},
+
+		saveTutorial: async (parent, { savedTutorials }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { $addToSet: { savedTutorials } },
+			  { new: true }
+			);
+		},
+
+		removeSavedGame: async (parent, { savedGames }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { $pull: { savedGames } },
+			  { new: true }
+			);
+		},
+
+		removeSavedTutorial: async (parent, { savedTutorials }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { $pull: { savedTutorials } },
+			  { new: true }
+			);
+		},
+
 	}
 }
 
