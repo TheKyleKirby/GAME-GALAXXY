@@ -1,5 +1,8 @@
 const { User, Tutorial } = require("../../models");
 const { signToken, AuthenticationError } = require("../../utils/auth");
+const { createWriteStream } = require('fs')
+const path = require('path')
+const { GraphQLUpload } = require('graphql-upload');
 
 const resolvers = {
 	Query: {
@@ -61,8 +64,39 @@ const resolvers = {
 
 			const token = signToken(user);
 			return { token, user };
+		},
+
+
+		uploadProfilePicture: async (_, {file}, {user}) =>{
+			if(!user){
+				throw AuthenticationError
+			}
+
+			const { createReadStream, filename } = await file
+
+			const filePath = path.join(__dirname, ".../uploads", filename)
+
+			await new Promise((res, rej) =>
+				createReadStream()
+					.pipe(createWriteStream(filePath))
+					.on('finish', res)
+					.on('error', rej)
+				)
+
+				const profilePictureUrl = `http://localhost:3001/uploads/${filename}`
+
+				await User.findByIdAndDelete(user._id, {profilePicture: profilePictureUrl})
+
+				return {
+					success: true,
+					message: 'File uploaded and profile picture saved',
+					profilePictureUrl
+				}
+
 		}
-	}
+	},
+
+	Upload: GraphQLUpload
 }
 
 module.exports = resolvers

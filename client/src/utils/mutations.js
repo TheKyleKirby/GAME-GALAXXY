@@ -25,8 +25,12 @@ export const SIGN_UP = gql`
   }
 `
 
-export const UPLOAD_FILE_MUTATION = gql`
-  mutation UploadFile($file: Upload!) {
-    uploadFile(file: $file)
+export const UPLOAD_PROFILE_PICTURE = gql`
+  mutation uploadProfilePicture($file: Upload!) {
+    uploadProfilePicture(file: $file) {
+      success
+      message
+      profilePictureUrl
+    }
   }
   `
