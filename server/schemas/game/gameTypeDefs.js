@@ -1,5 +1,15 @@
 	const typeDefs = `
 	
+	# Define Console Type
+	type Console {
+    id: Int
+    name: String
+    generation: Int
+    platform_logo: Int
+    release_dates: [Int]
+    manufacturer: String
+	}
+	
 	#Everything we can get basically
 	type WholeGame {
 		id: Int
@@ -46,6 +56,7 @@
 		gameById(id: ID!): GameResultCard
 		gameByName(name: String!): [GameResultCard]
 		gameBySlug(slug: String!): GameResultCard
+		consoleInfo(ids: [Int!]!): [Console] 
 	}
 `
 
