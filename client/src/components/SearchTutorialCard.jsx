@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const SearchTutorialCard = ({tutorials}) => {
 
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     {tutorials.map((tutorial) => (//change testTutorials to tutorials when search functions in place.
       <div
         key={tutorial._id}
