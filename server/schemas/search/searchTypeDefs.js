@@ -1,39 +1,39 @@
-const typeDefs = `
-	type SearchResults {
-		users: [User]
-		games: [GameResultCard]
-		tutorials: [Tutorial]
-		tags: [Tutorial]
-	}
+// const { gql } = require('apollo-server-express');
 
-	input SearchInput {
-		users: String  
-		games: String  
-		tutorials: String  
-		tags: String 
-	}
+// const typeDefs = gql`
+//   type SearchGameResult {
+//     id: ID!
+//     name: String!
+//     cover: String
+//     slug: String
+//   }
 
-	input TutorialFilterInput {
-		ids: [ID]!
-		console: String#console #going to do console enum
-		rating: Float
-		game: String
-		author: String #create drop down of where all users where isCreator===true
-		}
+//   type User {
+//     id: ID!
+//     username: String!
+//     avatar: String
+//   }
 
-	input GameFilterInput {
-		ids: [ID]!
-		console: String #going to make console enum
-		rating: Float
-		ESRB: Int #make ESRB enum
-	}
+//   type SearchTutorial {
+//     id: ID!
+//     title: String!
+//     content: String!
+//     author: String!  // Ensuring proper comment format and no stray slashes
+//   }
 
-	type Query {
-		mainSearch(search: SearchInput): [SearchResults]
-		filteredTutorials(filter: TutorialFilterInput): [Tutorial]
-		filteredGames(filter: GameFilterInput): [GameResultCard]
-	}
-`
+//   type SearchResult {
+//     users: [User]
+//     games: [SearchGameResult]
+//     tutorials: [SearchTutorial]
+//   }
 
+//   input SearchInput {
+//     query: String!
+//   }
 
-module.exports = typeDefs
+//   type Query {
+//     mainSearch(search: SearchInput): SearchResult
+//   }
+// `;
+
+// module.exports = typeDefs;
