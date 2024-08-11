@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+// response fields align with what the GraphQL server is returning
+
 // returns token when login is successful and the profile id and name
 export const LOG_IN = gql`
     mutation login($username: String!, $password: String!) {
