@@ -1,4 +1,5 @@
 const gameTypeDefs = require('./gameTypeDefs')
 const gameResolvers = require('./gameResolvers')
 
-module.exports = { gameResolvers, gameTypeDefs }
+
+module.exports = { gameResolvers, gameTypeDefs, }
