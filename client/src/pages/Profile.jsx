@@ -32,21 +32,23 @@ const Profile = () => {
   const { loading, data, error } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-  console.log('Loading:', loading);
-  console.log('Data:', data);
-  console.log('Error:', error);
   
-    const user = data?.me || data?.user || {};
-  console.log('User object:', user);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    console.error('Error fetching user data:', error);
+    return <div>Error fetching user data: {error.message}</div>;
+  }
+
+  const user = data?.me || data?.user || {};
 
     // navigate to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Navigate to="/profile" />;
   }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   if (!user?.username) {
     return (

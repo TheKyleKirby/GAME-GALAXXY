@@ -4,19 +4,11 @@ const jwt = require('jsonwebtoken')
 const secret = 'mysecretshhhhh'
 
 module.exports = {
-    AuthenticationError: new GraphQLError('Could not authenticate user', {
-        extension: {
-            code: 'UNAUTHENTICATED'
-        }
-    }),
 
     authMiddleware: function ({ req }) {
 
+    // allows token to be sent through req.query or headers
         let token = req.body.token || req.query.token || req.headers.authorization;
-    
-        // if (req.headers.authorization) {
-        //   token = token.split(' ').pop().trim();
-        // }
 
         if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
           token = req.headers.authorization.split(' ').pop().trim();
@@ -31,10 +23,14 @@ module.exports = {
           req.user = data;
         } catch (error) {
           console.error('Invalid token!', error);
-        }
-        return req;
-      },
-
+          throw new GraphQLError('Could not authenticate user', {
+            extensions: {
+                code: 'UNAUTHENTICATED',
+            },
+        })
+      }
+      return req;
+    },
 // talks between client and database without having to login several times
     signToken: function ({username,email, _id}) {
         const payload = { username, email, _id}

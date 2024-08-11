@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import SignUpModal from '../components/SignupModal'
-
 import { useMutation } from '@apollo/client';
 import { LOG_IN } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -51,23 +50,39 @@ const Navbar = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
+       
+    // Check if form has everything (basic validation)
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+        console.error("Form validation failed");
+        return;
+    }
 
-        try {
-            const { data } = await login({
-                variables: { ...formState },
-            });
-            console.log(data);
+    try {
+        const { data } = await login({
+            variables: { ...formState },
+        });
 
-            Auth.login(data.login.token);
-
-            setIsLoggedIn(true)
-            console.log(isLoggedIn);
-
-
-        } catch (e) {
-            console.error(e);
+        if (!data || !data.login) {
+            throw new Error("Login failed!");
         }
+
+        Auth.login(data.login.token);
+        setIsLoggedIn(true);
+
+        // Reset form state after successful login
+        setFormState({
+            username: "",
+            password: "",
+        });
+
+        console.log("User logged in successfully:", data.login);
+    } catch (e) {
+        console.error("Error during login:", e);
+    }
+
     };
 
     const logout = (event) => {

@@ -1,5 +1,5 @@
-const { User, Tutorial } = require("../../models");
-const { signToken, getProfile,  AuthenticationError } = require("../../utils/auth");
+const { User } = require("../../models");
+const { signToken,  AuthenticationError } = require("../../utils/auth");
 const { createWriteStream } = require('fs')
 const path = require('path')
 const { GraphQLUpload } = require('graphql-upload');
@@ -13,17 +13,28 @@ const resolvers = {
 
 		// fetch the profile of the currently authenticated user - A user wants to view or edit their own profile information. (add populate profile or populate something else ?)
 		me: async (_parent, args, context) => {
-			if (!context.user) {
-				return Profile.findById({ _id: context.user._id })
+			if (context.user) {
+				try {
+				  const user = await User.findById(context.user._id)
 					.populate('savedTutorials')
-					.populate('createdTutorials')
-			}
-			throw AuthenticationError;
-		},
+					.populate('createdTutorials');
+		
+				  if (!user) {
+					throw new Error('User not found');
+				  }
+		
+				  return user;
+				} catch (err) {
+				  throw new Error('Error fetching user data');
+				}
+			  }
+		
+			  throw new AuthenticationError('Not logged in');
+			},
 
 		// to view the profile of a specific user by providing their profile ID. (maybe change this to username...?)
-		user: async (_parent,  {_id} ) => {
-			return User.findById({ _id })
+		user: async (_parent,  { username} ) => {
+			return User.findOne({ username })
 				.populate('savedTutorials')
 				.populate('createdTutorials')
 		},

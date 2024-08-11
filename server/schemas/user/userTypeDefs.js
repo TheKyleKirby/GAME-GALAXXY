@@ -5,7 +5,7 @@ const typeDefs = `
 		_id: ID!
 		username: String!
 		email: String!
-		password: String!
+	 	#password: String! should not be exposed in graphql for security reasons
 		bioText: String
 		topGames: String
 		friends: [User]
@@ -47,10 +47,9 @@ const typeDefs = `
 	type Query {
 		allUsers: [User]
 		me: User
-		user(_id: ID!): User
+		user(username: String!): User
 		userByUsername(username: String): User
-
-}
+	}
 
 
 	type Mutation {
