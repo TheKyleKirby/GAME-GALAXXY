@@ -6,7 +6,7 @@ const resolvers = {
       try {
         const response = await axios.post(
           'https://api.igdb.com/v4/games',
-          `search "${name}"; fields id, name, slug, cover, platforms, url, tags, similar_games;`,
+          `search "${name}"; fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings;`,
           {
             headers: {
               'Client-ID': process.env.IGDB_CLIENT_ID,
@@ -15,9 +15,9 @@ const resolvers = {
           }
         );
 
-        console.log('IGDB API response:', response.data);
+        console.log('IGDB API response for gameByName:', response.data);
 
-        return response.data.map(game => ({
+        return response.data.map((game) => ({
           id: game.id,
           name: game.name,
           slug: game.slug,
@@ -25,11 +25,12 @@ const resolvers = {
           platforms: game.platforms,
           url: game.url,
           tags: game.tags,
-          similar_games: game.similar_games
+          similar_games: game.similar_games,
+          esrb: game.age_ratings ? game.age_ratings.find((rating) => rating.category === 1)?.rating : null,
         }));
       } catch (error) {
-        console.error('Error fetching games from IGDB:', error.response ? error.response.data : error.message);
-        throw new Error('Failed to fetch games from IGDB');
+        console.error('Error fetching games by name from IGDB:', error.response ? error.response.data : error.message);
+        throw new Error('Failed to fetch games by name from IGDB');
       }
     },
 
@@ -37,7 +38,7 @@ const resolvers = {
       try {
         const response = await axios.post(
           'https://api.igdb.com/v4/games',
-          `fields id, name, slug, cover, platforms, url, tags, similar_games; where id = ${id};`,
+          `fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings; where id = ${id};`,
           {
             headers: {
               'Client-ID': process.env.IGDB_CLIENT_ID,
@@ -49,7 +50,7 @@ const resolvers = {
         console.log('IGDB API response for gameById:', response.data);
 
         if (response.data.length > 0) {
-          const game = response.data[0]; // There should only be one game with this ID
+          const game = response.data[0];
           return {
             id: game.id,
             name: game.name,
@@ -58,7 +59,8 @@ const resolvers = {
             platforms: game.platforms,
             url: game.url,
             tags: game.tags,
-            similar_games: game.similar_games
+            similar_games: game.similar_games,
+            esrb: game.age_ratings ? game.age_ratings.find((rating) => rating.category === 1)?.rating : null,
           };
         } else {
           return null;
@@ -67,7 +69,37 @@ const resolvers = {
         console.error('Error fetching game by ID from IGDB:', error.response ? error.response.data : error.message);
         throw new Error('Failed to fetch game by ID from IGDB');
       }
-    }
+    },
+
+    gamesByEsrbRating: async (_, { rating }) => {
+      try {
+        const response = await axios.post(
+          'https://api.igdb.com/v4/games',
+          `where age_ratings.rating = ${rating}; fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings;`,
+          {
+            headers: {
+              'Client-ID': process.env.IGDB_CLIENT_ID,
+              Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+            }
+          }
+        );
+
+        console.log('IGDB API response for gamesByEsrbRating:', response.data);
+
+        // Loop through each game to fetch the ESRB rating details
+        const gamesWithEsrb = response.data.map((game) => {
+          return {
+            ...game,
+            esrb: rating,
+          };
+        });
+
+        return gamesWithEsrb;
+      } catch (error) {
+        console.error('Error fetching games by ESRB rating from IGDB:', error.response ? error.response.data : error.message);
+        throw new Error('Failed to fetch games by ESRB rating from IGDB');
+      }
+    },
   }
 };
 
