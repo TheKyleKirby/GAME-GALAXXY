@@ -25,6 +25,14 @@ export const SIGN_UP = gql`
   }
 `
 
+export const UPDATE_BIO = gql `
+  mutation updateBio($bioText: String!) {
+  updateBio(bioText: $bioText) {
+    _id
+    bioText
+  }
+}
+`
 
 
 // todo, not working yet.

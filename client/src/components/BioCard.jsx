@@ -1,5 +1,7 @@
 // import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import { useMutation } from '@apollo/client'
+import { UPDATE_BIO } from '../utils/mutations'
 
 const BioCard = ({bio}) => {
 
@@ -7,27 +9,38 @@ const BioCard = ({bio}) => {
 
 	const [bioText, setBioText] = useState( {bio} || '' )
 
+	const [ updateBio ] = useMutation(UPDATE_BIO)
+
 // on click of edit button
 	const handleEditOpen = (event) => {
 		event.preventDefault()
 		setBioStatus('inputArea')
 	}
 
-	const handleChange = (event) => {
-		const { name, value } = event.target
-
-		setBioText({
-			...bioText,
-			[name]: value 
-		})
+// handle change in input area
+	const handleChange = async (event) => {
+		setBioText(event.target.value);
 	}
-
-// save changes and close the edit
-	const handleSaveUpdates = () => {
-
-	// useMutation to update user with updated bio bioText
-	// set bio status back to paragraph
-
+	
+	// save changes and close the edit
+		// useMutation to update user with updated bio bioText
+		// set bio status back to paragraph
+	const handleSaveUpdates = async (event) => {
+		event.preventDefault();
+		try {
+			const { data } = await updateBio({
+				variables: {
+					user: {
+						bioText: bioText
+					}
+				}
+			})
+console.log(data)
+console.log(bioText)
+			setBioStatus('paragraph');
+		} catch (e) {
+			console.log('Error updating bio', e.graphQLErrors || e.networkError || e.message);
+		}		  
 	}
 
 	return (
