@@ -41,7 +41,7 @@ const CustomCarousel = () => {
     if (data) {
       setTrendingTutorials(data.allTutorials)
     }else{
-      console.log('error in getting tutorial data')
+      console.log('Loading...')
     }
   }, [data])
   if (loading) return <p>Loading...</p>//can make spinner with react-spinner package

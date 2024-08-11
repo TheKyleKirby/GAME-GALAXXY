@@ -1,7 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'
-import SignUpModal from '../components/SignupModal'
+import SignUpModal from './SignupModal'
+import SearchBar from './SearchBar'
+
 import { useMutation } from '@apollo/client';
 import { LOG_IN } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -50,39 +52,23 @@ const Navbar = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-       
-    // Check if form has everything (basic validation)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-        console.error("Form validation failed");
-        return;
-    }
+        console.log(formState);
 
-    try {
-        const { data } = await login({
-            variables: { ...formState },
-        });
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+            console.log(data);
 
-        if (!data || !data.login) {
-            throw new Error("Login failed!");
+            Auth.login(data.login.token);
+
+            setIsLoggedIn(true)
+            console.log(isLoggedIn);
+
+
+        } catch (e) {
+            console.error(e);
         }
-
-        Auth.login(data.login.token);
-        setIsLoggedIn(true);
-
-        // Reset form state after successful login
-        setFormState({
-            username: "",
-            password: "",
-        });
-
-        console.log("User logged in successfully:", data.login);
-    } catch (e) {
-        console.error("Error during login:", e);
-    }
-
     };
 
     const logout = (event) => {
@@ -97,13 +83,13 @@ const Navbar = () => {
     return (
         <>
             <nav className="border-gray-200  bg-tealBlue-dark">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <div className="flex flex-wrap items-center justify-between mx-2 p-4">
+                    
                     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">GVM3 GVLVXXY</span>
                     </Link>
-                    <div className="flex-1 mx-4">
-                        <input type="text" placeholder="Search..." className="min-w-2xl px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                    </div>
+                    <SearchBar />
+                    <div>
                     <button
                         onClick={toggleMenu}
                         type="button"
@@ -145,7 +131,10 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
+                </div>
             </nav>
+
+
 
             {/* Login Modal */}
             {isLoginModalOpen && (

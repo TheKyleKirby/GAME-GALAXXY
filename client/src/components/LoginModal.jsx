@@ -1,6 +1,4 @@
-// NOT BEING USED ----- LOG IN IS IN THE NAVBAR.JSX WAS NOT ABLE TO SEPARATE THIS COMPONENT 
-
-
+// ! using login in nav bar
 
 // import { useState } from 'react';
 // import { useMutation } from '@apollo/client';
