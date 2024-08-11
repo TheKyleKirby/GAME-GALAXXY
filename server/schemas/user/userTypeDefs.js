@@ -8,7 +8,7 @@ const typeDefs = gql`
 		username: String!
 		email: String!
 		password: String!
-		bio: String
+		bioText: String
 		topGames: String
 		friends: [User]
 		savedGames: [ID]
@@ -37,7 +37,7 @@ const typeDefs = gql`
 		username: String
 		email: String
 		password: String
-		bio: String
+		bioText: String
 		topGames: String
 		profilePicture: String
 	}
@@ -56,10 +56,10 @@ const typeDefs = gql`
 
 
 	type Mutation {
-	#basic profile stuff
 		signUp(username: String!, email: String!, password: String!): Auth
 		login(username: String!, password: String!): Auth
-		editProfile(user: EditProfileInput!): User#not gonna use-only profile pic and bioUpdate
+		editProfile(user: EditProfileInput!): User
+		updateBio(bioText: String!): User
 
 	#friends & creators
 		addFriend(friends: ID!): User

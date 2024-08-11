@@ -1,5 +1,5 @@
 const { User, Tutorial } = require("../../models");
-const { signToken, AuthenticationError } = require("../../utils/auth");
+const { signToken, getProfile,  AuthenticationError } = require("../../utils/auth");
 const { createWriteStream } = require('fs')
 const path = require('path')
 const { GraphQLUpload } = require('graphql-upload');
@@ -12,9 +12,9 @@ const resolvers = {
 		},
 
 		// fetch the profile of the currently authenticated user - A user wants to view or edit their own profile information. (add populate profile or populate something else ?)
-		me: async (parent, args, context) => {
-			if (context.user) {
-				return Profile.findOne({ _id: context.user._id })
+		me: async (_parent, args, context) => {
+			if (!context.user) {
+				return Profile.findById({ _id: context.user._id })
 					.populate('savedTutorials')
 					.populate('createdTutorials')
 			}
@@ -22,8 +22,8 @@ const resolvers = {
 		},
 
 		// to view the profile of a specific user by providing their profile ID. (maybe change this to username...?)
-		user: async (parent, { userId }) => {
-			return User.findOne({ _id: userId })
+		user: async (_parent,  {_id} ) => {
+			return User.findById({ _id })
 				.populate('savedTutorials')
 				.populate('createdTutorials')
 		},
@@ -80,6 +80,15 @@ const resolvers = {
 			if (!context.user) throw new Error("Not authenticated");
 			return await User.findByIdAndUpdate(context.user._id, user, { new: true });
 		},
+
+		updateBio: async (parent, { bioText }, context) => {
+			if (!context.user) throw new Error("Not authenticated");
+			return await User.findByIdAndUpdate(
+			  context.user._id,
+			  { bioText },
+			  { new: true }
+			);
+		  },
 
 		addFriend: async (parent, { friends }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
