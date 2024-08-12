@@ -82,14 +82,14 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="border-gray-200  bg-tealBlue-dark">
-                <div className="flex flex-wrap items-center justify-between mx-2 p-4">
+            <nav className="border-gray-200  bg-tealBlue-dark flex flex-col items-center md:flex-wrap">
+                <div className="flex flex-wrap items-center justify-center md:justify-between mx-2 p-4">
                     
                     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">GVM3 GVLVXXY</span>
                     </Link>
                     <SearchBar />
-                    <div>
+                    <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
                     <button
                         onClick={toggleMenu}
                         type="button"

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const SearchTutorialCard = ({tutorials}) => {
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
     {tutorials.map((tutorial) => (//change testTutorials to tutorials when search functions in place.
       <div
         key={tutorial._id}
@@ -19,7 +19,7 @@ const SearchTutorialCard = ({tutorials}) => {
           <p className="text-white text-base mb-4">{tutorial.content}</p>
           <span className="text-white text-sm block mb-4">
             {/* make author username clickable to see their profile */}
-            Author: {tutorial.author.username}
+            {/* Author: {tutorial.author.username} */}
           </span>
           {/* <Link to="tutorial/{tutorial._id}" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Read Tutorial</Link>... when detailed tutorial page done.*/}
