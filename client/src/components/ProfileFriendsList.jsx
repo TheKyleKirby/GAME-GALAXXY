@@ -3,7 +3,7 @@
 // import { GET_USER_FRIENDS } from '../utils/queries'
 // import AuthService from '../utils/auth'
 
-const ProfileFriendsList = () => {
+const ProfileFriendsList = ({friends}) => {
 
 	// todo function to find users by id's and map thru to make user cards or list names as links?/we could also just save usernames to an array.
 

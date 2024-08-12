@@ -14,6 +14,7 @@ const httpLink = new HttpLink ({
 
 const authLink = setContext((_, {headers} ) =>{
     const token = localStorage.getItem('id_token')
+    console.log(`token from auth link ${token}`)
     return {
         headers: {
             ...headers,
@@ -31,9 +32,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
             <BrowserRouter>
                 <ApolloProvider client={client}>
-                    <React.StrictMode>
                         <App />
-                    </React.StrictMode>
                 </ApolloProvider>
             </BrowserRouter>
 

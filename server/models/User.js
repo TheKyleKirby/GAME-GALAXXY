@@ -4,7 +4,7 @@ const  bcrypt = require('bcrypt')
 const userSchema = new Schema({
 	username: {
 		type: String,
-		required: true,
+		// required: true,
 		unique: true,
 	},
 	email: {
@@ -16,7 +16,7 @@ const userSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	bio: {
+	bioText: {
 		type: String,
 	},
 	topGames: {
@@ -32,17 +32,20 @@ const userSchema = new Schema({
 	},
 	savedTutorials: {
 		type: Schema.Types.ObjectId,
-		ref: 'Guide'
+		ref: 'Tutorial'
 	},
 	createdTutorials: {
 		type: Schema.Types.ObjectId,
-		ref: 'Guide'
+		ref: 'Tutorial'
 	},
 	isCreator: {
 		type: Boolean
 	},
 	profilePicture: {
 		type: String
+	}, 
+	savedGames: {
+		type: Number
 	}
 
 })

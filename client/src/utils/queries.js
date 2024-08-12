@@ -12,9 +12,10 @@ export
     }
     game
     content
-    console
+    platform
     tags
     rating
+    youTubeLink
     
 	}
 }
@@ -28,11 +29,22 @@ export const FILES_QUERY = gql`
 export const QUERY_ME = gql`
   query me {
     me {
-      _id
+    _id
+    username
+    email
+    bioText
+    friends {
       username
-      email 
     }
+    savedGames
+    savedTutorials {
+      _id
+      title
+    }
+    profilePicture
+  }
 }
+
 `;
 
 export const QUERY_USER  = gql `
@@ -73,3 +85,67 @@ export const WHOLE_GAME_INFO = gql`
     }
   }
 `;
+
+export const GAME_BY_ID = gql `
+  query gameById($gameByIdId: [ID]) {
+  gameById(id: $gameByIdId) {
+
+    url
+    name
+    id
+
+  }
+}
+`
+
+export const MAIN_SEARCH = gql`
+query mainSearch($searchString: String) {
+  mainSearch(searchString: $searchString) {
+    games {
+      id
+      age_ratings {
+        rating
+      }
+      cover {
+        url
+      }
+      name
+      platforms
+      url
+    }
+    tutorials {
+      _id
+      title
+      author
+      game
+      level
+      platform
+      youTubeLink
+      rating
+      comments {
+        commenter {
+          username
+        }
+        content
+      }
+    }
+    users {
+      _id
+      username
+      profilePicture
+      friends {
+        username
+      }
+    }
+  }
+}
+`
+
+export const TUTORIALS_BY_ID = gql `
+  query tutorialById($id: [ID]) {
+  tutorialById(_id: $id) {
+    title
+    _id
+  }
+}
+`

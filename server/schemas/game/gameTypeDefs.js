@@ -36,15 +36,15 @@ const typeDefs = gql`
   }
 
   type GameResultCard {
-    id: ID!
-    name: String!
-    slug: String!
+    id: ID
+    name: String
+    slug: String
     cover: Int
     platforms: [Int]
     url: String
     tags: [Int]
     similar_games: [Int]
-    esrb: Int
+    age_rating: Int
   }
 
   type WholeGame {
@@ -103,11 +103,11 @@ const typeDefs = gql`
 
   type Query {
     gameByName(name: String!): [GameResultCard]
-    gameById(id: ID!): TestGame
+    gameById(id: [ID]): [TestGame]
     gamesByEsrbRating(rating: Int!): [GameResultCard]
     gameCoverById(id: ID): GameCover
     gameAgeRating(id: ID): Rating
-    wholeGameInfo(id: ID!): TestGame
+    wholeGameInfo(name: String): [TestGame]
   }
 `;
 

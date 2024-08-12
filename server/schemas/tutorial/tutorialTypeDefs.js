@@ -6,20 +6,20 @@ const typeDefs = gql `
 		_id: ID!
 		title: String
 		author: User
-		game: ID
+		game: String
 		content: String
-		console: String
+		platform: String
 		belongsToGroup: Boolean
-		tutorialGroup: ID
-		chapter: Int
+		groupBelongsTo: String
+		level: String
 		tags: [String]
 		rating: Float
-		youtubeEmbeddedLink: String
+		youTubeLink: String
 		comments: [Comment]
 	}
 
 #tutorial group tutorial belongs to
-	type TutorialGroup {
+	type GroupBelongsTo {
 		_id: ID!
 		title: String!
 		creator: User!
@@ -41,15 +41,13 @@ const typeDefs = gql `
 	input TutorialInput {
 		title: String
 		author: ID
-		game: ID
+		game: String
+		platform: String
+		level: String
+		youTubeLink: String
 		content: String
-		console: Int
-		belongsToGroup: Boolean
-		tutorialGroup: ID
-		chapter: Int
+		#saying it should be null right now??? will be enum
 		tags: [String]
-		rating: Float
-		youtubeEmbeddedLink: String
 	}
 
 #Results for tutorial cards(main/results page)
@@ -57,21 +55,22 @@ const typeDefs = gql `
 		_id: ID
 		title: String
 		author: User
-		game: ID
+		game: String
 		content: String #truncate(useState to expand)
-		console: String #enum-change to int when we get that.
+		platform: String #enum-change to int when we get that.
 		tags: [String]
 		rating: Float
+		youTubeLink: String
 	}
 
 	type Query {
 		allTutorials: [Tutorial]
-		tutorialById(_id: ID!): Tutorial
+		tutorialById(_id: [ID]): [Tutorial]
 
 	#tutorials written by us. will provide an array of our _ids
 		trendingTutorials(author: [ID]!): [Tutorial] #get ones made by us
 	#icebox
-		otherChapters(belongsToGroup: Boolean!, tutorialGroup: String! ): [Tutorial]
+		otherChapters(belongsToGroup: Boolean!, groupBelongsTo: String! ): [Tutorial]
 	}
 
 	type Mutation {
