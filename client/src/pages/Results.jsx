@@ -49,7 +49,7 @@ const Results = () => {
       <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4 mb-4 w-full">
         <h2 className="text-2xl font-bold">Results Page</h2>
       </div>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid gap-4">
 
       {/*Tutorials Section*/}
       {tutorials.length > 0 && (
