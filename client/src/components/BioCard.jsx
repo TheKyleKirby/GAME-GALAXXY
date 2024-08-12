@@ -6,9 +6,7 @@ import { UPDATE_BIO } from '../utils/mutations'
 const BioCard = ({bio}) => {
 
 	const [bioStatus, setBioStatus] = useState("paragraph")
-
-	const [bioText, setBioText] = useState( {bio} || '' )
-
+	const [bioText, setBioText] = useState( bio || '' )
 	const [ updateBio ] = useMutation(UPDATE_BIO)
 
 // on click of edit button
@@ -22,21 +20,10 @@ const BioCard = ({bio}) => {
 		setBioText(event.target.value);
 	}
 	
-	// save changes and close the edit
-		// useMutation to update user with updated bio bioText
-		// set bio status back to paragraph
 	const handleSaveUpdates = async (event) => {
 		event.preventDefault();
 		try {
-			const { data } = await updateBio({
-				variables: {
-					user: {
-						bioText: bioText
-					}
-				}
-			})
-console.log(data)
-console.log(bioText)
+			const { data } = await updateBio({variables: {bioText: bioText }})
 			setBioStatus('paragraph');
 		} catch (e) {
 			console.log('Error updating bio', e.graphQLErrors || e.networkError || e.message);
@@ -54,16 +41,30 @@ console.log(bioText)
 				<div>
 					<p className="text-white">{ bio }</p>
 
-					<div className="">
-					<button className="bg-[#814C75] hover:bg-tealBlue text-white font-bold py-2 px-rounded"onClick={handleEditOpen}> EDIT BIO</button>
+					<div>
+					<button 
+					className="bg-[#814C75] hover:bg-tealBlue text-white font-bold py-2 px-rounded"
+					onClick={handleEditOpen}
+					> EDIT BIO</button>
 					</div>
+
 				</div>
 
 			):(
 
 			<div>
-              <textarea className="w-full p-2 mt-2 text-black" value={bioText.bio} onChange={handleChange}/>
-              <button className="bg-tealBlue hover:bg-darkPurple-dark text-white font-bold py-2 px-4 rounded mt-2" onClick={handleSaveUpdates}> Save </button>
+
+            <textarea 
+			className="w-full p-2 mt-2 text-black" 
+			value={bioText} 
+			onChange={handleChange}
+			/>
+			
+            <button 
+			className="bg-tealBlue hover:bg-darkPurple-dark text-white font-bold py-2 px-4 rounded mt-2" 
+			onClick={handleSaveUpdates}
+			> Save </button>
+			
 			</div>
 			)
 			}
