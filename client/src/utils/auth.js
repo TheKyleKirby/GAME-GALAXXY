@@ -2,31 +2,38 @@ import {jwtDecode} from 'jwt-decode'
 
 class AuthService {
 
-	// if already logged in
 	// getProfile() {
-		// (console.log(`profile ${jwtDecode(this.getToken())}`))
-		// return jwtDecode(this.getToken());
-// 	const profile = jwtDecode(this.getToken());
-// console.log('profile', profile);
-//     return profile;
+	// 	try {
+	// 		const profile = jwtDecode(this.getToken());
+	// 		console.log('Profile:', profile);
+	// 		return profile;
+	// 	} catch (error) {
+	// 		console.error('Error decoding token:', error);
+	// 		return null;
+	// 	}
 	// }
 
+	// Retrieves and decodes the user's profile from the token
 	getProfile() {
-		try {
-			const profile = jwtDecode(this.getToken());
-			console.log('Profile:', profile);
-			return profile;
-		} catch (error) {
-			console.error('Error decoding token:', error);
-			return null;
-		}
-	}
+        const token = this.getToken();
+        try {
+            if (token) {
+                const profile = jwtDecode(token);
+console.log('Profile:', profile);
+                return profile;
+            }
+            return null;
+        } catch (error) {
+console.error('Error decoding token:', error);
+            return null;
+        }
+    }
 	
 
 	// if token exists (logged in) is true, if not is false and goes to login()
 	loggedIn() {
 		const token = this.getToken();
-console.log('Token present:', !!token);
+console.log('--- AUTH.JS LINE 29 ---Token present:', token);
 		return token ? true : false;
 	}
 
