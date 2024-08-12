@@ -1,6 +1,28 @@
-const axios = require('axios');
+const axios = require('axios'); 
 const colors = require('colors');
 const { JsonWebTokenError } = require('jsonwebtoken');
+
+const consoleIds = {
+  ATARI_2600: 59,
+  DREAMCAST: 23,
+  GAMECUBE: 21,
+  GENESIS: 29,
+  NES: 18,
+  NINTENDO_3DS: 37,
+  NINTENDO_DS: 20,
+  NINTENDO_SWITCH: 130,
+  NINTENDO_WII: 5,
+  PLAYSTATION_2: 8,
+  PLAYSTATION_3: 9,
+  PLAYSTATION_4: 48,
+  PLAYSTATION_5: 167,
+  PSP: 38,
+  SNES: 19,
+  XBOX: 11,
+  XBOX_360: 12,
+  XBOX_ONE: 49,
+  COMPUTER: 6
+};
 
 const ageRatingMap = {
   6: 'RP',
@@ -10,49 +32,22 @@ const ageRatingMap = {
   10: 'T',
   11: 'M',
   12: 'AO'
-}
+};
+
 const reverseAgeRatingMap = Object.fromEntries(
-  Object.entries(ageRatingMap).map(([key, value]) => [value, Number(key)])
+  Object.entries(ageRatingMap).map(([key, value]) => [Number(key), value])
 );
 
+const reverseConsoleIds = Object.fromEntries(
+  Object.entries(consoleIds).map(([key, value]) => [value, key])
+);
 
 const resolvers = {
   Query: {
-    gameByName: async (_, { name }) => {
+    wholeGameInfo: async (_, { id }) => {
       try {
-        const response = await axios.post(
-          'https://api.igdb.com/v4/games',
-          `search "${name}"; fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings;`,
-          {
-            headers: {
-              'Client-ID': process.env.IGDB_CLIENT_ID,
-              Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
-            }
-          }
-        );
-
-        console.log('IGDB API response for gameByName:', response.data);
-
-        return response.data.map((game) => ({
-          id: game.id,
-          name: game.name,
-          slug: game.slug,
-          cover: game.cover,
-          platforms: game.platforms,
-          url: game.url,
-          tags: game.tags,
-          similar_games: game.similar_games,
-          esrb: game.age_ratings ? game.age_ratings.find((rating) => rating.category === 1)?.rating : null,
-        }));
-      } catch (error) {
-        console.error('Error fetching games by name from IGDB:', error.response ? error.response.data : error.message);
-        throw new Error('Failed to fetch games by name from IGDB');
-      }
-    },
-
-    gameById: async (_, { id }) => {
-      try {
-        const response = await axios.post(
+        // Fetch game details
+        const gameResponse = await axios.post(
           'https://api.igdb.com/v4/games',
           `fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings; where id = ${id};`,
           {
@@ -63,224 +58,94 @@ const resolvers = {
           }
         );
 
-        console.log('IGDB API response for gameById:', response.data);
-
-        if (response.data.length > 0) {
-          const game = response.data[0];
-
-          const {url, slug, name, id, age_ratings, cover, platforms, similar_games, tags } = game
-
-          return {
-            url,
-            slug,//use if we want to search by, or use in our endpoint(if going to another page, or clicking as an accordion)
-            name,
-            id,
-            age_ratings,//have to make another request
-            cover, //have to make another request
-            platforms,//map through to find matching names => then map through to list in GameCards
-            similar_games,//map through  to list in GameCards(limit to 3)
-            tags//map through  to list in GameCards(limit to 3)
-          }
-
-        } else {
-          return null;
+        if (gameResponse.data.length === 0) {
+          throw new Error('Game not found');
         }
-      } catch (error) {
-        console.error('Error fetching game by ID from IGDB:', error.response ? error.response.data : error.message);
-        throw new Error('Failed to fetch game by ID from IGDB');
-      }
-    },
 
-    gamesByEsrbRating: async (_, { rating }) => {
-      try {
-        const response = await axios.post(
-          'https://api.igdb.com/v4/games',
-          `where age_ratings.rating = ${rating}; fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings;`,
-          {
-            headers: {
-              'Client-ID': process.env.IGDB_CLIENT_ID,
-              Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+        const game = gameResponse.data[0];
+
+        // Debugging: Inspect the age ratings IDs
+        console.log('Age Ratings IDs:', game.age_ratings);
+
+        // Fetch game cover directly using the cover ID from gameResponse
+        const coverId = game.cover;
+        let cover = null;
+        if (coverId) {
+          const coverResponse = await axios.post(
+            'https://api.igdb.com/v4/covers',
+            `fields height, image_id, url, width; where id = ${coverId};`,
+            {
+              headers: {
+                'Client-ID': process.env.IGDB_CLIENT_ID,
+                Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+              }
             }
-          }
-        );
-
-        console.log('IGDB API response for gamesByEsrbRating:', response.data);
-
-        // Loop through each game to fetch the ESRB rating details
-        const gamesWithEsrb = response.data.map((game) => {
-          return {
-            ...game,
-            esrb: rating,
-          };
-        });
-
-        return gamesWithEsrb;
-      } catch (error) {
-        console.error('Error fetching games by ESRB rating from IGDB:', error.response ? error.response.data : error.message);
-        throw new Error('Failed to fetch games by ESRB rating from IGDB');
-      }
-    },
-
-    gameCoverById: async (_, {id}) => {
-      try {
-        const response = await axios.post(
-        "https://api.igdb.com/v4/covers",
-        `fields height,image_id,url,width; where id = ${id};`,
-        {
-          headers: {
-            'Client-ID': process.env.IGDB_CLIENT_ID,
-            Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
-          }
-        })
-        if (response.data.length > 0) {
-          const cover = response.data[0];
-          const {height,image_id,url,width} = cover
-          return {
-            height,
-            image_id,
-            url,
-            width
-          }
+          );
+          cover = coverResponse.data.length > 0 ? coverResponse.data[0] : null;
         }
-        else {
-          return null;
+
+        // Map over the age_ratings array to fetch and convert the ratings
+        let ratings = [];
+        if (game.age_ratings && game.age_ratings.length > 0) {
+          ratings = await Promise.all(
+            game.age_ratings.map(async (ageRatingId) => {
+              const ageRatingResponse = await axios.post(
+                'https://api.igdb.com/v4/age_ratings',
+                `fields category, rating; where id = ${ageRatingId};`,
+                {
+                  headers: {
+                    'Client-ID': process.env.IGDB_CLIENT_ID,
+                    Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+                  }
+                }
+              );
+
+              // Debugging: Inspect the response for each age rating ID
+              console.log('Age Rating Response:', ageRatingResponse.data);
+
+              if (ageRatingResponse.data.length > 0) {
+                const rating = ageRatingResponse.data[0];
+                const mappedRating = reverseAgeRatingMap[rating.rating] || null;
+                
+                // Debugging: Inspect the mapping results
+                console.log('Mapped Rating:', mappedRating, 'Original Rating:', rating.rating);
+
+                return mappedRating ? { category: rating.category, rating: mappedRating } : null;
+              } else {
+                return null;
+              }
+            })
+          );
         }
+
+        // Filter out any `null` ratings from the final response
+        ratings = ratings.filter(rating => rating !== null);
+
+        // Map platform IDs to platform names using consoleIds and filter out unknowns and nulls
+        const platformNames = game.platforms
+          .map(platformId => reverseConsoleIds[platformId])
+          .filter(platformName => platformName !== undefined && platformName !== null);
+
+        const { url, slug, name, id: gameId, similar_games, tags } = game;
+
+        return {
+          url: url,
+          slug: slug,
+          name: name,
+          id: gameId,
+          age_ratings: ratings, // Now should only contain valid ratings
+          cover: cover,
+          platforms: platformNames, // Should now only contain valid platforms
+          similar_games: similar_games,
+          tags: tags
+        };
+
       } catch (error) {
-        console.error('Error fetching game by ID from IGDB:', error.response ? error.response.data : error.message);
+        console.error('Error fetching game by ID from IGDB:'.red, error.response ? error.response.data : error.message);
         throw new Error('Failed to fetch game by ID from IGDB');
-      }
-    },
-
-    gameAgeRating: async(_, {id}) =>{
-          // search for age_rating
-      try {
-        const response = await axios.post(
-          'https://api.igdb.com/v4/age_ratings',
-          `fields category, rating; where id = ${id};`,
-          {
-            headers: {
-              'Client-ID': process.env.IGDB_CLIENT_ID,
-              Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
-            }
-          }
-        )
-
-        console.log(`IGDB API response for Ratings: ${JSON.stringify(response.data)}`.blue)
-  
-        if (response.data.length > 0) {
-          // todo need to make ratings an array to do age rating map through (maybe filter by category, prolly not.)
-          const ratings = response.data[0]
-
-          const { category, rating } = ratings
-          const ageRatingEnum = ageRatingMap[rating] || null
-
-console.log(`ratings : ${ratings.category}, ${ratings.rating}`.green)
-          return {
-            category,
-            rating: ageRatingEnum
-          }
-        }
-        else{
-          return null
-        }
-      } catch (error) {
-        console.log(`error getting rating ${error}`.red)
       }
     }
   }
-}
+};
 
 module.exports = resolvers;
-
-
-// Testing 
-
-//* not working. trying to put it all together.
-// wholeGameInfo: async(_, {id}) =>{
-//   gameById: async (_, { id }) => {
-
-//
-    
-//     const reverseAgeRatingMap = Object.fromEntries(
-//       Object.entries(ageRatingMap).map(([key, value]) => [value, key])
-//     )
-
-//     try {
-//       // Fetch game details
-//       const gameResponse = axios.post(
-//         'https://api.igdb.com/v4/games',
-//         `fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings; where id = ${id};`,
-//         {
-//           headers: {
-//             'Client-ID': process.env.IGDB_CLIENT_ID,
-//             Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
-//           }
-//         }
-//       );
-
-//       // Fetch game cover
-//       const coverResponse = axios.post(
-//         'https://api.igdb.com/v4/covers',
-//         `fields height, image_id, url, width; where id = (select cover from games where id = ${id});`,
-//         {
-//           headers: {
-//             'Client-ID': process.env.IGDB_CLIENT_ID,
-//             Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
-//           }
-//         }
-//       );
-
-//       // Fetch game age rating
-//       const ageRatingResponse = axios.post(
-//         'https://api.igdb.com/v4/age_ratings',
-//         `fields category, rating; where id = (select age_ratings from games where id = ${id});`,
-//         {
-//           headers: {
-//             'Client-ID': process.env.IGDB_CLIENT_ID,
-//             Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
-//           }
-//         }
-//       );
-
-//       // Await all the promises
-//       const [gameData, coverData, ageRatingData] = await Promise.all([
-//         gameResponse,
-//         coverResponse,
-//         ageRatingResponse
-//       ]);
-
-//       if (gameData.data.length > 0) {
-//         const game = gameData.data[0];
-
-//         // Extract game cover
-//         const cover = coverData.data.length > 0 ? coverData.data[0] : null;
-
-//         // Extract age ratings
-//         const ratings = ageRatingData.data.map(rating => ({
-//           category: rating.category,
-//           rating: reverseAgeRatingMap[rating.rating] || 'Unknown',
-//         }));
-//         const { url, slug, name, id, similar_games, tags } = game
-//         return {
-
-//           url: url,
-//           slug: slug,
-//           name: name,
-//           id: id,
-//           age_ratings: ratings,
-//           cover,
-//           platforms: platforms,
-//           similar_: similar_games,
-//           tags: tags
-
-//         }
-//       } else {
-//         return null
-//       }
-//     } catch (error) {
-//       console.error('Error fetching game by ID from IGDB:', error.response ? error.response.data : error.message)
-//       throw new Error('Failed to fetch game by ID from IGDB')
-//     }
-//   }
-
-// }

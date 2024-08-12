@@ -2,17 +2,17 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
-  enum RatingsEnum{
-  RP
-  EC
-  E	
-  E10	
-  T	
-  M	
-  AO
+  enum RatingsEnum {
+    RP
+    EC
+    E
+    E10
+    T
+    M
+    AO
   }
 
-  enum Platform{
+  enum Platform {
     ATARI_2600
     DREAMCAST
     GAMECUBE
@@ -34,7 +34,6 @@ const typeDefs = gql`
     COMPUTER
     OTHER
   }
-
 
   type GameResultCard {
     id: ID!
@@ -77,7 +76,7 @@ const typeDefs = gql`
     esrb: Int
   }
 
-  type TestGame{
+  type TestGame {
     websites: String
     url: String
     slug: String
@@ -85,10 +84,9 @@ const typeDefs = gql`
     id: Int
     age_ratings: [Rating]
     cover: GameCover
-    platforms: [Int]
+    platforms: [Platform]  # Update here to use Platform enum
     similar_games: [Int]
     tags: [Int]
-
   }
 
   type GameCover {
