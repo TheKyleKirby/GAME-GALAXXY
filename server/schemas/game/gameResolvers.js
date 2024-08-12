@@ -42,14 +42,14 @@ const reverseConsoleIds = Object.fromEntries(
   Object.entries(consoleIds).map(([key, value]) => [value, key])
 );
 
-const resolvers = {
+const gameResolvers = {
   Query: {
-    wholeGameInfo: async (_, { id }) => {
+    wholeGameInfo: async (_, { searchString }) => {
       try {
         // Fetch game details
         const gameResponse = await axios.post(
           'https://api.igdb.com/v4/games',
-          `fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings; where id = ${id};`,
+          `search "${searchString}"; fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings; limit 10;`,
           {
             headers: {
               'Client-ID': process.env.IGDB_CLIENT_ID,
@@ -65,7 +65,7 @@ const resolvers = {
         const game = gameResponse.data[0];
 
         // Debugging: Inspect the age ratings IDs
-        console.log('Age Ratings IDs:', game.age_ratings);
+        // console.log('Age Ratings IDs:', game.age_ratings);
 
         // Fetch game cover directly using the cover ID from gameResponse
         const coverId = game.cover;
@@ -101,14 +101,14 @@ const resolvers = {
               );
 
               // Debugging: Inspect the response for each age rating ID
-              console.log('Age Rating Response:', ageRatingResponse.data);
+              // console.log('Age Rating Response:', ageRatingResponse.data);
 
               if (ageRatingResponse.data.length > 0) {
                 const rating = ageRatingResponse.data[0];
                 const mappedRating = reverseAgeRatingMap[rating.rating] || null;
                 
                 // Debugging: Inspect the mapping results
-                console.log('Mapped Rating:', mappedRating, 'Original Rating:', rating.rating);
+                // console.log('Mapped Rating:', mappedRating, 'Original Rating:', rating.rating);
 
                 return mappedRating ? { category: rating.category, rating: mappedRating } : null;
               } else {
@@ -148,4 +148,4 @@ const resolvers = {
   }
 };
 
-module.exports = resolvers;
+module.exports = gameResolvers;

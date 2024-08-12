@@ -25,7 +25,7 @@ const resolvers = {
 		createTutorial: async(parent, {tutorial}) => {
 			try{
 				return (await Tutorial.create(tutorial))
-				// .populate('author')
+				.populate('author')
 				
 			} catch(error){
 				console.log(`error creating tutorial, ${error}`)

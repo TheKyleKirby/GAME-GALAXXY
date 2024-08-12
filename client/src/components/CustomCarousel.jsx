@@ -67,13 +67,15 @@ const CustomCarousel = () => {
                 <div className="font-light text-brightPeach text-lg mb-2">{tutorial.rating}</div>
                 <p className="text-gray-500 text-lg mb-4">{tutorial.content}</p>
               </div>
+                {tutorial.author?.username && (
               <span className="text-white text-lg block mb-4">
                 {/* make author username clickable to see their profile */}
                 Author: {tutorial.author.username}
               </span>
+            )}
               {/* <Link to="tutorial/{tutorial._id}" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Read Tutorial</Link>... when detailed tutorial page done.*/}
-               <Link
+              <Link
                 to="/tutorial"
                 className="bg-[#814C75] hover:bg-gradient-to-r hover:from-pinkyPink hover:to-brightPeach text-white font-bold py-2 px-4 rounded transition-all duration-300"
               >

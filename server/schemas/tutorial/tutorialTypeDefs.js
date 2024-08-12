@@ -5,7 +5,7 @@ const typeDefs = gql `
 	type Tutorial {
 		_id: ID!
 		title: String
-		# author: User
+		author: User
 		game: ID
 		content: String
 		platform: String
@@ -40,7 +40,7 @@ const typeDefs = gql `
 #Input type for creating/updating Tutorial
 	input TutorialInput {
 		title: String
-		# author: ID
+		author: ID
 		game: ID
 		platform: String
 		level: String
