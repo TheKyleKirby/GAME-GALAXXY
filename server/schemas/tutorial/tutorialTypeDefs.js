@@ -10,7 +10,7 @@ const typeDefs = gql `
 		content: String
 		platform: String
 		belongsToGroup: Boolean
-		tutorialGroup: ID
+		groupBelongsTo: String
 		level: String
 		tags: [String]
 		rating: Float
@@ -19,7 +19,7 @@ const typeDefs = gql `
 	}
 
 #tutorial group tutorial belongs to
-	type TutorialGroup {
+	type GroupBelongsTo {
 		_id: ID!
 		title: String!
 		creator: User!
@@ -70,7 +70,7 @@ const typeDefs = gql `
 	#tutorials written by us. will provide an array of our _ids
 		trendingTutorials(author: [ID]!): [Tutorial] #get ones made by us
 	#icebox
-		otherChapters(belongsToGroup: Boolean!, tutorialGroup: String! ): [Tutorial]
+		otherChapters(belongsToGroup: Boolean!, groupBelongsTo: String! ): [Tutorial]
 	}
 
 	type Mutation {

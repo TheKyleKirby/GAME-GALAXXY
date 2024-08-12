@@ -6,15 +6,17 @@ const searchResolvers = {
 	Query: {
 		mainSearch: async (parent, {searchString}) =>{
 			const query = searchString	
+		
 		console.log(`mainsearch resolver query ${query}`.cyan)
 			let users = []
 			let tutorials = []
 			let games = []
 			users = await User.find({ username: new RegExp(query, 'i')})
-			// users.push(userResults)
+
 		console.log(`users mainsearch resolvers ${JSON.stringify(users)}`.blue)
+
 			tutorials = await Tutorial.find({ title: new RegExp(query, 'i')})
-			// tutorials.push(tutorialResults)
+
 		console.log(`tutorials mainsearch resolvers ${JSON.stringify(tutorials)}`.green)
 			
 			try {

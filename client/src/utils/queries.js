@@ -102,6 +102,7 @@ export const MAIN_SEARCH = gql`
 query mainSearch($searchString: String) {
   mainSearch(searchString: $searchString) {
     games {
+      id
       age_ratings {
         rating
       }
@@ -120,6 +121,7 @@ query mainSearch($searchString: String) {
       level
       platform
       youTubeLink
+      rating
       comments {
         commenter {
           username

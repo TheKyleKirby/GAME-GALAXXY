@@ -32,9 +32,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
             <BrowserRouter>
                 <ApolloProvider client={client}>
-                    <React.StrictMode>
                         <App />
-                    </React.StrictMode>
                 </ApolloProvider>
             </BrowserRouter>
 

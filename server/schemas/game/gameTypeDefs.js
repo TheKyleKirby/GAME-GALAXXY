@@ -44,7 +44,7 @@ const typeDefs = gql`
     url: String
     tags: [Int]
     similar_games: [Int]
-    esrb: Int
+    age_rating: Int
   }
 
   type WholeGame {

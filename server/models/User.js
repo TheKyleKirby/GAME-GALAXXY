@@ -32,17 +32,20 @@ const userSchema = new Schema({
 	},
 	savedTutorials: {
 		type: Schema.Types.ObjectId,
-		ref: 'Guide'
+		ref: 'Tutorial'
 	},
 	createdTutorials: {
 		type: Schema.Types.ObjectId,
-		ref: 'Guide'
+		ref: 'Tutorial'
 	},
 	isCreator: {
 		type: Boolean
 	},
 	profilePicture: {
 		type: String
+	}, 
+	savedGames: {
+		type: Number
 	}
 
 })

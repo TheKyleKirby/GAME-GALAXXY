@@ -12,8 +12,8 @@ const resolvers = {
 			.populate('comments')
 		},
 	// triggered by clicking on 'read tutorial' button on card
-		tutorialById: async (_parent, {_id}) => {
-			return await Tutorial.find({_id: {$in: ids}})
+		tutorialById: async (_parent, {id}) => {
+			return await Tutorial.find({_id: {$in: id}})
 			.populate('author')
 			.populate('comments')
 		}

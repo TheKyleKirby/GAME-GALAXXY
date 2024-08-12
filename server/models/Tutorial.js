@@ -19,7 +19,7 @@ const tutorialSchema = new Schema({
   },
   game: {
     type: String,
-    required: true
+    // required: true
   },
   platform: {
     type: String
