@@ -5,16 +5,16 @@ const typeDefs = gql `
 	type Tutorial {
 		_id: ID!
 		title: String
-		author: User
+		# author: User
 		game: ID
 		content: String
-		console: String
+		platform: String
 		belongsToGroup: Boolean
 		tutorialGroup: ID
-		chapter: Int
+		level: String
 		tags: [String]
 		rating: Float
-		youtubeEmbeddedLink: String
+		youTubeLink: String
 		comments: [Comment]
 	}
 
@@ -40,16 +40,14 @@ const typeDefs = gql `
 #Input type for creating/updating Tutorial
 	input TutorialInput {
 		title: String
-		author: ID
+		# author: ID
 		game: ID
+		platform: String
+		level: String
+		youTubeLink: String
 		content: String
-		console: Int
-		belongsToGroup: Boolean
-		tutorialGroup: ID
-		chapter: Int
+		#saying it should be null right now??? will be enum
 		tags: [String]
-		rating: Float
-		youtubeEmbeddedLink: String
 	}
 
 #Results for tutorial cards(main/results page)
@@ -59,9 +57,10 @@ const typeDefs = gql `
 		author: User
 		game: ID
 		content: String #truncate(useState to expand)
-		console: String #enum-change to int when we get that.
+		platform: String #enum-change to int when we get that.
 		tags: [String]
 		rating: Float
+		youTubeLink: String
 	}
 
 	type Query {

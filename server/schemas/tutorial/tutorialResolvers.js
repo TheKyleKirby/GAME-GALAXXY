@@ -26,7 +26,7 @@ const resolvers = {
 			console.log(tutorial)
 			try{
 				return (await Tutorial.create(tutorial))
-				.populate('author')
+				// .populate('author')
 			} catch(error){
 				console.log(`error creating tutorial, ${error}`)
 			}
@@ -36,7 +36,7 @@ const resolvers = {
 			console.log(tutorial)
 			try{
 				return (await Tutorial.findByIdAndUpdate(_id, tutorial, {new: true}))
-				.populate('author')
+				// .populate('author')
 				.populate('comments')
 			} catch(error){
 				console.log(`error updating tutorial, ${error}`)
@@ -81,7 +81,7 @@ const resolvers = {
 					tutorialId,
 					{ $push: { comments: newComment} },
 					{ new: true })
-					.populate('author')
+					// .populate('author')
 					.populate('comments')
 					
 				console.log(updatedTutorial)

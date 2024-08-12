@@ -6,15 +6,16 @@ export
 	allTutorials {
     _id
     title
-    author {
-    	_id
-    	username
-    }
+    # author {
+    # 	_id
+    # 	username
+    # }
     game
     content
-    console
+    platform
     tags
     rating
+    youTubeLink
     
 	}
 }
