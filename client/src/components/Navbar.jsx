@@ -52,24 +52,19 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        console.log('isLoggedIn state changed:', isLoggedIn);
     }, [isLoggedIn]);
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
 
         try {
             const { data } = await login({
                 variables: { ...formState },
             });
-            console.log(data);
 
             Auth.login(data.login.token);
 
             setIsLoggedIn(true)
-            console.log( '-------NAVBAR LINE 67-------' , isLoggedIn);
-
 
         } catch (e) {
             console.error(e);

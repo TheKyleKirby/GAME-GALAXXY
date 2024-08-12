@@ -19,12 +19,10 @@ class AuthService {
         try {
             if (token) {
                 const profile = jwtDecode(token);
-console.log('Profile:', profile);
                 return profile;
             }
             return null;
         } catch (error) {
-console.error('Error decoding token:', error);
             return null;
         }
     }
@@ -33,7 +31,6 @@ console.error('Error decoding token:', error);
 	// if token exists (logged in) is true, if not is false and goes to login()
 	loggedIn() {
 		const token = this.getToken();
-console.log('--- AUTH.JS LINE 29 ---Token present:', token);
 		return token ? true : false;
 	}
 

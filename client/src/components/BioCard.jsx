@@ -22,10 +22,8 @@ const BioCard = ({bio}) => {
 	
 	const handleSaveUpdates = async (event) => {
 		event.preventDefault();
-console.log('Saving bio text:', bioText);
 		try {
 			const { data } = await updateBio({variables: {bioText: bioText }})
-console.log('Updated bio:', data.updateBio);
 			setBioStatus('paragraph');
 		} catch (e) {
 			console.log('Error updating bio', e.graphQLErrors || e.networkError || e.message);

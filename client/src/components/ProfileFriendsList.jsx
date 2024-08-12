@@ -12,3 +12,5 @@ const ProfileFriendsList = ({friends}) => {
 	)
 }
 
+export default ProfileFriendsList
+
