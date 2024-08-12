@@ -6,10 +6,10 @@ export
 	allTutorials {
     _id
     title
-    # author {
-    # 	_id
-    # 	username
-    # }
+    author {
+    	_id
+    	username
+    }
     game
     content
     platform
@@ -74,3 +74,44 @@ export const WHOLE_GAME_INFO = gql`
     }
   }
 `;
+
+export const MAIN_SEARCH = gql`
+query mainSearch($searchString: String) {
+  mainSearch(searchString: $searchString) {
+    games {
+      age_ratings {
+        rating
+      }
+      cover {
+        url
+      }
+      name
+      platforms
+      url
+    }
+    tutorials {
+      _id
+      title
+      author
+      game
+      level
+      platform
+      youTubeLink
+      comments {
+        commenter {
+          username
+        }
+        content
+      }
+    }
+    users {
+      _id
+      username
+      profilePicture
+      friends {
+        username
+      }
+    }
+  }
+}
+`

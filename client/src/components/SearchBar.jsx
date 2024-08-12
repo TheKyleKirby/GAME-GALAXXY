@@ -9,8 +9,6 @@ const navigate = useNavigate()
 
 const handleInput = (event) =>{
 	setSearchString(event.target.value)
-	console.log(event.target.value)
-	console.log(searchString)
 }
 
 const handleSubmit = (event) =>{

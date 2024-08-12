@@ -6,7 +6,7 @@ const typeDefs = gql `
 		_id: ID!
 		title: String
 		author: User
-		game: ID
+		game: String
 		content: String
 		platform: String
 		belongsToGroup: Boolean
@@ -41,7 +41,7 @@ const typeDefs = gql `
 	input TutorialInput {
 		title: String
 		author: ID
-		game: ID
+		game: String
 		platform: String
 		level: String
 		youTubeLink: String
@@ -55,7 +55,7 @@ const typeDefs = gql `
 		_id: ID
 		title: String
 		author: User
-		game: ID
+		game: String
 		content: String #truncate(useState to expand)
 		platform: String #enum-change to int when we get that.
 		tags: [String]
