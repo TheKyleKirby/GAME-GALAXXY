@@ -53,3 +53,24 @@ export const QUERY_USER  = gql `
 		profilePicture
     }
 `
+export const WHOLE_GAME_INFO = gql`
+  query WholeGameInfo($id: ID!) {
+    wholeGameInfo(id: $id) {
+      id
+      name
+      slug
+      url
+      cover {
+        url
+        image_id
+      }
+      platforms
+      age_ratings {
+        category
+        rating
+      }
+      similar_games
+      tags
+    }
+  }
+`;
