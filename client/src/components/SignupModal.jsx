@@ -12,10 +12,8 @@ const SignupModal = () => {
     email: '',
     password: '',
   });
-  
 
   const [signUp] = useMutation(SIGN_UP);
-
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,13 +41,9 @@ const SignupModal = () => {
   };
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(true); // Initially set to true to show the modal
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(true);
 
-  // const toggleLoginModal = () => {
-  //   setIsLoginModalOpen(!isLoginModalOpen);
-  // };
-
-const toggleSignUpModal = () => {
+  const toggleSignUpModal = () => {
     setIsSignUpModalOpen(!isSignUpModalOpen);
   };
 

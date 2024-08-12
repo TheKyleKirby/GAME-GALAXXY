@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import SignUpModal from './SignupModal'
 import SearchBar from './SearchBar'
-
 import { useMutation } from '@apollo/client';
 import { LOG_IN } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -15,6 +14,10 @@ const Navbar = () => {
     const location = useLocation()
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    useEffect(() => {
+        setIsLoggedIn(Auth.loggedIn());
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -32,8 +35,6 @@ const Navbar = () => {
         setIsMenuOpen(false);
     }, [location]);
 
-    //-----------------------------------------------------
-
     const [formState, setFormState] = useState({
         username: '',
         password: '',
@@ -50,21 +51,20 @@ const Navbar = () => {
         });
     };
 
+    useEffect(() => {
+    }, [isLoggedIn]);
+    
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
 
         try {
             const { data } = await login({
                 variables: { ...formState },
             });
-            console.log(data);
 
             Auth.login(data.login.token);
 
             setIsLoggedIn(true)
-            console.log(isLoggedIn);
-
 
         } catch (e) {
             console.error(e);
@@ -75,10 +75,8 @@ const Navbar = () => {
         event.preventDefault();
         Auth.logout();
         setIsLoggedIn(false)
+
     };
-
-
-    // ---------------------------------------------------------------
 
     return (
         <>
@@ -175,21 +173,6 @@ const Navbar = () => {
             {/* Sign Up Modal */}
             {isSignUpModalOpen && (
                 <SignUpModal />
-                // <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30">
-                //     <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
-                //         <button onClick={toggleSignUpModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-                //             &times;
-                //         </button>
-                //         <h2 className="text-xl mb-4">Sign Up</h2>
-                //         <input type="text" placeholder="Username" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                //         <input type="email" placeholder="Email" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                //         <input type="password" placeholder="Password" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                //         <div className="flex justify-between items-center">
-                //             <button onClick={toggleLoginModal} className="text-blue-500">Login</button>
-                //             <button onClick={toggleSignUpModal} className="bg-blue-500 text-white px-4 py-2 rounded-md">Sign Up</button>
-                //         </div>
-                //     </div>
-                // </div>
 
             )}
         </>
