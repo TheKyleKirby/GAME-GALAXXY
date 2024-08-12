@@ -28,7 +28,6 @@ const tutorialInput = {
 	tags
 	}
 
-	console.log(JSON.stringify(tutorialInput))
 const [createTutorial] = useMutation(CREATE_TUTORIAL, {
 	variables: { tutorial: tutorialInput }
 })

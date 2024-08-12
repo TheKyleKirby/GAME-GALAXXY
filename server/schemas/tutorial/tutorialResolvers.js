@@ -23,10 +23,10 @@ const resolvers = {
 
 	Mutation: {
 		createTutorial: async(parent, {tutorial}) => {
-			console.log(tutorial)
 			try{
 				return (await Tutorial.create(tutorial))
 				// .populate('author')
+				
 			} catch(error){
 				console.log(`error creating tutorial, ${error}`)
 			}
