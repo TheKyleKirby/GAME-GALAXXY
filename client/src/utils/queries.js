@@ -35,7 +35,6 @@ export const QUERY_ME = gql`
 }
 `;
 
-// match exactly with your GraphQL schema and the resolver.
 export const QUERY_USER  = gql `
     query user($username: String!) {
     user(username: $username)
