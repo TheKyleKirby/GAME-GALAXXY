@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom'
 
 
-const SearchTutorialCard = ({tutorials}) => {
+const SearchTutorialCard = ({tutorial}) => {
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {tutorials.map((tutorial) => (//change testTutorials to tutorials when search functions in place.
+    // <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
+    
       <div
         key={tutorial._id}
-        className={`w-1/2`}
+        className="w-full"
       >
-        <div className="bg-darkPurple-dark shadow-lg rounded-lg p-6 mx-4">
-          <div className="font-bold  text-goldenOrange text-xl mb-2">{tutorial.title}</div>
+        <div className="bg-darkPurple-dark shadow-lg rounded-lg p-4 sm:p-6">
+          <div className="font-bold  text-goldenOrange text-lg sm:text-xl mb-2">{tutorial.title}</div>
           {/* dummy styling to display game. will show title. not id. */}
           <div className="font-semibold text-white text-md mb-2">{tutorial.game}</div>
           <div className="font-light text-notWhite text-xs mb-2">{tutorial.console}</div>
@@ -21,17 +21,15 @@ const SearchTutorialCard = ({tutorials}) => {
             {/* make author username clickable to see their profile */}
             Author: {tutorial.author.username}
           </span>
-          {/* <Link to="tutorial/{tutorial._id}" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Read Tutorial</Link>... when detailed tutorial page done.*/}
           <Link
-            to="/tutorial"
-            className="bg-[#814C75] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            to={`/tutorial/${tutorial._id}`}
+            className="bg-[#814C75] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
           >
             Read Tutorial
           </Link>
         </div>
-      </div>
-    ))}
+      {/* </div> */}
+    
   </div>
   )
 }

@@ -15,13 +15,13 @@ const tutorialSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    // required: true
   },
   game: {
     type: String,
-    required: true
+    // required: true
   },
-  console: {
+  platform: {
     type: String
   },
   content: {
@@ -34,7 +34,7 @@ const tutorialSchema = new Schema({
   groupBelongsTo: {
     type: String
   },
-  section: {
+  level: {
     type: String,
   },
   tags: {
@@ -42,6 +42,9 @@ const tutorialSchema = new Schema({
   },
   rating: {
     type: Number
+  },
+  youTubeLink:{
+    type: String
   },
   comments: [commentSchema]
 })

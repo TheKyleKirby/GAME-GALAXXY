@@ -12,21 +12,19 @@ const resolvers = {
 			.populate('comments')
 		},
 	// triggered by clicking on 'read tutorial' button on card
-		tutorialById: async (_parent, {_id}) => {
-			return await Tutorial.findById({_id})
+		tutorialById: async (_parent, {id}) => {
+			return await Tutorial.find({_id: {$in: id}})
 			.populate('author')
 			.populate('comments')
 		}
-		
-	
 	},
 
 	Mutation: {
 		createTutorial: async(parent, {tutorial}) => {
-			console.log(tutorial)
 			try{
 				return (await Tutorial.create(tutorial))
 				.populate('author')
+				
 			} catch(error){
 				console.log(`error creating tutorial, ${error}`)
 			}
@@ -36,7 +34,7 @@ const resolvers = {
 			console.log(tutorial)
 			try{
 				return (await Tutorial.findByIdAndUpdate(_id, tutorial, {new: true}))
-				.populate('author')
+				// .populate('author')
 				.populate('comments')
 			} catch(error){
 				console.log(`error updating tutorial, ${error}`)
@@ -81,7 +79,7 @@ const resolvers = {
 					tutorialId,
 					{ $push: { comments: newComment} },
 					{ new: true })
-					.populate('author')
+					// .populate('author')
 					.populate('comments')
 					
 				console.log(updatedTutorial)

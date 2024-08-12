@@ -5,7 +5,7 @@ const typeDefs = gql`
 #main for all info needed(profile)
 	type User {
 		_id: ID!
-		username: String!
+		username: String
 		email: String!
 	 	#password: String! should not be exposed in graphql for security reasons
 		bioText: String

@@ -34,7 +34,7 @@ const StaffMembers = () => {
   return (
     <div className="w-[90%] mx-auto mt-8 bg-deepBlue border-2 border-royalBlue-dark shadow-lg rounded-lg p-6 md:p-8">
       <div className="flex justify-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white relative inline-flex items-center">
+        <h2 className="text-4xl md:text-5xl font-bold mb-10 text-white relative inline-flex items-center">
           <span className="mr-2 md:mr-4 animate-pulse">✨</span>
           <span className="bg-gradient-to-r from-tealBlue via-brightPeach to-royalBlurp bg-clip-text text-transparent">
             Meet Our Staff
@@ -42,11 +42,11 @@ const StaffMembers = () => {
           <span className="ml-2 md:ml-4 animate-pulse">✨</span>
         </h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12">
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
         {staffMembers.map((member, index) => (
           <div 
             key={index} 
-            className="bg-darkPurple-dark shadow-xl rounded-lg p-8 md:p-10 transform hover:scale-105 transition-transform duration-300 max-w-[300px] sm:max-w-[340px] mx-auto"
+            className="bg-gradient-to-br from-[#91407288] via-[#6e3b8f88] to-[#52229a88] shadow-xl rounded-lg p-8 md:p-10 transform hover:scale-105 transition-transform duration-300 max-w-[300px] sm:max-w-[340px] mx-auto border-2 border-tealBlue-dark"
           >
             <div className="w-48 h-56 md:w-60 md:h-72 relative mx-auto mb-4">
               <div className="flex justify-center items-center">
@@ -59,7 +59,7 @@ const StaffMembers = () => {
               </div>
             </div>
             <h3 className="text-xl md:text-2xl font-bold text-goldenOrange text-center">{member.name}</h3>
-            <p className="text-lg md:text-xl text-lightLavender text-center mb-2">{member.aka}</p>
+            <p className="text-lg md:text-xl text-tealBlue-light text-center mb-2">{member.aka}</p>
             <p className="text-md md:text-lg text-lightLavender text-center mb-2">{member.level}</p>
             <p className="text-sm md:text-notWhite text-center">{member.bio}</p>
           </div>
@@ -70,6 +70,8 @@ const StaffMembers = () => {
 };
 
 export default StaffMembers;
+
+
 
 
 

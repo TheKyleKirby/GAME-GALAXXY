@@ -12,47 +12,48 @@ const GamesCardResults = ({ game }) => {
           />
         )}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button className="bg-lightLavender-dark text-white px-3 py-1 rounded-md hover:bg-pinkyPink m-2">
+          {/* <button className="bg-lightLavender-dark text-white px-3 py-1 rounded-md hover:bg-pinkyPink m-2">
             Add
-          </button>
+          </button> */}
           <button className="bg-lightLavender-dark text-white px-3 py-1 rounded-md hover:bg-pinkyPink m-2">
             Save
           </button>
         </div>
       </div>
       <h2 className="text-xl font-semibold text-goldenOrange mt-4">{game.name}</h2>
-      <div className="text-white text-md mb-2">ID: {game.id}</div>
+      {/* <div className="text-white text-md mb-2">ID: {game.id}</div> need the id for the button to save to user's profile */}
       <div className="text-white text-md mb-2">
         Platforms: {game.platforms.join(", ")}
       </div>
       <div className="text-brightPeach text-sm mb-4">
         Age Rating: {game.age_ratings.map(rating => rating.rating).join(", ")}
       </div>
-      <div className="mt-4">
-        <h3 className="text-lg font-semibold text-white">Similar Games:</h3>
-        <ul className="list-disc list-inside">
-          {game.similar_games.map((similarGame, index) => (
-            <li key={index} className="text-white">
-              Game ID: {similarGame}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="mt-4">
-        <h3 className="text-lg font-semibold text-white">Tags:</h3>
-        <div className="flex flex-wrap space-x-2">
-          {game.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="bg-lightLavender-dark text-white px-2 py-1 rounded-md text-xs mb-2"
-            >
-              Tag ID: {tag}
-            </span>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };
 
 export default GamesCardResults;
+
+{/* <div className="mt-4">
+  <h3 className="text-lg font-semibold text-white">Similar Games:</h3>
+  <ul className="list-disc list-inside">
+    {game.similar_games.map((similarGame, index) => (
+      <li key={index} className="text-white">
+        Game ID: {similarGame}
+      </li>
+    ))}
+  </ul>
+</div>
+<div className="mt-4">
+  <h3 className="text-lg font-semibold text-white">Tags:</h3>
+  <div className="flex flex-wrap space-x-2">
+    {game.tags.map((tag, index) => (
+      <span
+        key={index}
+        className="bg-lightLavender-dark text-white px-2 py-1 rounded-md text-xs mb-2"
+      >
+        Tag ID: {tag}
+      </span>
+    ))}
+  </div>
+</div> */}

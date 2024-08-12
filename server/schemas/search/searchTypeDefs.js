@@ -1,56 +1,14 @@
 const { gql } = require('apollo-server-express');
 
-// const typeDefs = gql`
-//   type SearchGameResult {
-//     id: ID!
-//     name: String!
-//     cover: String
-//     slug: String
-//   }
-
-//   type User {
-//     id: ID!
-//     username: String!
-//     avatar: String
-//   }
-
-//   type SearchTutorial {
-//     id: ID!
-//     title: String!
-//     content: String!
-//     author: String!  // Ensuring proper comment format and no stray slashes
-//   }
-
-//   type SearchResult {
-//     users: [User]
-//     games: [SearchGameResult]
-//     tutorials: [SearchTutorial]
-//   }
-
-//   input SearchInput {
-//     query: String!
-//   }
-
-//   type Query {
-//     mainSearch(search: SearchInput): SearchResult
-//   }
-// `;
-
-// module.exports = typeDefs;
-
-
-const typeDefs = `
+const searchTypeDefs = gql`
 	type SearchResults {
 		users: [User]
-		games: [GameResultCard]
 		tutorials: [Tutorial]
-		tags: [Tutorial]
+		games: [TestGame]
+	
 	}
 	input SearchInput {
-		users: String  
-		games: String  
-		tutorials: String  
-		tags: String 
+		searchString: String!
 	}
 	input TutorialFilterInput {
 		ids: [ID]!
@@ -66,11 +24,13 @@ const typeDefs = `
 		ESRB: Int #make ESRB enum
 	}
 	type Query {
-		mainSearch(search: SearchInput): [SearchResults]
-		filteredTutorials(filter: TutorialFilterInput): [Tutorial]
+		mainSearch(searchString: String): SearchResults
+
+
+		filteredTutorials(filter: TutorialFilterInput): Tutorial
 		filteredGames(filter: GameFilterInput): [GameResultCard]
 	}
 `
 
 
-module.exports = typeDefs
+module.exports = searchTypeDefs
