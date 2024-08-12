@@ -13,12 +13,10 @@ const resolvers = {
 		},
 	// triggered by clicking on 'read tutorial' button on card
 		tutorialById: async (_parent, {_id}) => {
-			return await Tutorial.findById({_id})
+			return await Tutorial.find({_id: {$in: ids}})
 			.populate('author')
 			.populate('comments')
 		}
-		
-	
 	},
 
 	Mutation: {

@@ -65,7 +65,7 @@ const typeDefs = gql `
 
 	type Query {
 		allTutorials: [Tutorial]
-		tutorialById(_id: ID!): Tutorial
+		tutorialById(_id: [ID]): [Tutorial]
 
 	#tutorials written by us. will provide an array of our _ids
 		trendingTutorials(author: [ID]!): [Tutorial] #get ones made by us

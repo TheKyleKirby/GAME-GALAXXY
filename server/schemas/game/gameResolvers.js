@@ -148,6 +148,50 @@ const gameResolvers = {
         console.error('Error fetching game by ID from IGDB:'.red, error.response ? error.response.data : error.message);
         throw new Error('Failed to fetch game by ID from IGDB');
       }
+    },
+
+    gameById: async (_, { id }) => {
+
+      try {
+        const games = []
+
+        for (const i of ids ) {
+
+        
+
+        const response = await axios.post(
+          'https://api.igdb.com/v4/games',
+          `fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings; where id = ${i};`,
+          {
+            headers: {
+              'Client-ID': process.env.IGDB_CLIENT_ID,
+              Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+            }
+          }
+        );
+        console.log('IGDB API response for gameById:', response.data);
+
+        
+        if (response.data.length > 0) {
+          const game = response.data[0];
+          const platformNames = game.platforms
+          .map(platformId => reverseConsoleIds[platformId])
+          .filter(platformName => platformName !== undefined && platformName !== null);
+          
+          games.push( {
+            id: game.id,
+            name: game.name,
+            url: game.url,
+          })
+        } else {
+          return null;
+        }
+      }
+        return games
+      } catch (error) {
+        console.error('Error fetching game by ID from IGDB:', error.response ? error.response.data : error.message);
+        throw new Error('Failed to fetch game by ID from IGDB');
+      }
     }
   }
 };

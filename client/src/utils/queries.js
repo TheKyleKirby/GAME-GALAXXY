@@ -75,6 +75,18 @@ export const WHOLE_GAME_INFO = gql`
   }
 `;
 
+export const GAME_BY_ID = gql `
+  query gameById($gameByIdId: [ID]) {
+  gameById(id: $gameByIdId) {
+
+    url
+    name
+    id
+
+  }
+}
+`
+
 export const MAIN_SEARCH = gql`
 query mainSearch($searchString: String) {
   mainSearch(searchString: $searchString) {
@@ -112,6 +124,15 @@ query mainSearch($searchString: String) {
         username
       }
     }
+  }
+}
+`
+
+export const TUTORIALS_BY_ID = gql `
+  query tutorialById($id: [ID]) {
+  tutorialById(_id: $id) {
+    title
+    _id
   }
 }
 `

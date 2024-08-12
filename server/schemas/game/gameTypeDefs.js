@@ -103,7 +103,7 @@ const typeDefs = gql`
 
   type Query {
     gameByName(name: String!): [GameResultCard]
-    gameById(id: ID!): TestGame
+    gameById(id: [ID]): [TestGame]
     gamesByEsrbRating(rating: Int!): [GameResultCard]
     gameCoverById(id: ID): GameCover
     gameAgeRating(id: ID): Rating

@@ -4,7 +4,7 @@ import ProfileFavoriteGames from '../components/ProfileFavoriteGames';
 // import ProfileFriendsList from '../components/ProfileFriendsList';
 import ProfilePicture from '../components/ProfilePicture'
 import ProfileSavedTutorials from '../components/ProfileSavedTutorials';
-import { QUERY_USER, QUERY_ME } from '../utils/queries'
+import { QUERY_USER, QUERY_ME, GAME_BY_ID } from '../utils/queries'
 import { Navigate, useParams } from 'react-router-dom'
 import Auth from '../utils/auth';
 
@@ -43,6 +43,7 @@ console.log(JSON.stringify(data))
   // }
 
 
+
   if (!user?.username) {
     return (
       <h4>
@@ -62,7 +63,7 @@ console.log(JSON.stringify(data))
       <div className="fixed top-0 left-0 w-full bg-darkPurple-dark">
     </div>
       <div className="flex items-center flex-col gap-20 justify-center w-full mt-4">
-        <h1 className='text-3xl text-goldenOrange-dark'>{user.username}</h1>
+        <h1 className='text-5xl font-bold tracking-wider text-goldenOrange-dark'>{user.username}</h1>
         {/* Profile Picture */}
         <ProfilePicture picture={user.profilePicture}/>
         </div>
@@ -71,11 +72,11 @@ console.log(JSON.stringify(data))
       {/* Horizontal Cards */}
       <div className="flex flex-wrap justify-center gap-10 w-full px-4 mt-8">
         
-        <ProfileFavoriteGames /> {/* games={games} put in component to pass when we get game id's returning */} 
+        <ProfileFavoriteGames games={user.gameIds}/>  
         
         {/* <ProfileFriendsList friends={user.friends}/>  */}
 
-        <ProfileSavedTutorials tutorials={user.savedTutorials} />
+        <ProfileSavedTutorials tutorialIds={user.savedTutorials} />
       
       </div>
 
