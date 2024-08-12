@@ -36,9 +36,9 @@ const typeDefs = gql`
   }
 
   type GameResultCard {
-    id: ID!
-    name: String!
-    slug: String!
+    id: ID
+    name: String
+    slug: String
     cover: Int
     platforms: [Int]
     url: String
@@ -107,7 +107,7 @@ const typeDefs = gql`
     gamesByEsrbRating(rating: Int!): [GameResultCard]
     gameCoverById(id: ID): GameCover
     gameAgeRating(id: ID): Rating
-    wholeGameInfo(id: ID!): TestGame
+    wholeGameInfo(name: String): [TestGame]
   }
 `;
 

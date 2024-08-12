@@ -7,15 +7,18 @@ const searchResolvers = {
 		mainSearch: async (parent, {searchString}) =>{
 			const query = searchString	
 		console.log(`mainsearch resolver query ${query}`.cyan)
-			
-			const users = await User.find({ username: new RegExp(query, 'i')})
-		console.log(`users mainsearch resolvers ${users}`.blue)
-		const tutorials = await Tutorial.find({ title: new RegExp(query, 'i')})
-		console.log(`tutorials mainsearch resolvers ${tutorials}`.green)
+			let users = []
+			let tutorials = []
 			let games = []
+			users = await User.find({ username: new RegExp(query, 'i')})
+			// users.push(userResults)
+		console.log(`users mainsearch resolvers ${JSON.stringify(users)}`.blue)
+			tutorials = await Tutorial.find({ title: new RegExp(query, 'i')})
+			// tutorials.push(tutorialResults)
+		console.log(`tutorials mainsearch resolvers ${JSON.stringify(tutorials)}`.green)
+			
 			try {
-				const gamesReturned = await gameResolvers.Query.wholeGameInfo(null, {searchString: query})
-				games.push(gamesReturned)
+				games = await gameResolvers.Query.wholeGameInfo(null, {searchString: query})
 			} catch (error) {
 				console.log(`error in main search${error}`.red)
 			}

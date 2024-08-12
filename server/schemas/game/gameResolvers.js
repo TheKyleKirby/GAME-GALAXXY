@@ -49,7 +49,7 @@ const gameResolvers = {
         // Fetch game details
         const gameResponse = await axios.post(
           'https://api.igdb.com/v4/games',
-          `search "${searchString}"; fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings; limit 10;`,
+          `search "${searchString}"; fields id, name, slug, cover, platforms, url, tags, similar_games, age_ratings; limit 3;`,
           {
             headers: {
               'Client-ID': process.env.IGDB_CLIENT_ID,
@@ -62,64 +62,66 @@ const gameResolvers = {
           throw new Error('Game not found');
         }
 
-        const game = gameResponse.data[0];
-
-        // Debugging: Inspect the age ratings IDs
-        // console.log('Age Ratings IDs:', game.age_ratings);
+        const games = gameResponse.data.filter(game => game.name)
 
         // Fetch game cover directly using the cover ID from gameResponse
-        const coverId = game.cover;
-        let cover = null;
-        if (coverId) {
-          const coverResponse = await axios.post(
-            'https://api.igdb.com/v4/covers',
-            `fields height, image_id, url, width; where id = ${coverId};`,
-            {
-              headers: {
-                'Client-ID': process.env.IGDB_CLIENT_ID,
-                Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+        const coverRequests = games.map(async (game) =>{
+          
+          if (game.cover) {
+            const coverResponse = await axios.post(
+              'https://api.igdb.com/v4/covers',
+              `fields height, image_id, url, width; where id = ${game.cover};`,
+              {
+                headers: {
+                  'Client-ID': process.env.IGDB_CLIENT_ID,
+                  Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+                }
               }
-            }
-          );
-          cover = coverResponse.data.length > 0 ? coverResponse.data[0] : null;
-        }
+            )
+            return coverResponse.data.length > 0 ? coverResponse.data[0] : null;
+          }
+          return null
+        })
+        
 
         // Map over the age_ratings array to fetch and convert the ratings
-        let ratings = [];
-        if (game.age_ratings && game.age_ratings.length > 0) {
-          ratings = await Promise.all(
-            game.age_ratings.map(async (ageRatingId) => {
-              const ageRatingResponse = await axios.post(
-                'https://api.igdb.com/v4/age_ratings',
-                `fields category, rating; where id = ${ageRatingId};`,
-                {
-                  headers: {
-                    'Client-ID': process.env.IGDB_CLIENT_ID,
-                    Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+        const ageRatingRequests = games.map(async(game) =>{
+
+
+          if (game.age_ratings && game.age_ratings.length > 0) {
+            return Promise.all(
+              game.age_ratings.map(async (ageRatingId) => {
+                const ageRatingResponse = await axios.post(
+                  'https://api.igdb.com/v4/age_ratings',
+                  `fields category, rating; where id = ${ageRatingId};`,
+                  { 
+                    headers: {
+                      'Client-ID': process.env.IGDB_CLIENT_ID,
+                      Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+                    }
                   }
-                }
-              );
-
-              // Debugging: Inspect the response for each age rating ID
-              // console.log('Age Rating Response:', ageRatingResponse.data);
-
-              if (ageRatingResponse.data.length > 0) {
-                const rating = ageRatingResponse.data[0];
-                const mappedRating = reverseAgeRatingMap[rating.rating] || null;
+                );
                 
-                // Debugging: Inspect the mapping results
-                // console.log('Mapped Rating:', mappedRating, 'Original Rating:', rating.rating);
+                return ageRatingResponse.data
+              })
+            );
+          }
+          return []
+        })
 
-                return mappedRating ? { category: rating.category, rating: mappedRating } : null;
-              } else {
-                return null;
-              }
-            })
-          );
-        }
 
-        // Filter out any `null` ratings from the final response
-        ratings = ratings.filter(rating => rating !== null);
+        const covers = await Promise.all(coverRequests)
+        const ageRatings = await Promise.all(ageRatingRequests)
+
+
+        const gamesWithDetails = games.map((game, index) =>{
+          const cover = covers[index]
+          const ratings = ageRatings[index].flat().map((rating) =>{
+            const mappedRating = reverseAgeRatingMap[rating.rating] || null;
+            return mappedRating ? { category: rating.category, rating: mappedRating } : null;
+          }).filter(rating => rating !== null)
+          
+
 
         // Map platform IDs to platform names using consoleIds and filter out unknowns and nulls
         const platformNames = game.platforms
@@ -129,17 +131,19 @@ const gameResolvers = {
         const { url, slug, name, id: gameId, similar_games, tags } = game;
 
         return {
-          url: url,
-          slug: slug,
-          name: name,
+          url,
+          slug,
+          name,
           id: gameId,
           age_ratings: ratings, // Now should only contain valid ratings
-          cover: cover,
+          cover,
           platforms: platformNames, // Should now only contain valid platforms
           similar_games: similar_games,
           tags: tags
-        };
-
+        }
+      })
+      console.log(`game with details ${JSON.stringify(gamesWithDetails)}`.magenta)
+      return gamesWithDetails
       } catch (error) {
         console.error('Error fetching game by ID from IGDB:'.red, error.response ? error.response.data : error.message);
         throw new Error('Failed to fetch game by ID from IGDB');

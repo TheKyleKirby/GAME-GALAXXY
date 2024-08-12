@@ -42,8 +42,8 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 	type SearchResults {
 		users: [User]
-		games: [GameResultCard]
 		tutorials: [Tutorial]
+		games: [TestGame]
 		# tags: [Tutorial]
 	}
 	input SearchInput {
@@ -64,10 +64,10 @@ const typeDefs = gql`
 		ESRB: Int #make ESRB enum
 	}
 	type Query {
-		mainSearch(searchString: String!): [SearchResults]
+		mainSearch(searchString: String!): SearchResults
 
 
-		filteredTutorials(filter: TutorialFilterInput): [Tutorial]
+		filteredTutorials(filter: TutorialFilterInput): Tutorial
 		filteredGames(filter: GameFilterInput): [GameResultCard]
 	}
 `
