@@ -29,11 +29,22 @@ export const FILES_QUERY = gql`
 export const QUERY_ME = gql`
   query me {
     me {
-      _id
+    _id
+    username
+    email
+    bioText
+    friends {
       username
-      email 
     }
+    savedGames
+    savedTutorials {
+      _id
+      title
+    }
+    profilePicture
+  }
 }
+
 `;
 
 export const QUERY_USER  = gql `

@@ -24,7 +24,6 @@ const { data, loading, error } = useQuery(QUERY_ME, {
     }
   }
 })
-
 console.log(JSON.stringify(data))
   if (loading) {
     return <div>Loading...</div>;
@@ -36,6 +35,7 @@ console.log(JSON.stringify(data))
   }
 
   const user = data?.me || data?.user || {};
+  console.log(JSON.stringify(user))
 
     // navigate to personal profile page if username is yours
   // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -68,7 +68,7 @@ console.log(JSON.stringify(data))
         <ProfilePicture picture={user.profilePicture}/>
         </div>
         {/* Bio Card */}
-        <BioCard bio={user.bio} />
+        <BioCard bio={user.bioText} />
       {/* Horizontal Cards */}
       <div className="flex flex-wrap justify-center gap-10 w-full px-4 mt-8">
         

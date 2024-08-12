@@ -16,7 +16,7 @@ const userSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	bio: {
+	bioText: {
 		type: String,
 	},
 	topGames: {

@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_BIO } from '../utils/mutations'
 
 const BioCard = ({bio}) => {
-
+console.log(bio)
 	const [bioStatus, setBioStatus] = useState("paragraph")
 	const [bioText, setBioText] = useState( bio || '' )
 	const [ updateBio ] = useMutation(UPDATE_BIO)
@@ -16,11 +16,14 @@ const BioCard = ({bio}) => {
 	}
 
 // handle change in input area
-	const handleChange = async (event) => {
+	const handleChange = (event) => {
 		setBioText(event.target.value);
 	}
-	
+console.log(bioText)
+
 	const handleSaveUpdates = async (event) => {
+	console.log(bioText)
+	console.log(bio)
 		event.preventDefault();
 		try {
 			const { data } = await updateBio({variables: {bioText: bioText }})
@@ -56,6 +59,7 @@ const BioCard = ({bio}) => {
 
             <textarea 
 			className="w-full p-2 mt-2 text-black" 
+			name="bioText"
 			value={bioText} 
 			onChange={handleChange}
 			/>
