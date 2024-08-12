@@ -37,4 +37,3 @@ const ProfileFriendsList = () => {
 }
 
 export default ProfileFriendsList
-
