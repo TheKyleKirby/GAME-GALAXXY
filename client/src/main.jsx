@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
-import { ApolloProvider, InMemoryCache, createHttpLink, ApolloClient, ApolloLink } from '@apollo/client'
-import { createUploadLink } from 'apollo-upload-client'
+import { ApolloProvider, InMemoryCache, HttpLink, ApolloClient, ApolloLink } from '@apollo/client'
+// import { createUploadLink } from 'apollo-upload-client'
 import { setContext} from '@apollo/client/link/context'
 
 
 
-const httpLink = createUploadLink({
+const httpLink = new HttpLink ({
     uri: 'http://localhost:3001/graphql'
 })
 

@@ -1,14 +1,11 @@
-// import SearchTutorialCard from "../components/SearchTutorialCard";
-
-import SearchTutorialCard from "../components/SearchTutorialCard"
+import SearchTutorialCard from "../components/SearchTutorialCard";
 import UserCardResults from "../components/UserCardResults";
 import GamesCardResults from "../components/GamesCardResults";
-import { GET_TUTORIALS } from "../utils/queries"
-import { useQuery } from "@apollo/client"
-import { useState, useEffect } from "react"
+import { GET_TUTORIALS, WHOLE_GAME_INFO } from "../utils/queries";
+import { useQuery } from "@apollo/client";
+import { useState, useEffect } from "react";
 
 const Results = () => {
-
   const [users, setUsers] = useState([
     {
       profilePicture: "https://via.placeholder.com/150",
@@ -21,42 +18,47 @@ const Results = () => {
       favoriteGames: ["Game A", "Game B", "Game C"],
     },
   ]);
-// ---------------------sample data from here-------------------------------
-  const {loading, error, data} = useQuery(GET_TUTORIALS)
-  const [tutorials, setTutorials] = useState([])
+
+  const { loading, error, data } = useQuery(GET_TUTORIALS);
+  const [tutorials, setTutorials] = useState([]);
 
   useEffect(() => {
-  console.log('Query data:', data); // Log the entire data object to see the object tree to help construct
-  if (data) {
-    setTutorials(data.allTutorials)
-  }else{
-    console.log('error in getting tutorial data')
-  }
-}, [data]);
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
-// ---------------------to here until search functions returning--------------------------------------------------------------
+    if (data) {
+      setTutorials(data.allTutorials);
+    } else {
+      console.log("error in getting tutorial data");
+    }
+  }, [data]);
 
+  const { loading: gameLoading, error: gameError, data: gameData } = useQuery(WHOLE_GAME_INFO, {
+    variables: { id: "623" }, // Replace "623" with the actual game ID you want to fetch
+  });
 
+  const [games, setGames] = useState([]);
 
-  // todo search functions will go here. and delete query above.
+  useEffect(() => {
+    if (gameData) {
+      setGames([gameData.wholeGameInfo]);
+    } else {
+      console.log("error in getting game data");
+    }
+  }, [gameData]);
 
-
+  if (loading || gameLoading) return <p>Loading...</p>;
+  if (error || gameError) return <p>Error: {error.message}</p>;
 
   return (
-    
     <div className="flex flex-col justify-center min-h-screen bg-deepBlue-dark pt-8 pb-16">
       <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4 mb-4 w-full">
         <h2 className="text-2xl font-bold">Results Page</h2>
       </div>
-      <div className="grid gap-4">
-
-      {/*Tutorials Section*/}
-      {tutorials.length > 0 && (
-        <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
-          <h2 className="text-xl font-bold">Tutorials</h2>
-          <SearchTutorialCard tutorials={tutorials} />
-        </div>
+      <div className="grid grid-cols-1 gap-4">
+        {/* Tutorials Section */}
+        {tutorials.length > 0 && (
+          <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
+            <h2 className="text-xl font-bold">Tutorials</h2>
+            <SearchTutorialCard tutorials={tutorials} />
+          </div>
         )}
 
         {/* Users Section */}
@@ -70,14 +72,16 @@ const Results = () => {
         </div>
 
         {/* Games Section */}
-        {/* <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
-          <h2 className="text-xl font-bold">Games</h2>
-          <div className="space-y-4">
-            {games.map((game, index) => (
-              <GamesCardResults key={index} game={game} />
-            ))}
+        {games.length > 0 && (
+          <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
+            <h2 className="text-xl font-bold">Games</h2>
+            <div className="space-y-4">
+              {games.map((game, index) => (
+                <GamesCardResults key={index} game={game} />
+              ))}
+            </div>
           </div>
-        </div> */}
+        )}
       </div>
     </div>
   );

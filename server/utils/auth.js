@@ -13,23 +13,22 @@ module.exports = {
         if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
           token = req.headers.authorization.split(' ').pop().trim();
         }
-    
+
         if (!token) {
-          return req;
+          return { user: null };
         }
 
         try {
           const { data } = jwt.verify(token, secret, { expiresIn: '10d' });
-          req.user = data;
+          return { user: data }
+
         } catch (error) {
-          console.error('Invalid token!', error);
           throw new GraphQLError('Could not authenticate user', {
             extensions: {
                 code: 'UNAUTHENTICATED',
             },
         })
       }
-      return req;
     },
 // talks between client and database without having to login several times
     signToken: function ({username,email, _id}) {

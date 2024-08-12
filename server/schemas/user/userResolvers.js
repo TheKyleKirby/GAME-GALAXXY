@@ -69,7 +69,7 @@ const resolvers = {
 		},
 
 		// find profile, if not found , throw error
-		login: async (parent, { username, password }) => {
+		login: async (parent, { username, password }, context) => {
 			const user = await User.findOne({ username });
 
 			if (!user) {
@@ -82,7 +82,7 @@ const resolvers = {
 				throw AuthenticationError;
 			}
 
-			const token = signToken(user);
+			const token = signToken({ username: user.username, email: user.email, _id: user._id });
 			return { token, user };
 		},
 
