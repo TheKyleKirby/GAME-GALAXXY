@@ -128,8 +128,9 @@ const Navbar = () => {
                             <Link to="/" className="block py-2 px-3 text-white rounded  hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-pinkyPink-dark" aria-current="page">Home</Link>
                         </li>
                         <li>
-
+                        {isLoggedIn && (
                             <Link to="/Profile" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-pinkyPink-dark">Profile</Link>
+                        )}
                         </li>
                         <li>
                             <Link to="/Results" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-pinkyPink-dark">Results</Link>
@@ -138,7 +139,7 @@ const Navbar = () => {
                             <Link to="/Blog" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-pinkyPink-dark">Blog</Link>
                         </li>
                         <li>
-                            <Link to="/Tutorial" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-pinkyPink-dark">Game Tutorial</Link>
+                            <Link to="/CreateTutorial" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-pinkyPink-dark">Create Tutorial</Link>
 
                         </li>
                     </ul>

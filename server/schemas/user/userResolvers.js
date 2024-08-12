@@ -1,5 +1,5 @@
 const { User } = require("../../models");
-const { signToken,  AuthenticationError } = require("../../utils/auth");
+const { signToken, AuthenticationError } = require("../../utils/auth");
 const { createWriteStream } = require('fs')
 const path = require('path')
 const { GraphQLUpload } = require('graphql-upload');
@@ -15,25 +15,26 @@ const resolvers = {
 		me: async (_parent, args, context) => {
 			if (context.user) {
 				try {
-				  const user = await User.findById(context.user._id)
+					const user = await User.findById(context.user._id)
 					.populate('savedTutorials')
 					.populate('createdTutorials');
-		
-				  if (!user) {
-					throw new Error('User not found');
-				  }
-		
-				  return user;
+					
+					console.log(`user in me resolver${user}`.green)
+					if (!user) {
+						throw new Error('User not found');
+					}
+
+					return user;
 				} catch (err) {
-				  throw new Error('Error fetching user data');
+					throw new Error('Error fetching user data');
 				}
-			  }
-		
-			  throw new AuthenticationError('Not logged in');
-			},
+			}
+
+			throw new AuthenticationError('Not logged in');
+		},
 
 		// to view the profile of a specific user by providing their profile ID. (maybe change this to username...?)
-		user: async (_parent,  { username} ) => {
+		user: async (_parent, { username }) => {
 			return User.findOne({ username })
 				.populate('savedTutorials')
 				.populate('createdTutorials')
@@ -93,13 +94,16 @@ const resolvers = {
 		},
 
 		updateBio: async (parent, { bioText }, context) => {
+		console.log(JSON.stringify(context))
 			if (!context.user) throw new Error("Not authenticated");
-			return await User.findByIdAndUpdate(
-			  context.user._id,
-			  { bioText },
-			  { new: true }
+			const updatedUserBio =  await User.findByIdAndUpdate(
+				context.user._id,
+				{ bioText },
+				{ new: true }
 			);
-		  },
+			console.log(`updatedUserBio Resolver ${updatedUserBio}`)
+			return updatedUserBio
+		},
 
 		addFriend: async (parent, { friends }, context) => {
 			if (!context.user) throw new Error("Not authenticated");
@@ -177,33 +181,33 @@ const resolvers = {
 			if (!user) {
 				throw AuthenticationError
 			}
-		
+
 			const { createReadStream, filename } = await file
-		
+
 			const filePath = path.join(__dirname, ".../uploads", filename)
-		
+
 			await new Promise((res, rej) =>
 				createReadStream()
 					.pipe(createWriteStream(filePath))
 					.on('finish', res)
 					.on('error', rej)
 			)
-		
+
 			const profilePictureUrl = `http://localhost:3001/uploads/${filename}`
-		
+
 			await User.findByIdAndDelete(user._id, { profilePicture: profilePictureUrl })
-		
+
 			return {
 				success: true,
 				message: 'File uploaded and profile picture saved',
 				profilePictureUrl
 			}
-		
+
 		}
 	},
 
 
-Upload: GraphQLUpload
+	Upload: GraphQLUpload
 }
 
 module.exports = resolvers
