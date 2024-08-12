@@ -7,6 +7,7 @@ import Tutorial from './pages/Tutorial'
 import Results from './pages/Results'
 import Blog from './pages/Blog'
 import NotFound from './pages/NotFound'
+import CreateTutorial from './pages/CreateTutorial'
 
 
 
@@ -21,6 +22,7 @@ const App = () => {
                     <Route path='/tutorial' element={<Tutorial />} />
                     <Route path='/results' element={<Results />} />
                     <Route path='/blog' element={<Blog />} />
+                    <Route path='/createtutorial' element={<CreateTutorial />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             <Footer />
