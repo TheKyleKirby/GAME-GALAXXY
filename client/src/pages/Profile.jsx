@@ -52,6 +52,8 @@ const Profile = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-deepBlue-dark pt-8 pb-16">
       <div className="fixed top-0 left-0 w-full bg-darkPurple-dark">
     </div>
+
+    
       <div className="flex items-center justify-center w-full mt-4">
         {/* Profile Picture */}
         <ProfilePicture picture={user.profilePicture}/>

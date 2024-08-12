@@ -83,9 +83,23 @@ const Navbar = () => {
             <nav className="border-gray-200  bg-tealBlue-dark flex flex-col items-center md:flex-wrap">
                 <div className="flex flex-wrap items-center justify-center md:justify-between mx-2 p-4">
                     
-                    <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">GVM3 GVLVXXY</span>
-                    </Link>
+                <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <span 
+                        className="self-center text-3xl font-bold tracking-wide px-2"
+                        style={{
+                            color: '#E5E7EB',
+                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(255, 255, 255, 0.2)', 
+                            boxShadow: 'inset 2px 2px 5px rgba(0, 0, 0, 0.7), inset -2px -2px 5px rgba(255, 255, 255, 0.3)',
+                            background: 'rgba(37, 99, 235, 0.2)', 
+                            borderRadius: '0.375rem',
+                            padding: '0.5rem', 
+                        }}
+                    >
+                        GVM3 GVLVXXY
+                    </span>
+                </Link>
+
+
                     <SearchBar />
                     <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
                     <button

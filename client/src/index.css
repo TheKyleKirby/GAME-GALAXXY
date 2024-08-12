@@ -30,4 +30,7 @@ main {
 }
 
 
-
+.custom-heading {
+  line-height: 1.2;
+  padding: 8px 0;
+}
