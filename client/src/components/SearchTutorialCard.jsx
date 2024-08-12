@@ -16,7 +16,7 @@ const SearchTutorialCard = ({tutorials}) => {
           <div className="font-semibold text-white text-md mb-2">{tutorial.game}</div>
           <div className="font-light text-notWhite text-xs mb-2">{tutorial.console}</div>
           <div className="font-light text-brightPeach text-xs mb-2">{tutorial.rating}</div>
-          <p className="text-gray-700 text-base mb-4">{tutorial.content}</p>
+          <p className="text-white text-base mb-4">{tutorial.content}</p>
           <span className="text-white text-sm block mb-4">
             {/* make author username clickable to see their profile */}
             Author: {tutorial.author.username}
