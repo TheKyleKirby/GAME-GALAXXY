@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_TUTORIALS } from '../utils/queries';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CustomCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { loading, error, data } = useQuery(GET_TUTORIALS);
   const [trendingTutorials, setTrendingTutorials] = useState([]);
   const [isSingleSlide, setIsSingleSlide] = useState(window.innerWidth <= 1024);
+
+  const navigate = useNavigate()
+
+
 
   useEffect(() => {
     if (data) {
@@ -16,6 +21,7 @@ const CustomCarousel = () => {
       console.log('Loading...');
     }
   }, [data]);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,6 +34,10 @@ const CustomCarousel = () => {
 
   if (loading) return <p>Loading...</p>; 
   if (error) return <p>Error: {error.message}</p>;
+
+  const handleReadTutorial = (id) => {
+    navigate(`/tutorial/${id}`)
+  }
 
   // Handle previous button click
   const handlePrev = () => {
@@ -75,12 +85,12 @@ const CustomCarousel = () => {
             )}
               {/* <Link to="tutorial/{tutorial._id}" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Read Tutorial</Link>... when detailed tutorial page done.*/}
-              <Link
-                to="/tutorial"
+              <button
+                onClick={() => handleReadTutorial(tutorial._id)}
                 className="bg-[#814C75] hover:bg-gradient-to-r hover:from-pinkyPink hover:to-brightPeach text-white font-bold py-2 px-4 rounded transition-all duration-300"
               >
                 Read Tutorial
-              </Link>
+              </button>
             </div>
           </div>
         ))}
