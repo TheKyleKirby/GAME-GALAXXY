@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client';
 import BioCard from '../components/BioCard';
 import ProfileFavoriteGames from '../components/ProfileFavoriteGames';
-// import ProfileFriendsList from '../components/ProfileFriendsList';
+import ProfileFriendsList from '../components/ProfileFriendsList';
 import ProfilePicture from '../components/ProfilePicture'
 import ProfileSavedTutorials from '../components/ProfileSavedTutorials';
+import ProfileCreatedTutorials from '../components/ProfileCreatedTutorials';
 import { QUERY_USER, QUERY_ME, GAME_BY_ID } from '../utils/queries'
 import { Navigate, useParams } from 'react-router-dom'
 import Auth from '../utils/auth';
@@ -69,14 +70,14 @@ console.log(JSON.stringify(data))
         </div>
         {/* Bio Card */}
         <BioCard bio={user.bioText} />
+        {/* Created Tutorials */}
+        <ProfileCreatedTutorials />
       {/* Horizontal Cards */}
       <div className="flex flex-wrap justify-center gap-10 w-full px-4 mt-8">
         
         <ProfileFavoriteGames games={user.gameIds}/>  
-        
-        {/* <ProfileFriendsList friends={user.friends}/>  */}
-
         <ProfileSavedTutorials tutorialIds={user.savedTutorials} />
+        <ProfileFriendsList friends={user.friends} />
       
       </div>
 
