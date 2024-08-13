@@ -21,7 +21,6 @@ const Profile = () => {
   });
 
   // Debugging: Log the received data
-  console.log(JSON.stringify(data));
 
   // Show loading message while data is being fetched
   if (loading) {
@@ -46,7 +45,6 @@ const Profile = () => {
     );
   }
 
-  // todo game function to find by id-for favorite games
   // const SavedGames
   // const { data, loading, error } = useQuery(GAME_BY_ID, {variables: {user.savedGames.id}})
   // const games= data.games
@@ -72,7 +70,7 @@ const Profile = () => {
       
         <ProfileFavoriteGames games={user.savedGames} />
       
-        <ProfileSavedTutorials tutorialIds={user.savedTutorials} />
+        <ProfileSavedTutorials key={user.savedTutorials._id} tutorials={user.savedTutorials} />
       
         <ProfileFriendsList friends={user.friends} />
       </div>

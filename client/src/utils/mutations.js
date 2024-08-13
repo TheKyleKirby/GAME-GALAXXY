@@ -95,6 +95,19 @@ export const REMOVE_FRIEND = gql `
 }
 `
 
+export const REMOVE_SAVED_TUTORIAL = gql `
+  mutation RemoveSavedTutorial($savedTutorials: ID!) {
+  removeSavedTutorial(savedTutorials: $savedTutorials) {
+    username
+    savedTutorials {
+      title
+      _id
+    }
+    _id
+  }
+}
+`
+
 
 // todo, not working yet.
 export const UPLOAD_PROFILE_PICTURE = gql`

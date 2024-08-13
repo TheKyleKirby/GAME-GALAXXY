@@ -5,7 +5,6 @@ import { QUERY_ME } from '../utils/queries'
 
 
 const ProfileDeleteTutorial = ({id}) => {
-    console.log(id)
     const [deleteTutorial, {data, loading, error}] = useMutation(DELETE_TUTORIAL, {
         variables: {
             id
