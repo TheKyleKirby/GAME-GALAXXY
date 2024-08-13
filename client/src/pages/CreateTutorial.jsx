@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_TUTORIAL } from "../utils/mutations";
+import { useNavigate } from "react-router-dom"
 
 const CreateTutorial = () => {
   // State variables for the form inputs
@@ -23,12 +24,9 @@ const CreateTutorial = () => {
     tags,
   };
 
-  // Mutation to create a tutorial
-  // const [createTutorial] = useMutation(CREATE_TUTORIAL, {
-  //   variables: { tutorial: tutorialInput },
-  // });
-//--------------------------------------------------------------------------------------------
   const [createTutorial] = useMutation(CREATE_TUTORIAL);
+
+  const navigate = useNavigate();
 
   const handleTagsChange = (event) => {
     setTags(event.target.value.split(',').map(tag => tag.trim()));
@@ -47,13 +45,25 @@ const CreateTutorial = () => {
         })
         ;
       console.log('Tutorial created:', data);
+
+         // Clear form inputs
+         setTitle('');
+         setGame('');
+         setPlatform('');
+         setLevel('');
+         setYouTubeLink('');
+         setContent('');
+         setTags('');
+   
+         // Redirect to profile page
+         navigate('/profile');
+         
     } catch (error) {
       console.error('Error creating tutorial:', JSON.stringify(error, null, 2));
     }
 
-    // createTutorial(tutorialInput);
   };
-//-----------------------------------------------------------------------------------------------
+
   return (
     <main className="flex flex-col items-center bg-darkPurple-dark">
       {/* Heading Section */}
