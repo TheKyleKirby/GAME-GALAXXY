@@ -1,39 +1,34 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { TUTORIALS_BY_ID } from "../utils/queries";
+import { CLICKED_TUTORIAL, TUTORIALS_BY_ID } from "../utils/queries";
 import ReactStars from 'react-rating-stars-component'
 import { useState, useEffect } from "react";
 
 
 const Tutorial = () => {
-
-  const getRandomNumber = (min, max) => Math.floor(Math.random()*(min-max +1) ) + min
-  const randomNumber = getRandomNumber(0, 5)
-
   const { id } = useParams()
-
-  // todo - tutorials by id is the wrong one. clicked tutorial 
-  const { data, loading, error } = useQuery(TUTORIALS_BY_ID, {
-    variables: { id }
-  })
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
   const [tutorial, setTutorial] = useState(null)
 
-  setTutorial(data.tutorialById)//?
+  const { data, loading, error } = useQuery(CLICKED_TUTORIAL, {
+    variables: { id }
+  })
 
-  // useEffect(() => {
-  //   if (data) {
-  // console.log(JSON.stringify(data))
+useEffect(() =>{
+  if(data && data.clickedTutorial){
+    setTutorial(data.clickedTutorial)
+  }
+}, [data])
 
-  //     setTutorial(data.tutorialById);
-  //   } else {
-  //     console.log('Loading...');
-  //   }
-  // }, [data]);
+if (loading)  <p>Loading...</p>;
+if (error)  <p>Error: {error.message}</p>;
 
-  return (
+if(!tutorial) return <p>Hold on</p>
+
+const getRandomNumber = (min, max) => Math.floor(Math.random()*(max-min +1) ) + min
+const randomNumber = getRandomNumber(0, 5)
+
+return (
+  
     <div className="flex flex-col flex-grow bg-deepBlue text-notWhite min-h-screen">
       {/* Main content wrapper */}
       <div className="flex-grow p-4">
@@ -44,8 +39,19 @@ const Tutorial = () => {
           <div className="mt-4 text-brightPeach text-xl flex items-center justify-center">
             <span className="mr-2">Tutorial Rating</span>
             {/* https://www.npmjs.com/package/react-rating-stars-component value={randomNumber} edit=false isHalf=true*/}
-            <span className="text-2xl"><ReactStars value={randomNumber} color='#4A32CC' activeColor='#d8ab72' isHalf={true} emptyIcon={<i className="far fa-star"></i>} halfIcon={<i className="fa fa-star-half-alt"></i>} fullIcon={<i className="fa fa-star"></i>}/></span>
-            <span className="ml-2">{randomNumber}/5</span>
+            <span className="text-5xl">
+        <ReactStars
+          value={randomNumber}
+          size={32}
+          color='#4A32CC'
+          activeColor='#d8ab72'
+          isHalf={true}
+          emptyIcon={<i className="far fa-star"></i>}
+          halfIcon={<i className="fa fa-star-half-alt"></i>}
+          fullIcon={<i className="fa fa-star"></i>}
+        />
+      </span>            
+      <span className=" ml-2">{randomNumber}/5</span>
           </div>
         </div>
 
@@ -68,16 +74,16 @@ const Tutorial = () => {
             <p className="mt-4 text-notWhite">
               {tutorial.content}
             </p>
+            {tutorial.tags > 0 && (
             <div className="mt-8 flex items-center">
               <h3 className="text-xl font-bold text-brightPeach mr-4">Tags:</h3>
               <div className="flex flex-wrap">
-              {tutorial.tags.split(', ').map((tag, index) => (
-                <button className="bg-brightPeach text-deepBlue rounded-full px-3 py-1 mr-2 mb-2 text-sm" key={index}>{tag}</button>
-              ) )}
-                {/* <button className="bg-brightPeach text-deepBlue rounded-full px-3 py-1 mr-2 mb-2 text-sm">Tag 2</button> */}
-                {/* <button className="bg-brightPeach text-deepBlue r?ounded-full px-3 py-1 mr-2 mb-2 text-sm">Tag 3</button> */}
+                  {tutorial.tags.split('", "').map((tag, index) => (
+                    <button className="bg-brightPeach text-deepBlue rounded-full px-3 py-1 mr-2 mb-2 text-sm" key={index}>{tag}</button>
+                    ) )}
               </div>
             </div>
+            )}
           </div>
         </div>
 

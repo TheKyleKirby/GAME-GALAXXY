@@ -19,15 +19,18 @@ const resolvers = {
 				.populate('comments')
 		},
 
-		// !not working on back end yet.
-		clickedTutorial: async (_parent, { id }) => {
-			return await Tutorial.findById(id)
+		clickedTutorial: async (_parent, id) => {
+		console.log(`clicked ${JSON.stringify(id)}`)
+			const selectedTutorial = await Tutorial.findById(id._id)
 				.populate('author')
 				.populate('comments')
-		},
 
-		
+				console.log(selectedTutorial)
+				return selectedTutorial
+		}		
 	},
+
+
 
 	Mutation: {
 
@@ -71,7 +74,6 @@ const resolvers = {
 			}
 		},
 
-		// todo: add context for user._id auth when working on front end:
 		deleteCreatedTutorial: async (parent, _id) => {
 			console.log(_id)
 
@@ -89,7 +91,6 @@ const resolvers = {
 				console.log(`error deleting tutorial, ${error}`)
 			}
 		},
-
 
 		// todo add context auth when working
 		// if (!context.user) {

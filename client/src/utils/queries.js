@@ -181,3 +181,30 @@ export const TUTORIALS_BY_ID = gql`
     }
   }
 `;
+
+// Query for a clicked tutorial
+export const CLICKED_TUTORIAL = gql `
+  query clickedTutorial($id: ID) {
+  clickedTutorial(_id: $id) {
+    _id
+    author {
+      username
+      _id
+    }
+    comments {
+      commenter {
+        username
+      }
+      _id
+      content
+    }
+    content
+    tags
+    game
+    level
+    platform
+    title
+    youTubeLink
+  }
+}
+`
