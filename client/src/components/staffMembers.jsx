@@ -18,13 +18,20 @@ const staffMembers = [
       objectPosition: 'center top', // Adjusted position
   },
   {name: 'Karina Gonzalez', aka: '@Aimee_kgl', image: image4, level:'Level 1 developer', bio: '🧩 Puzzler, Big Bang Theory ⚛️'},
-  {name: 'Tristan Smith', aka: '@Whiskeyy_RL', image: image5, level:'Level 1 developer', bio: 'https://www.youtube.com/watch?v=C6-F19hJ1h0&t=53s'},
+  {
+    name: 'Tristan Smith',
+    aka: '@Whiskeyy_RL',
+    image: image5,
+    level:'Level 1 developer',
+    bio: 'Click it I dare you 😈',
+    bioLink: 'https://www.youtube.com/watch?v=C6-F19hJ1h0&t=53s'
+  },
   {
       name: 'Betzaida Taylor',
       aka: '@Nyxie96',
       image: image6,
       level: 'Level 1 developer',
-      bio: '🎧 Rave enthusiast | 🎲 D&D adventurer | 💻 Coding newbie Living life one beat at a time and exploring the digital world online. Catch me at the rail or rolling dice in a campaign ✨',
+      bio: '🎧 Rave enthusiast | 🎲 D&D adventurer | 💻 Coding newbie | Living life one beat at a time and exploring the digital world online. Catch me at the rail or rolling dice in a campaign ✨',
       objectPosition: 'center top', // Adjusted position
   },
 ];
@@ -61,7 +68,14 @@ const StaffMembers = () => {
             <h3 className="text-xl md:text-2xl font-bold text-goldenOrange text-center">{member.name}</h3>
             <p className="text-lg md:text-xl text-tealBlue-light text-center mb-2">{member.aka}</p>
             <p className="text-md md:text-lg text-lightLavender text-center mb-2">{member.level}</p>
-            <p className="text-sm md:text-notWhite text-center">{member.bio}</p>
+            <p className="text-sm md:text-notWhite text-center mb-2">
+              {member.bio ? (
+                <a href={member.bioLink} target='_blank' rel='noopener noreferrer'>
+                  {member.bio}
+                </a>
+              ):(
+                member.bio
+              )}</p>
           </div>
         ))}
       </div>
