@@ -51,6 +51,7 @@ const typeDefs = gql`
 		me: User
 		user(username: String!): User
 		userByUsername(username: String): User
+		getUserTutorials: [Tutorial]
 	}
 
 
