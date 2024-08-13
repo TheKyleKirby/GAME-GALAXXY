@@ -54,7 +54,7 @@ const StaffMembers = () => {
                   src={member.image}
                   alt={member.name}
                   className="rounded-full border-4 border-tealBlue-dark w-48 h-56 md:w-60 md:h-72 object-cover shadow-lg"
-                  style={{ objectPosition: member.objectPosition || 'center' }} // Default to center if not specified
+                  style={{ objectPosition: member.objectPosition || 'center' }} 
                 />
               </div>
             </div>
