@@ -2,7 +2,13 @@ const Blog = () => {
   return (
     <div className="p-4">
       <div className="bg-white shadow-md rounded p-4 mb-4 w-full">
-        <h2 className="text-2xl font-bold">Welcome to the Blog Space!</h2>
+        <h2 className="text-5xl font-bold mb-8 text-white relative inline-flex items-center">
+          <span className="mr-2 md:mr-4 animate-pulse">✨</span>
+          <span className="bg-gradient-to-r from-tealBlue via-brightPeach to-royalBlurp bg-clip-text text-transparent m-auto custom-heading">
+            Welcome to the Blog Space!
+          </span>
+          <span className="ml-2 md:ml-4 animate-pulse">✨</span>
+        </h2>
       </div>
       <div className="bg-white shadow-md rounded p-4 mb-4 w-full">
         <h2 className="text-xl font-bold">Search for existing discussions</h2>
