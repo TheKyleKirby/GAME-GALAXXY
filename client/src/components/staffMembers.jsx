@@ -32,7 +32,7 @@ const staffMembers = [
 
 const StaffMembers = () => {
   return (
-    <div className="w-[90%] mx-auto mt-8 bg-deepBlue border-2 border-royalBlue-dark shadow-lg rounded-lg p-6 md:p-8">
+    <div className="w-[90%] mx-auto mt-8 mb-12 bg-deepBlue border-2 border-royalBlue-dark shadow-lg rounded-lg p-6 md:p-8">
       <div className="flex justify-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-10 text-white relative inline-flex items-center">
           <span className="mr-2 md:mr-4 animate-pulse">✨</span>
