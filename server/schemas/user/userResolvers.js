@@ -9,6 +9,9 @@ const resolvers = {
 		// to test database
 		allUsers: async () => {
 			return User.find({})
+			.populate('friends')
+			.populate('savedTutorials')
+			.populate('createdTutorials')
 		},
 
 		// fetch the profile of the currently authenticated user - A user wants to view or edit their own profile information. (add populate profile or populate something else ?)
@@ -114,7 +117,8 @@ const resolvers = {
 				context.user._id,
 				{ $addToSet: { friends } },
 				{ new: true }
-			);
+			)
+			.populate('friends')
 		},
 
 		followCreator: async (parent, { creatorsFollowing }, context) => {
@@ -123,7 +127,8 @@ const resolvers = {
 				context.user._id,
 				{ $addToSet: { creatorsFollowing } },
 				{ new: true }
-			);
+			)
+		
 		},
 
 		removeFriend: async (parent, { friends }, context) => {
@@ -132,7 +137,8 @@ const resolvers = {
 				context.user._id,
 				{ $pull: { friends } },
 				{ new: true }
-			);
+			)
+			.populate('friends')
 		},
 
 		unfollowCreator: async (parent, { creatorsFollowing }, context) => {
@@ -150,7 +156,7 @@ const resolvers = {
 				context.user._id,
 				{ $addToSet: { savedGames } },
 				{ new: true }
-			);
+			)
 		},
 
 		saveTutorial: async (parent, { savedTutorials }, context) => {
@@ -178,7 +184,8 @@ const resolvers = {
 				context.user._id,
 				{ $pull: { savedTutorials } },
 				{ new: true }
-			);
+			)
+			.populate('savedTutorials')
 		},
 
 		uploadProfilePicture: async (_, { file }, { user }) => {

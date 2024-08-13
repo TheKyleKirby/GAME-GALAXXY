@@ -73,7 +73,14 @@ export const SAVE_TUTORIAL = gql `
   }
 }
 `
-
+export const ADD_FRIEND = gql `
+  mutation addFriend($friends: ID!) {
+  addFriend(friends: $friends) {
+    _id
+    username
+  }
+}
+`
 
 
 // todo, not working yet.
