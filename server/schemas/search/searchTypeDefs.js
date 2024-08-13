@@ -32,5 +32,4 @@ const searchTypeDefs = gql`
 	}
 `
 
-
 module.exports = searchTypeDefs
