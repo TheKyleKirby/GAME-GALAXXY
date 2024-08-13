@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 
-
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -28,7 +27,6 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 
 .custom-heading {
   line-height: 1.2;
