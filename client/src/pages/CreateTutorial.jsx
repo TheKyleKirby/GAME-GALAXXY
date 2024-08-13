@@ -24,20 +24,36 @@ const CreateTutorial = () => {
   };
 
   // Mutation to create a tutorial
-  const [createTutorial] = useMutation(CREATE_TUTORIAL, {
-    variables: { tutorial: tutorialInput },
-  });
+  // const [createTutorial] = useMutation(CREATE_TUTORIAL, {
+  //   variables: { tutorial: tutorialInput },
+  // });
+//--------------------------------------------------------------------------------------------
+  const [createTutorial] = useMutation(CREATE_TUTORIAL);
+
+  const handleTagsChange = (event) => {
+    setTags(event.target.value.split(',').map(tag => tag.trim()));
+  };
 
   // Form submission handler
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     if (title === '' || content === '') {
       return alert('Title and Content are required.');
     }
+    try {
+      const { data } = await createTutorial(
+        { variables: 
+          { tutorial: tutorialInput } 
+        })
+        ;
+      console.log('Tutorial created:', data);
+    } catch (error) {
+      console.error('Error creating tutorial:', JSON.stringify(error, null, 2));
+    }
 
-    createTutorial(tutorialInput);
+    // createTutorial(tutorialInput);
   };
-
+//-----------------------------------------------------------------------------------------------
   return (
     <main className="flex flex-col items-center bg-darkPurple-dark">
       {/* Heading Section */}
@@ -60,6 +76,7 @@ const CreateTutorial = () => {
               name="title"
               className="rounded-lg p-3 w-full sm:w-[48%] focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
               placeholder="Title"
+              value={title}
               onChange={(event) => setTitle(event.target.value)}
             />
             <input
@@ -67,12 +84,14 @@ const CreateTutorial = () => {
               name="game"
               className="rounded-lg p-3 w-full sm:w-[48%] focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
               placeholder="Game"
+              value={game}
               onChange={(event) => setGame(event.target.value)}
             />
              <select
               id="platform"
               name="platform"
-              className="rounded-lg mt-4 p-3 w-80 focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
+              className="rounded-lg p-3 w-full sm:w-[48%] focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
+              value={platform}
               onChange={(event) => setPlatform(event.target.value)}
             >
               <option value="" disabled hidden>
@@ -104,6 +123,7 @@ const CreateTutorial = () => {
               name="level"
               className="rounded-lg p-3 w-full sm:w-[48%] focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
               placeholder="Level"
+              value={level}
               onChange={(event) => setLevel(event.target.value)}
             />
             <input
@@ -111,6 +131,7 @@ const CreateTutorial = () => {
               name="youtubelink"
               className="rounded-lg p-3 w-full focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
               placeholder="YouTube Link?"
+              value={youTubeLink}
               onChange={(event) => setYouTubeLink(event.target.value)}
             />
           </div>
@@ -119,6 +140,7 @@ const CreateTutorial = () => {
             <textarea
               name="content"
               className="rounded-lg p-3 w-full h-48 focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
+              value={content}
               onChange={(event) => setContent(event.target.value)}
             ></textarea>
             <input
@@ -126,7 +148,8 @@ const CreateTutorial = () => {
               name="tags"
               className="rounded-lg p-2 w-full focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
               placeholder="Tags"
-              onChange={(event) => setTags(event.target.value)}
+              value={tags}
+              onChange={(handleTagsChange)}
             />
             <button
               type="submit"

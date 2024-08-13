@@ -20,15 +20,33 @@ const resolvers = {
 	},
 
 	Mutation: {
-		createTutorial: async(parent, {tutorial}) => {
-			try{
-				return (await Tutorial.create(tutorial))
-				.populate('author')
-				
-			} catch(error){
-				console.log(`error creating tutorial, ${error}`)
+	
+		createTutorial: async (parent, { tutorial }, context) => {
+			console.log('Context:', context)
+			console.log(tutorial)
+			if (context.user) {
+			  try {
+				const newTutorial = await Tutorial.create({
+					title: tutorial.title,
+					author: context.user._id,
+					game: tutorial.game,
+					platform: tutorial.platform,
+					level: tutorial.level,
+					youTubeLink: tutorial.youTubeLink,
+					content: tutorial.content,
+					tags: tutorial.tags
+				});
+				return await newTutorial
+
+			  } catch (error) {
+				console.log(`Error creating tutorial: ${error}`);
+				throw new Error('Failed to create tutorial');
+			  }
+			} else {
+			  throw new Error('Authorization required');
 			}
-		},
+		  },
+		  
 		
 		updateTutorial: async(parent, {_id, tutorial}) => {
 			console.log(tutorial)
@@ -40,7 +58,6 @@ const resolvers = {
 				console.log(`error updating tutorial, ${error}`)
 			}
 		},
-
 
 		// todo: add context for user._id auth when working on front end:
 			// if(!context.user._id) {
