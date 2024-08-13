@@ -23,7 +23,7 @@ const Results = () => {
   console.log("Search String:", searchString);
   console.log("Loading:", loading);
   console.log("Error:", error);
-  console.log("Data:", data);
+  console.log("Data:", data);  
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

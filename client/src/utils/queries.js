@@ -29,23 +29,33 @@ export const FILES_QUERY = gql`
 
 // Query to get user information
 export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      username
-      email
-      bioText
-      friends {
-        username
-      }
-      savedGames
-      savedTutorials {
-        _id
-        title
-      }
+query me {
+  me {
+    _id
+    username
+    email
+    bioText
+    topGames
+    friends {
       profilePicture
+      username
+      _id
     }
+    savedTutorials {
+      title
+      _id
+    }
+    createdTutorials {
+      _id
+      author {
+        _id
+      }
+      content
+      title
+    }
+    profilePicture
   }
+}
 `;
 
 // Query to get user by username
@@ -172,3 +182,30 @@ export const TUTORIALS_BY_ID = gql`
     }
   }
 `;
+
+// Query for a clicked tutorial
+export const CLICKED_TUTORIAL = gql `
+  query clickedTutorial($id: ID) {
+  clickedTutorial(_id: $id) {
+    _id
+    author {
+      username
+      _id
+    }
+    comments {
+      commenter {
+        username
+      }
+      _id
+      content
+    }
+    content
+    tags
+    game
+    level
+    platform
+    title
+    youTubeLink
+  }
+}
+`

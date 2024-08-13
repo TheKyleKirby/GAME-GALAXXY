@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client"
 import { GAME_BY_ID } from "../utils/queries"
+  // todo game function to find by id-for favorite games
 
 const ProfileFavoriteGames = ({gameIds}) => {
 
