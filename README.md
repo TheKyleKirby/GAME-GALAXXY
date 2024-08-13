@@ -3,16 +3,17 @@
 ___
 
 ## Description
-🌟Welcome to GVM# GVLVXXY: Your Portal to Mastering Games🌟
+🌟Welcome to GVME GVLVXXY: Your Portal to Mastering Games🌟
 Game Galaxxy is a web-based platform designed to host and showcase game tutorials. Whether you're stuck on a level or looking for the best strategies, Game Galaxxy connects gamers with the content they need to succeed. From easy tips to galactically impossible challenges, explore, save, and share tutorials that make you a better gamer.
 
 ___
 
 ## Table of Contents
 - [Screenshots](#screenshots)
-- [Installation](#installation)
 - [Usage](#usage)
+- [Deployment](#deployment)
 - [License](#license)
+- [Tech Used](#tech-used)
 - [Credits](#credits)
 
 ___
@@ -20,31 +21,51 @@ ___
 ## Screenshots
 Here’s a preview of what you can expect from Game Galaxxy:
 
+![alt text](assets/images/screenshot.png)
 
-___
-
-## Installation
-
-blahblabhalbhablhablh do we need an installation section for this one? 
+![alt text](assets/images/screenshot.png)
 ___
 
 ## Usage
 
-blahblahblbhalbhblabhlahblahb
+Click and navigate your way through the galaxy of gaming! Click the "Login" button and sign up to make your own profile. Create your own gaming guides to share with friends and search for others you are interested in! Connect with other creators through our blog and get gaming!
+___
+
+## Deployment
+
+Here is a link to the deployed application using Render.
+()
 ___
 
 ## License
-This project is licensed under the MIT license.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ___
 
+## Tech Used
+
+- React
+- Tailwind
+- Axios
+- Apollo
+- GraphQL
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose ODM
+- IGDB API
+- Render
+___
+
 ## Credits
-### & Tech Used
-- Developers:   [ Names & links to githubs ]
-- (link)[link]
-- (link)[link]
-- (link)[link]
-- (link)[link]
-- (link)[link]
+
+Developers:
+- [Tish Sirface](https://github.com/ThisTish)
+- [Karina Gonzalez](https://github.com/2023kgl)
+- [Taylor Betzaida](https://github.com/Betzaida96)
+- [Beth McKinney](https://github.com/macbetthh)
+- [Tristan Smith](https://github.com/TristanSmith63)
+- [Kyle Kirby](https://github.com/TheKyleKirby)
 
 ___
