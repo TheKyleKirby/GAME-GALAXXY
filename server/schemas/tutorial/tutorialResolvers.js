@@ -16,7 +16,14 @@ const resolvers = {
 			return await Tutorial.find({_id: {$in: id}})
 			.populate('author')
 			.populate('comments')
-		}
+		},
+
+		// !not working on back end yet.
+		clickedTutorial: async (_parent, {id}) => {
+			return await Tutorial.findById(id)
+			.populate('author')
+			.populate('comments')
+		},
 	},
 
 	Mutation: {

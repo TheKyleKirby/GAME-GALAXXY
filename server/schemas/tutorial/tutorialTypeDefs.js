@@ -65,6 +65,7 @@ const typeDefs = gql `
 
 	type Query {
 		allTutorials: [Tutorial]
+		clickedTutorial(_id: ID): Tutorial
 		tutorialById(_id: [ID]): [Tutorial]
 
 	#tutorials written by us. will provide an array of our _ids
