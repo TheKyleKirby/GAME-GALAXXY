@@ -1,7 +1,13 @@
 import React from "react";
 import ProfileDeleteTutorial from "./ProfileDeleteTutorial";
+import { useNavigate } from "react-router-dom";
 
 const ProfileCreatedTutorials = ({ tutorials }) => {
+    const navigate = useNavigate()
+
+    const handleReadTutorial = (id) => {
+        navigate(`/tutorial/${id}`)
+    }
 
     
     return (
@@ -12,7 +18,10 @@ const ProfileCreatedTutorials = ({ tutorials }) => {
                     {tutorials.map((tutorial) => (
                         <div key={tutorial._id} className=" space-x-3">
                         <li key={tutorial._id} className="p-3 bg-lightLavender-light rounded-lg">
+                            <button 
+                            onClick={() => handleReadTutorial(tutorial._id)}>
                             <h3 className="text-xl font-semibold text-deepBlue-dark tracking-tight">{tutorial.title}</h3>
+                            </button>
                             <p className="text-deepBlue-dark tracking-wide line-clamp-3">{tutorial.content}</p>
                             <ProfileDeleteTutorial id={tutorial._id} />
                         </li>

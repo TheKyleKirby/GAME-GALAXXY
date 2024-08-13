@@ -87,8 +87,6 @@ const CustomCarousel = () => {
                 Author: {tutorial.author.username}
               </span>
             )}
-              {/* <Link to="tutorial/{tutorial._id}" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Read Tutorial</Link>... when detailed tutorial page done.*/}
                 <button
             onClick={() => handleReadTutorial(tutorial._id)}
             className="bg-[#814C75] hover:bg-gradient-to-r hover:from-pinkyPink hover:to-brightPeach text-white font-bold py-2 px-4 rounded transition-all duration-300"

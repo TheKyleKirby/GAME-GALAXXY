@@ -61,6 +61,18 @@ export const DELETE_TUTORIAL = gql `
   }
 }
 `
+// saving tutorial
+export const SAVE_TUTORIAL = gql `
+  mutation saveTutorial($savedTutorials: ID!) {
+  saveTutorial(savedTutorials: $savedTutorials) {
+    username
+    savedTutorials {
+      title
+      _id
+    }
+  }
+}
+`
 
 
 

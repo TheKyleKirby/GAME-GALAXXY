@@ -1,17 +1,25 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { CLICKED_TUTORIAL, TUTORIALS_BY_ID } from "../utils/queries";
+import { useParams, useNavigate } from "react-router-dom";
+import { useMutation, useQuery } from "@apollo/client";
+import { CLICKED_TUTORIAL, QUERY_ME, TUTORIALS_BY_ID } from "../utils/queries";
 import ReactStars from 'react-rating-stars-component'
 import { useState, useEffect } from "react";
+import { SAVE_TUTORIAL } from "../utils/mutations";
+
 
 
 const Tutorial = () => {
   const { id } = useParams()
   const [tutorial, setTutorial] = useState(null)
+  const [ saveTutorial ] = useMutation(SAVE_TUTORIAL,{
+    refetchQueries: [{query: QUERY_ME}]
+  })
+
+  const navigate = useNavigate()
 
   const { data, loading, error } = useQuery(CLICKED_TUTORIAL, {
-    variables: { id }
-  })
+    variables: { id },
+  }
+)
 
 useEffect(() =>{
   if(data && data.clickedTutorial){
@@ -26,6 +34,24 @@ if(!tutorial) return <p>Hold on</p>
 
 const getRandomNumber = (min, max) => Math.floor(Math.random()*(max-min +1) ) + min
 const randomNumber = getRandomNumber(0, 5)
+
+const handleSaveTutorial = async (id) => {
+
+  try {
+    await saveTutorial({
+      variables: {
+        savedTutorials: id 
+      }
+    })
+
+    alert("Tutorial saved!")
+    navigate('/profile')
+  } catch (error) {
+    console.log(error)
+    alert("Failed to save tutorial.")
+  }
+}
+
 
 return (
   
@@ -105,7 +131,14 @@ return (
           </div>
         </div>
         )}
+      <button
+            onClick={() => handleSaveTutorial(tutorial._id)}
+            className="bg-lightLavender text-deepBlue-light hover:bg-gradient-to-r hover:from-pinkyPink hover:to-brightPeach  font-bold py-2 px-4 rounded transition-all duration-300"
+          >
+            Save Tutorial
+          </button>
       </div>
+
 
       {/* Comments Section */}
       <div className="flex justify-center p-4">

@@ -159,7 +159,8 @@ const resolvers = {
 				context.user._id,
 				{ $addToSet: { savedTutorials } },
 				{ new: true }
-			);
+			)
+			.populate('savedTutorials')
 		},
 
 		removeSavedGame: async (parent, { savedGames }, context) => {
