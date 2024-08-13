@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProfileDelete = () => {
+const ProfileDeleteTutorial = () => {
     const handleDelete = () => {
         console.log('Delete button clicked');
     }
@@ -8,11 +8,11 @@ const ProfileDelete = () => {
     return (
         <button
         onClick={handleDelete}
-        className="absolute top-28 left-4 bg-pinkyPink text-white p-2 rounded"
+        className="bg-red-500 text-white p-2 rounded absolute top-4 right-4"
         >
-            Delete Friend
+            Delete Tutorial
         </button>
     );
 }
 
-export default ProfileDelete;
+export default ProfileDeleteTutorial;
