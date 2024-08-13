@@ -49,13 +49,10 @@ export const UPLOAD_PROFILE_PICTURE = gql`
   `
 // !tutorialInput not found
 
-  export const CREATE_TUTORIAL = gql `
-    mutation createTutorial($tutorial: TutorialInput!) {
-      createTutorial(tutorial: $tutorial) {
+export const CREATE_TUTORIAL = gql `
+  mutation createTutorial($tutorial: TutorialInput!) {
+    createTutorial(tutorial: $tutorial) {
     title
-    # author {
-    #   username
-    # }
     game
     platform
     level
@@ -65,4 +62,8 @@ export const UPLOAD_PROFILE_PICTURE = gql`
   }
 }
 
-  `
+`
+
+// # author {
+//   #   username
+//   # }

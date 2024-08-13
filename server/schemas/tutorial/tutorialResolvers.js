@@ -1,4 +1,5 @@
 const Tutorial = require('../../models/Tutorial')
+const { User } = require('../../models');
 const { AuthenticationError } = require('../../utils/auth')
 
 const resolvers = {
@@ -20,15 +21,44 @@ const resolvers = {
 	},
 
 	Mutation: {
-		createTutorial: async(parent, {tutorial}) => {
-			try{
-				return (await Tutorial.create(tutorial))
-				.populate('author')
-				
-			} catch(error){
-				console.log(`error creating tutorial, ${error}`)
+	
+
+		createTutorial: async (parent, { tutorial }, context) => {
+			if (context.user) {
+				try {
+					const newTutorial = await Tutorial.create({
+						title: tutorial.title,
+						author: context.user._id,
+						game: tutorial.game,
+						platform: tutorial.platform,
+						level: tutorial.level,
+						youTubeLink: tutorial.youTubeLink,
+						content: tutorial.content,
+						tags: tutorial.tags
+					});
+		
+					const updatedUser = await User.findByIdAndUpdate(
+						context.user._id,
+						{ $push: { createdTutorials: newTutorial._id } },  // Ensure this line correctly updates the user
+						{ new: true }
+					);
+		
+					console.log('Updated User:', updatedUser); // <-- Add this line to verify the update
+		
+					return newTutorial;
+				} catch (error) {
+					console.log(`Error creating tutorial: ${error}`);
+					throw new Error('Failed to create tutorial');
+				}
+			} else {
+				throw new Error('Authorization required');
 			}
 		},
+		
+		
+		  
+		
+		  
 		
 		updateTutorial: async(parent, {_id, tutorial}) => {
 			console.log(tutorial)
@@ -40,7 +70,6 @@ const resolvers = {
 				console.log(`error updating tutorial, ${error}`)
 			}
 		},
-
 
 		// todo: add context for user._id auth when working on front end:
 			// if(!context.user._id) {

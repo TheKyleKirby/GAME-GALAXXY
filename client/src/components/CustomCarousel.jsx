@@ -25,7 +25,7 @@ const CustomCarousel = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSingleSlide(window.innerWidth <= 1024);
+      setIsSingleSlide(window.innerWidth <= 1440);
     };
 
     window.addEventListener('resize', handleResize);
@@ -61,68 +61,68 @@ const CustomCarousel = () => {
   
 
   return (
-    <div className="relative w-[90%] mx-auto mt-8 mb-8">
-      <div className="relative flex items-center justify-center">
-        {getCurrentSlides().map((tutorial, index) => (
-          <div
-            key={index}
-            className={`w-full ${isSingleSlide ? 'w-[90%]' : 'w-[45%]'} h-[400px] transition-transform transform hover:scale-105 duration-300 ease-in-out hover:shadow-xl hover:shadow-brightPeach ${index === 0 ? 'opacity-100' : 'opacity-100'}`}
-          >
-            <div className="bg-darkPurple-dark shadow-lg rounded-lg p-6 mx-4 h-full flex flex-col justify-between border-4 border-gradient-to-r from-pinkyPink-dark to-brightPeach">
-              <div>
-                <div className="font-bold text-goldenOrange text-2xl mb-2">{tutorial.title}</div>
+    <div className="relative w-[95%] mx-auto mt-8 mb-8">
+  <div className="relative flex flex-col sm:flex-row items-center justify-center">
+    {getCurrentSlides().map((tutorial, index) => (
+      <div
+        key={index}
+        className={`w-full ${isSingleSlide ? 'w-[90%] mb-6' : 'w-[45%] mb-0'} sm:mb-0 h-[400px] transition-transform transform hover:scale-105 duration-300 ease-in-out hover:shadow-xl hover:shadow-brightPeach`}
+      >
+        <div className="bg-darkPurple-dark shadow-lg rounded-lg p-6 sm:mx-4 h-full flex flex-col justify-between border-4 border-gradient-to-r from-pinkyPink-dark to-brightPeach">
+          <div>
+          <div className="font-bold text-goldenOrange text-2xl mb-2 truncate">{tutorial.title}</div>
               {/* dummy styling to display game. will show title. not id. */}
-              <div className="font-semibold text-white text-xl mb-2">{tutorial.game}</div>
-                <div className="font-light text-notWhite text-lg mb-2">{tutorial.console}</div>
-                <div className="font-light text-brightPeach text-lg mb-2">{tutorial.rating}</div>
-                <p className="text-gray-500 text-lg mb-4">{tutorial.content}</p>
-              </div>
-                {tutorial.author?.username && (
-              <span className="text-white text-lg block mb-4">
+              <div className="font-semibold text-white text-xl mb-2 truncate">{tutorial.game}</div>
+
+              <div className="font-light text-notWhite text-lg mb-2 truncate">{tutorial.console}</div>
+
+            <div className="font-light text-brightPeach text-lg mb-2">{tutorial.rating}</div>
+
+            <p className="text-gray-500 text-base lg:text-lg mb-4 line-clamp-3">{tutorial.content}</p>
+
+          </div>
+          {tutorial.author?.username && (
+            <span className="text-white text-base lg:text-lg block mb-4 truncate">
                 {/* make author username clickable to see their profile */}
                 Author: {tutorial.author.username}
               </span>
             )}
               {/* <Link to="tutorial/{tutorial._id}" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Read Tutorial</Link>... when detailed tutorial page done.*/}
-              <button
-                onClick={() => handleReadTutorial(tutorial._id)}
-                className="bg-[#814C75] hover:bg-gradient-to-r hover:from-pinkyPink hover:to-brightPeach text-white font-bold py-2 px-4 rounded transition-all duration-300"
-              >
-                Read Tutorial
-              </button>
-            </div>
-          </div>
-        ))}
+                <button
+            onClick={() => handleReadTutorial(tutorial._id)}
+            className="bg-[#814C75] hover:bg-gradient-to-r hover:from-pinkyPink hover:to-brightPeach text-white font-bold py-2 px-4 rounded transition-all duration-300"
+          >
+            Read Tutorial
+          </button>
+        </div>
       </div>
-      <button
-  onClick={handlePrev}
-  className="absolute left-[-30px] top-1/2 transform -translate-y-1/2 text-lightLavender text-3xl hover:text-white transition-colors duration-300 rotate-180"
->
-&#x27A4;
-</button>
+    ))}
+  </div>
 
-<button
-  onClick={handleNext}
-  className="absolute right-[-30px] top-1/2 transform -translate-y-1/2 text-lightLavender text-3xl hover:text-white transition-colors duration-300"
->
-&#x27A4;
-</button>
+  <button
+    onClick={handlePrev}
+    className="absolute left-[-30px] top-1/2 transform -translate-y-1/2 text-lightLavender text-3xl hover:text-white transition-colors duration-300 rotate-180"
+  >
+    &#x27A4;
+  </button>
 
+  <button
+    onClick={handleNext}
+    className="absolute right-[-30px] top-1/2 transform -translate-y-1/2 text-lightLavender text-3xl hover:text-white transition-colors duration-300"
+  >
+    &#x27A4;
+  </button>
 
-
-<div className="absolute bottom-[-40px] w-full flex justify-center space-x-2">
-  {Array.from({ length: Math.ceil(trendingTutorials.length / 2) }).map((_, index) => (
-    <span
-      key={index}
-      className={`inline-block w-4 h-1 ${currentIndex === index ? 'bg-white' : 'bg-gray-500'} rounded-full`}
-    />
-  ))}
+  <div className="absolute bottom-[-40px] w-full flex justify-center space-x-2">
+    {Array.from({ length: Math.ceil(trendingTutorials.length / 2) }).map((_, index) => (
+      <span
+        key={index}
+        className={`inline-block w-4 h-1 ${currentIndex === index ? 'bg-white' : 'bg-gray-500'} rounded-full`}
+      />
+    ))}
+  </div>
 </div>
-
-
-
-    </div>
   );
 };
 

@@ -63,12 +63,44 @@ export const QUERY_USER = gql`
       savedTutorials
       createdTutorials
       isCreator
+      friends {
+        username
+      }
+      savedGames
+      savedTutorials {
+        _id
+        title
+      }
+      createdTutorials {  
+        _id
+        title
+        content
+        # Add any other fields you need
+      }
       profilePicture
     }
   }
 `;
-
 // Query to get whole game information by ID
+
+
+export const QUERY_USER  = gql `
+    query user($username: String!) {
+    user(username: $username)
+        _id
+		username
+		email
+		bioText
+		topGames
+		friends
+		savedGames
+		creatorsFollowing
+		savedTutorials
+		createdTutorials
+		isCreator
+		profilePicture
+    }
+`
 export const WHOLE_GAME_INFO = gql`
   query WholeGameInfo($id: ID!) {
     wholeGameInfo(id: $id) {
