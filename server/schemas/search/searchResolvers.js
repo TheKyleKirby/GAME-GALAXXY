@@ -1,42 +1,80 @@
-const { User, Tutorial } = require('../../models');
+
 const axios = require('axios');
-const gameResolvers = require('../game/gameResolvers')
+const { User, Tutorial } = require('../../models');
+const gameResolvers = require('../game/gameResolvers');
 
 const searchResolvers = {
-	Query: {
-		mainSearch: async (parent, {searchString}) =>{
-			const query = searchString	
-		
-		console.log(`mainsearch resolver query ${query}`.cyan)
-			let users = []
-			let tutorials = []
-			let games = []
-			users = await User.find({ username: new RegExp(query, 'i')})
+  Query: {
+    mainSearch: async (parent, { searchString }) => {
+      const query = searchString;
+      
+      console.log(`mainsearch resolver query ${query}`.cyan);
+      let users = [];
+      let tutorials = [];
+      let games = [];
 
-		console.log(`users mainsearch resolvers ${JSON.stringify(users)}`.blue)
+      try {
+        // Search for users
+        users = await User.find({ username: new RegExp(query, 'i') });
+        console.log(`users mainsearch resolvers ${JSON.stringify(users)}`.blue);
 
-			tutorials = await Tutorial.find({ title: new RegExp(query, 'i')})
+        // Search for tutorials
+        tutorials = await Tutorial.find({ title: new RegExp(query, 'i') });
+        console.log(`tutorials mainsearch resolvers ${JSON.stringify(tutorials)}`.green);
 
-		console.log(`tutorials mainsearch resolvers ${JSON.stringify(tutorials)}`.green)
-			
-			try {
-				games = await gameResolvers.Query.wholeGameInfo(null, {searchString: query})
-			} catch (error) {
-				console.log(`error in main search${error}`.red)
-			}
+        // Fetch game ID using search string
+        const gameId = await fetchGameIdBySearchString(query);
 
-		console.log(`games mainsearch resolvers ${JSON.stringify(games)}`.yellow)
+        if (gameId) {
+          // Fetch detailed game info using the game ID
+          const gameInfo = await gameResolvers.Query.wholeGameInfo(null, { id: gameId });
+          games.push(gameInfo);
+        } else {
+          console.log('No game found for the search string');
+        }
 
+      } catch (error) {
+        console.log(`error in main search ${error}`.red);
+      }
 
-			return {
-				users,
-				tutorials,
-				games
-			}
-		}
-	}
+      console.log(`games mainsearch resolvers ${JSON.stringify(games)}`.yellow);
+
+      return {
+        users,
+        tutorials,
+        games,
+      };
+    },
+  },
+};
+
+// Function to fetch game ID using the search string
+async function fetchGameIdBySearchString(searchString) {
+  try {
+    const response = await axios.post(
+      'https://api.igdb.com/v4/games',
+      `fields id; search "${searchString}"; limit 1;`,
+      {
+        headers: {
+          'Client-ID': process.env.IGDB_CLIENT_ID,
+          Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`,
+        },
+      }
+    );
+
+    if (response.data && response.data.length > 0) {
+      return response.data[0].id;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching game ID:', error);
+    return null;
+  }
 }
-	module.exports = searchResolvers;
+
+module.exports = searchResolvers;
+
 	
 	// 	mainSearch: async (_, { search }) => {
 	// 		const { query } = search;

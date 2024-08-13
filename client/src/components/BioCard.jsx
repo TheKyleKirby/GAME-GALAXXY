@@ -46,9 +46,9 @@ console.log(bioText)
 
 					<div>
 					<button 
-					className="bg-[#814C75] hover:bg-tealBlue text-white font-bold py-2 px-rounded"
+					className="bg-[#814C75] hover:bg-tealBlue text-white font-bold p-1 px-3 rounded"
 					onClick={handleEditOpen}
-					> EDIT BIO</button>
+					> Edit Bio</button>
 					</div>
 
 				</div>

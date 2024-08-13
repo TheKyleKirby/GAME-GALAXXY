@@ -1,91 +1,87 @@
-import SearchTutorialCard from "../components/SearchTutorialCard";
-import UserCardResults from "../components/UserCardResults";
-import GamesCardResults from "../components/GamesCardResults";
-import { GET_TUTORIALS, WHOLE_GAME_INFO } from "../utils/queries";
+import React from "react";
 import { useQuery } from "@apollo/client";
-import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { MAIN_SEARCH } from "../utils/queries";
-
+import GamesCardResults from "../components/GamesCardResults";
+import UserCardResults from "../components/UserCardResults";
+import SearchTutorialCard from "../components/SearchTutorialCard"; 
 
 const Results = () => {
-  const useQueryParams = () =>{
-    return new URLSearchParams(useLocation().search)
-  }
+  const useQueryParams = () => {
+    return new URLSearchParams(useLocation().search);
+  };
 
-  const queryParams = useQueryParams()
-  const searchString = queryParams.get('query')
-console.log(searchString)
-console.log(typeof searchString)
+  const queryParams = useQueryParams();
+  const searchString = queryParams.get("query") || ""; // Fallback to empty string if searchString is null
+  console.log(searchString);
 
-
-
-    const { data, loading, error } =  useQuery(MAIN_SEARCH, {
-      variables: { searchString }
-    })
+  const { data, loading, error } = useQuery(MAIN_SEARCH, {
+    variables: { searchString },
+    skip: !searchString, // Skip query if searchString is empty
+  });
 
   console.log("Search String:", searchString);
   console.log("Loading:", loading);
   console.log("Error:", error);
   console.log("Data:", data);  
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
-  console.log(JSON.stringify(data))
-  if(loading) {return (<p>Loading...</p>)}
-  if(error) {return (<p>Error {error.message}</p>)}
-
-  // const { users, tutorials, games } = data.mainSearch || {}
+  const { users, tutorials, games } = data?.mainSearch || {};
 
   return (
-    <p>hi</p>
-  //   <div className="flex flex-col justify-center min-h-screen bg-deepBlue-dark pt-8 pb-16">
-  //     <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4 mb-4 w-full">
-  //       <h2 className="text-2xl font-bold">Results Page for "{searchString}</h2>
-  //     </div>
-  //     <div className="grid grid-cols-1 gap-4">
+    <div className="flex flex-col justify-center min-h-screen bg-deepBlue-dark pt-8 pb-16">
+      <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4 mb-4 w-full">
+        <h2 className="text-2xl font-bold">Results Page for "{searchString}"</h2>
+      </div>
+      <div className="grid grid-cols-1 gap-4">
         
-  //       {/* Tutorials Section */}
-  //       {tutorials.length > 0 && (
-  //         <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
-  //           <h2 className="text-xl font-bold">Tutorials</h2>
-  //           <div className="space-y-4">
-  //             {tutorials.map((tutorial) => (
-  //               <SearchTutorialCard key={tutorial._id} tutorial={tutorial} />
-  //             ))}
-  //           </div>
-  //         </div>
-  //       )}
+        {/* Tutorials Section */}
+        {tutorials?.length > 0 && (
+          <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
+            <h2 className="text-xl font-bold">Tutorials</h2>
+            <div className="space-y-4">
+              {tutorials.map((tutorial) => (
+                <SearchTutorialCard key={tutorial._id} tutorial={tutorial} />
+              ))}
+            </div>
+          </div>
+        )}
 
-  //           {/* Users Section */}
-  //           {users.length > 0 && (
-  //           <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
-  //             <h2 className="text-xl font-bold">Users</h2>
-  //             <div className="space-y-4">
-  //               {users.map((user) => (
-  //                 <UserCardResults key={user._id} user={user} />
-  //               ))}
-  //             </div>
-  //           </div>
-  //       )}
+        {/* Users Section */}
+        {users?.length > 0 && (
+          <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
+            <h2 className="text-xl font-bold">Users</h2>
+            <div className="space-y-4">
+              {users.map((user) => (
+                <UserCardResults key={user._id} user={user} />
+              ))}
+            </div>
+          </div>
+        )}
 
-  //           {/* Games Section */}
-  //           {games.length > 0 && (
-  //             <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
-  //               <h2 className="text-xl font-bold">Games</h2>
-  //               <div className="space-y-4">
-  //                 {games.map((game) => (
-  //                   <GamesCardResults key={game.id} game={game} />
-  //                 ))}
-  //               </div>
-  //             </div>
-  //           )}
-  //         </div>
-  //   </div>
-  // );
-)
+        {/* Games Section */}
+        {games?.length > 0 && (
+          <div className="bg-mutedPastelBlue-dark shadow-md rounded p-4">
+            <h2 className="text-xl font-bold">Games</h2>
+            <div className="space-y-4">
+              {games.map((game) => (
+                <GamesCardResults key={game.id} game={game} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Results;
+
+
+
+
 
 {/* 
 // const [users, setUsers] = useState([
