@@ -1,31 +1,33 @@
-import { gql } from "@apollo/client"
+import { gql } from "@apollo/client";
 
-export
-	const GET_TUTORIALS = gql`
-		query allTutorials {
-	allTutorials {
-    _id
-    title
-    author {
-    	_id
-    	username
+// Query to get tutorials
+export const GET_TUTORIALS = gql`
+  query allTutorials {
+    allTutorials {
+      _id
+      title
+      author {
+        _id
+        username
+      }
+      game
+      content
+      platform
+      tags
+      rating
+      youTubeLink
     }
-    game
-    content
-    platform
-    tags
-    rating
-    youTubeLink
-    
-	}
-}
-`
+  }
+`;
+
+// Query to get files (if needed)
 export const FILES_QUERY = gql`
-    {
-        files
-    }
-`
+  {
+    files
+  }
+`;
 
+// Query to get user information
 export const QUERY_ME = gql`
   query me {
     me {
@@ -33,6 +35,34 @@ export const QUERY_ME = gql`
       username
       email
       bioText
+      friends {
+        username
+      }
+      savedGames
+      savedTutorials {
+        _id
+        title
+      }
+      profilePicture
+    }
+  }
+`;
+
+// Query to get user by username
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      bioText
+      topGames
+      friends
+      savedGames
+      creatorsFollowing
+      savedTutorials
+      createdTutorials
+      isCreator
       friends {
         username
       }
@@ -51,7 +81,7 @@ export const QUERY_ME = gql`
     }
   }
 `;
-
+// Query to get whole game information by ID
 
 
 export const QUERY_USER  = gql `
@@ -93,66 +123,70 @@ export const WHOLE_GAME_INFO = gql`
   }
 `;
 
-export const GAME_BY_ID = gql `
+// Query to get game by ID
+export const GAME_BY_ID = gql`
   query gameById($gameByIdId: [ID]) {
-  gameById(id: $gameByIdId) {
-
-    url
-    name
-    id
-
-  }
-}
-`
-
-export const MAIN_SEARCH = gql`
-query mainSearch($searchString: String) {
-  mainSearch(searchString: $searchString) {
-    games {
+    gameById(id: $gameByIdId) {
+      url
+      name
       id
-      age_ratings {
-        rating
-      }
-      cover {
+    }
+  }
+`;
+
+// Query to search main data
+export const MAIN_SEARCH = gql`
+  query mainSearch($searchString: String!) {
+    mainSearch(searchString: $searchString) {
+      games {
+        id
+        name
+        cover {
+          url
+        }
+        platforms
+        age_ratings {
+          rating
+        }
         url
       }
-      name
-      platforms
-      url
-    }
-    tutorials {
-      _id
-      title
-      author
-      game
-      level
-      platform
-      youTubeLink
-      rating
-      comments {
-        commenter {
+      tutorials {
+        _id
+        title
+        author {
+          _id
           username
         }
-        content
+        game
+        level
+        platform
+        youTubeLink
+        rating
+        comments {
+          commenter {
+            username
+          }
+          content
+        }
       }
-    }
-    users {
-      _id
-      username
-      profilePicture
-      friends {
+      users {
+        _id
         username
+        profilePicture
+        friends {
+          username
+        }
       }
     }
   }
-}
-`
+`;
 
-export const TUTORIALS_BY_ID = gql `
+// Query to get tutorial by ID
+export const TUTORIALS_BY_ID = gql`
   query tutorialById($id: [ID]) {
-  tutorialById(_id: $id) {
-    title
-    _id
+    tutorialById(_id: $id) {
+      title
+      _id
+    }
   }
-}
-`
+`;

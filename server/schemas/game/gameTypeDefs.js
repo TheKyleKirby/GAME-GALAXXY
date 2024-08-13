@@ -12,7 +12,7 @@ const typeDefs = gql`
     AO
   }
 
-  enum Platform {
+enum Platform {
     ATARI_2600
     DREAMCAST
     GAMECUBE
@@ -31,8 +31,33 @@ const typeDefs = gql`
     XBOX
     XBOX_360
     XBOX_ONE
-    COMPUTER
+    COMPUTER  
+    MAC       
+    LINUX     
     OTHER
+  }
+  type GameCover {
+    height: Int
+    image_id: String
+    url: String
+    width: Int
+  }
+
+  type Rating {
+    category: Int
+    rating: RatingsEnum
+  }
+
+  type WholeGameInfo {
+    id: Int
+    name: String
+    slug: String
+    cover: GameCover
+    platforms: [Platform]
+    url: String
+    tags: [Int]
+    similar_games: [Int]
+    age_ratings: [Rating]
   }
 
   type GameResultCard {
@@ -47,35 +72,6 @@ const typeDefs = gql`
     age_rating: Int
   }
 
-  type WholeGame {
-    id: Int
-    category: Int
-    cover: Int
-    created_at: Int
-    first_release_date: Int
-    name: String
-    parent_game: Int
-    slug: String
-    updated_at: Int
-    url: String
-    checksum: String
-    language_supports: [Int]
-    websites: [Int]
-    themes: [Int]
-    tags: [Int]
-    similar_games: [Int]
-    screenshots: [Int]
-    release_dates: [Int]
-    player_perspectives: [Int]
-    platforms: [Int]
-    keywords: [Int]
-    involved_companies: [Int]
-    genres: [Int]
-    game_modes: [Int]
-    alternative_names: [Int]
-    esrb: Int
-  }
-
   type TestGame {
     websites: String
     url: String
@@ -84,21 +80,9 @@ const typeDefs = gql`
     id: Int
     age_ratings: [Rating]
     cover: GameCover
-    platforms: [Platform]  # Update here to use Platform enum
+    platforms: [Platform]  
     similar_games: [Int]
     tags: [Int]
-  }
-
-  type GameCover {
-    height: Int
-    image_id: String
-    url: String
-    width: Int
-  }
-
-  type Rating {
-    category: Int
-    rating: RatingsEnum
   }
 
   type Query {
@@ -107,7 +91,7 @@ const typeDefs = gql`
     gamesByEsrbRating(rating: Int!): [GameResultCard]
     gameCoverById(id: ID): GameCover
     gameAgeRating(id: ID): Rating
-    wholeGameInfo(name: String): [TestGame]
+    wholeGameInfo(id: Int!): WholeGameInfo  # Update this to take an ID and return WholeGameInfo
   }
 `;
 
