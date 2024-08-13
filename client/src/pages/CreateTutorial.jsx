@@ -87,7 +87,7 @@ const CreateTutorial = () => {
               value={game}
               onChange={(event) => setGame(event.target.value)}
             />
-            <select
+             <select
               id="platform"
               name="platform"
               className="rounded-lg p-3 w-full sm:w-[48%] focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
@@ -97,7 +97,26 @@ const CreateTutorial = () => {
               <option value="" disabled hidden>
                 Platform
               </option>
-              {/* Add platform options here */}
+              <option value="ATARI_2600">ATARI 2600</option>
+              <option value="DREAMCAST">DREAMCAST</option>
+              <option value="GAMECUBE">GAMECUBE</option>
+              <option value="GENESIS">GENESIS</option>
+              <option value="NES">NES</option>
+              <option value="NINTENDO_3DS">NINTENDO 3DS</option>
+              <option value="NINTENDO_DS">NINTENDO DS</option>
+              <option value="NINTENDO_SWITCH">NINTENDO SWITCH</option>
+              <option value="NINTENDO_WII">NINTENDO WII</option>
+              <option value="PLAYSTATION_2">PLAYSTATION 2</option>
+              <option value="PLAYSTATION_3">PLAYSTATION 3</option>
+              <option value="PLAYSTATION_4">PLAYSTATION 4</option>
+              <option value="PLAYSTATION_5">PLAYSTATION 5</option>
+              <option value="PSP">PSP</option>
+              <option value="SNES">SNES</option>
+              <option value="XBOX">XBOX</option>
+              <option value="XBOX_360">XBOX 360</option>
+              <option value="XBOX_ONE">XBOX ONE</option>
+              <option value="COMPUTER">COMPUTER</option>
+              <option value="OTHER">OTHER</option>
             </select>
             <input
               type="text"

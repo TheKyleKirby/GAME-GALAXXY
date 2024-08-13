@@ -7,24 +7,24 @@ import image5 from '/images/about/tristan.jpg';
 import image6 from '/images/about/betzy.jpg';
 
 const staffMembers = [
-  {name: 'Tish Sirface', aka: '@ThisTish', image: image1, level:'Level 1 developer', bio: '(insert bio here)'},
-  {name: 'Kyle Kirby', aka: '@Kirbsteroonie', image: image2, level:'Level 1 developer', bio: '(insert bio here)'},
+  {name: 'Tish Sirface', aka: '@ThisTish', image: image1, level:'Level 1 developer', bio: 'Web Developer, Crocheter, Disc Golfer'},
+  {name: 'Kyle Kirby', aka: '@Kirbsteroonie', image: image2, level:'Level 1 developer', bio: 'Father, Golfer, Coder, and Pizza Inhaler'},
   {
       name: 'Beth McKinney',
       aka: '@Corgilicious',
       image: image3,
       level: 'Level 1 developer',
-      bio: '(insert bio here)',
+      bio: "I'm here so I don't get fined 🤷‍♀️",
       objectPosition: 'center top', // Adjusted position
   },
-  {name: 'Karina Gonzalez', aka: '@Aimee_kgl', image: image4, level:'Level 1 developer', bio: '(insert bio here)'},
-  {name: 'Tristan Smith', aka: '@Whiskeyy_RL', image: image5, level:'Level 1 developer', bio: '(insert bio here)'},
+  {name: 'Karina Gonzalez', aka: '@Aimee_kgl', image: image4, level:'Level 1 developer', bio: '🧩 Puzzler, Big Bang Theory ⚛️'},
+  {name: 'Tristan Smith', aka: '@Whiskeyy_RL', image: image5, level:'Level 1 developer', bio: 'https://www.youtube.com/watch?v=C6-F19hJ1h0&t=53s'},
   {
       name: 'Betzaida Taylor',
       aka: '@Nyxie96',
       image: image6,
       level: 'Level 1 developer',
-      bio: '(insert bio here)',
+      bio: '🎧 Rave enthusiast | 🎲 D&D adventurer | 💻 Coding newbie Living life one beat at a time and exploring the digital world online. Catch me at the rail or rolling dice in a campaign ✨',
       objectPosition: 'center top', // Adjusted position
   },
 ];
@@ -54,7 +54,7 @@ const StaffMembers = () => {
                   src={member.image}
                   alt={member.name}
                   className="rounded-full border-4 border-tealBlue-dark w-48 h-56 md:w-60 md:h-72 object-cover shadow-lg"
-                  style={{ objectPosition: member.objectPosition || 'center' }} // Default to center if not specified
+                  style={{ objectPosition: member.objectPosition || 'center' }} 
                 />
               </div>
             </div>
