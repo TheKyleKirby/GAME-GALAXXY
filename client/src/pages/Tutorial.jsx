@@ -12,6 +12,7 @@ const Tutorial = () => {
 
   const { id } = useParams()
 
+  // todo - tutorials by id is the wrong one. clicked tutorial 
   const { data, loading, error } = useQuery(TUTORIALS_BY_ID, {
     variables: { id }
   })

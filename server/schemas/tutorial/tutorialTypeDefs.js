@@ -65,6 +65,7 @@ const typeDefs = gql `
 
 	type Query {
 		allTutorials: [Tutorial]
+		# for clicking read tutorial on page.
 		clickedTutorial(_id: ID): Tutorial
 		tutorialById(_id: [ID]): [Tutorial]
 

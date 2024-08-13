@@ -19,9 +19,7 @@ const ProfilePicture = ({picture}) => {
 // previewing pic when dropping in
 	const onDrop = useCallback(async (acceptedFiles) => {
 		console.log('onDrop Started')
-
-		
-
+// todo cloudarity
 		const file = new FileReader()
 	
 		file.onload = function() {
