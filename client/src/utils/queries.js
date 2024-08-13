@@ -37,6 +37,7 @@ query me {
     bioText
     topGames
     friends {
+      profilePicture
       username
       _id
     }

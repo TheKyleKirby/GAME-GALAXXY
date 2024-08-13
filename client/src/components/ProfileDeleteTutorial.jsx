@@ -11,8 +11,6 @@ const ProfileDeleteTutorial = ({id}) => {
             id
         },
         refetchQueries: [{ query: QUERY_ME}],
-
-        
     })
     
     if(data){

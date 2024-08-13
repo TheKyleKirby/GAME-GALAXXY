@@ -7,7 +7,6 @@ const typeDefs = gql`
 		_id: ID!
 		username: String
 		email: String!
-	 	#password: String! should not be exposed in graphql for security reasons
 		bioText: String
 		topGames: String
 		friends: [User]

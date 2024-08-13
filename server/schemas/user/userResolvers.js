@@ -20,7 +20,8 @@ const resolvers = {
 				try {
 					const user = await User.findById(context.user._id)
 						.populate('savedTutorials')
-						.populate('createdTutorials');
+						.populate('createdTutorials')
+						.populate('friends')
 		
 					console.log(`User in 'me' resolver: ${JSON.stringify(user, null, 2)}`);
 		

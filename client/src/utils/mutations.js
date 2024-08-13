@@ -82,6 +82,19 @@ export const ADD_FRIEND = gql `
 }
 `
 
+export const REMOVE_FRIEND = gql `
+  mutation removeFriend($friends: ID!) {
+  removeFriend(friends: $friends) {
+    username
+    friends {
+      username
+      _id
+    }
+    _id
+  }
+}
+`
+
 
 // todo, not working yet.
 export const UPLOAD_PROFILE_PICTURE = gql`

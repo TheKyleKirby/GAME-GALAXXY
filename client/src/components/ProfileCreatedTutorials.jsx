@@ -1,4 +1,3 @@
-import React from "react";
 import ProfileDeleteTutorial from "./ProfileDeleteTutorial";
 import { useNavigate } from "react-router-dom";
 
