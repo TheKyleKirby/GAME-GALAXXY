@@ -9,14 +9,15 @@ const typeDefs = gql `
 		game: String
 		content: String
 		platform: String
-		belongsToGroup: Boolean
-		groupBelongsTo: String
 		level: String
 		tags: [String]
 		rating: Float
 		youTubeLink: String
 		comments: [Comment]
 	}
+	# belongsToGroup: Boolean
+	# groupBelongsTo: String
+
 
 #tutorial group tutorial belongs to
 	type GroupBelongsTo {
