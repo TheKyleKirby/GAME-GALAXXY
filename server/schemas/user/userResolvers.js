@@ -16,22 +16,25 @@ const resolvers = {
 			if (context.user) {
 				try {
 					const user = await User.findById(context.user._id)
-					.populate('savedTutorials')
-					.populate('createdTutorials');
-					
-					console.log(`user in me resolver${user}`.green)
+						.populate('savedTutorials')
+						.populate('createdTutorials');
+		
+					console.log(`User in 'me' resolver: ${JSON.stringify(user, null, 2)}`);
+		
 					if (!user) {
 						throw new Error('User not found');
 					}
-
+		
 					return user;
 				} catch (err) {
+					console.error('Error fetching user data:', err);
 					throw new Error('Error fetching user data');
 				}
 			}
-
+		
 			throw new AuthenticationError('Not logged in');
 		},
+		
 
 		// to view the profile of a specific user by providing their profile ID. (maybe change this to username...?)
 		user: async (_parent, { username }) => {

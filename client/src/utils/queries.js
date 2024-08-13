@@ -29,23 +29,30 @@ export const FILES_QUERY = gql`
 export const QUERY_ME = gql`
   query me {
     me {
-    _id
-    username
-    email
-    bioText
-    friends {
-      username
-    }
-    savedGames
-    savedTutorials {
       _id
-      title
+      username
+      email
+      bioText
+      friends {
+        username
+      }
+      savedGames
+      savedTutorials {
+        _id
+        title
+      }
+      createdTutorials {  
+        _id
+        title
+        content
+        # Add any other fields you need
+      }
+      profilePicture
     }
-    profilePicture
   }
-}
-
 `;
+
+
 
 export const QUERY_USER  = gql `
     query user($username: String!) {
