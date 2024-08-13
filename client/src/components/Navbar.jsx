@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SignUpModal from './SignupModal';
@@ -15,32 +14,26 @@ const Navbar = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // Check if the user is logged in on initial render
     useEffect(() => {
         setIsLoggedIn(Auth.loggedIn());
     }, []);
 
-    // Toggle the state for the mobile menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    // Toggle the state for the login modal
     const toggleLoginModal = () => {
         setIsLoginModalOpen(!isLoginModalOpen);
     };
 
-    // Toggle the state for the signup modal
     const toggleSignUpModal = () => {
         setIsSignUpModalOpen(!isSignUpModalOpen);
     };
 
-    // Close the mobile menu when navigating to a new location
     useEffect(() => {
         setIsMenuOpen(false);
     }, [location]);
 
-    // State for form inputs
     const [formState, setFormState] = useState({
         username: '',
         password: '',
@@ -48,7 +41,6 @@ const Navbar = () => {
 
     const [login] = useMutation(LOG_IN);
 
-    // Handle input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
 
@@ -58,7 +50,6 @@ const Navbar = () => {
         });
     };
 
-    // Handle form submission for login
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -75,7 +66,6 @@ const Navbar = () => {
         }
     };
 
-    // Handle logout
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
@@ -84,80 +74,75 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="sticky top-0 z-50 border-gray-200 bg-tealBlue-dark flex flex-col md:flex-row md:flex-wrap md:justify-between w-full p-4">
-            <div className="flex flex-wrap items-center justify-between mx-2 p-4 w-full" style={{ width: "95%" }}>
-                    {/* Logo Section */}
-                     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-    <div 
-        className="self-center px-4 py-2 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out relative"
-        style={{
-            background: 'linear-gradient(45deg, #F687B3, #805AD5, #4299E1)', 
-            borderRadius: '9999px',
-            padding: '8px 16px',
-        }}
-    >
-        <span 
-            className="text-2xl font-bold tracking-wide"
-            style={{
-                letterSpacing: '0.1em',
-                color: 'transparent',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                backgroundImage: 'linear-gradient(45deg, #F687B3, #805AD5, #4299E1)',
-                textShadow: '0px 1px 1px rgba(255, 255, 255, 0.5), 0px 4px 6px rgba(0, 0, 0, 0.4)', 
-                fontFamily: '"Press Start 2P", cursive', // Pixel font style
-                position: 'relative',
-                zIndex: 1,
-            }}
-        >
-            GVM3 GVLVXXY
-        </span>
-        <span 
-            style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '100%',
-                height: '100%',
-                background: 'linear-gradient(45deg, #F687B3, #805AD5, #4299E1)',
-                borderRadius: '9999px',
-                boxShadow: 'inset 0px 4px 6px rgba(0, 0, 0, 0.4)',
-                zIndex: 0,
-            }}
-        ></span>
-    </div>
-</Link>
+            <nav className="sticky top-0 z-50 border-gray-200 bg-tealBlue-dark flex flex-col md:flex-row md:justify-between w-full p-4">
+                <div className="flex items-center justify-between w-full">
+                    <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                        <div 
+                            className="self-center px-2 py-1 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out relative"
+                            style={{
+                                background: 'linear-gradient(45deg, #F687B3, #805AD5, #4299E1)', 
+                                borderRadius: '9999px',
+                                padding: '4px 8px',
+                            }}
+                        >
+                            <span 
+                                className="text-xl font-bold tracking-wide"
+                                style={{
+                                    letterSpacing: '0.1em',
+                                    color: 'transparent',
+                                    backgroundClip: 'text',
+                                    WebkitBackgroundClip: 'text',
+                                    backgroundImage: 'linear-gradient(45deg, #F687B3, #805AD5, #4299E1)',
+                                    textShadow: '0px 1px 1px rgba(255, 255, 255, 0.5), 0px 4px 6px rgba(0, 0, 0, 0.4)', 
+                                    fontFamily: '"Press Start 2P", cursive',
+                                    position: 'relative',
+                                    zIndex: 1,
+                                }}
+                            >
+                                GVM3 GVLVXXY
+                            </span>
+                            <span 
+                                style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    width: '100%',
+                                    height: '100%',
+                                    background: 'linear-gradient(45deg, #F687B3, #805AD5, #4299E1)',
+                                    borderRadius: '9999px',
+                                    boxShadow: 'inset 0px 4px 6px rgba(0, 0, 0, 0.4)',
+                                    zIndex: 0,
+                                }}
+                            ></span>
+                        </div>
+                    </Link>
 
-
-                    {/* Search Bar and Mobile Menu Toggle */}
                     <div className="flex-grow flex items-center justify-center md:justify-between space-x-4 mt-4 md:mt-0">
                         <SearchBar />
                         <button
-                onClick={toggleMenu}
-                type="button"
-                className="inline-flex items-center justify-center p-1 w-10 h-10 text-sm rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-royalBlurp-dark"
-                aria-controls="navbar-hamburger"
-                aria-expanded={isMenuOpen}
-            >
-                <span className="sr-only">Open main menu</span>
-                <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-                </svg>
-            </button>
-        </div>
+                            onClick={toggleMenu}
+                            type="button"
+                            className="inline-flex items-center justify-center p-1 w-10 h-10 text-sm rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-royalBlurp-dark"
+                            aria-controls="navbar-hamburger"
+                            aria-expanded={isMenuOpen}
+                        >
+                            <span className="sr-only">Open main menu</span>
+                            <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+                            </svg>
+                        </button>
+                    </div>
 
-                    {/* Login/Logout Button */}
                     <div className="flex space-x-4 mt-4 md:mt-0">
-            {isLoggedIn ? (
-                <button className="text-white bg-royalBlurp-dark px-4 py-2 rounded-md" onClick={logout}>Logout</button>
-            ) : (
-                <button onClick={toggleLoginModal} className="text-white bg-royalBlurp-dark px-4 py-2 rounded-md">Login</button>
-            )}
-        </div>
-    </div>
+                        {isLoggedIn ? (
+                            <button className="text-white bg-royalBlurp-dark px-4 py-2 rounded-md" onClick={logout}>Logout</button>
+                        ) : (
+                            <button onClick={toggleLoginModal} className="text-white bg-royalBlurp-dark px-4 py-2 rounded-md">Login</button>
+                        )}
+                    </div>
+                </div>
 
-                {/* Mobile Menu */}
                 <div className={`${isMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 w-full z-50`} id="navbar-hamburger">
                     <ul className="flex flex-col items-center justify-center font-medium mt-4 rounded-lg bg-tealBlue-dark dark:border-royalBlurp-dark">
                         <li>
@@ -181,7 +166,6 @@ const Navbar = () => {
                 </div>
             </nav>
 
-            {/* Login Modal */}
             {isLoginModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
                     <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
@@ -213,7 +197,6 @@ const Navbar = () => {
                 </div>
             )}
 
-            {/* Sign Up Modal */}
             {isSignUpModalOpen && (
                 <SignUpModal />
             )}
