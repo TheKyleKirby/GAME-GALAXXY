@@ -4,7 +4,6 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_BIO } from '../utils/mutations'
 
 const BioCard = ({bio}) => {
-console.log(bio)
 	const [bioStatus, setBioStatus] = useState("paragraph")
 	const [bioText, setBioText] = useState( bio || '' )
 	const [ updateBio ] = useMutation(UPDATE_BIO)
@@ -19,7 +18,6 @@ console.log(bio)
 	const handleChange = (event) => {
 		setBioText(event.target.value);
 	}
-console.log(bioText)
 
 	const handleSaveUpdates = async (event) => {
 	console.log(bioText)

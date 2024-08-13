@@ -6,29 +6,30 @@ const resolvers = {
 
 	Query: {
 
-	//to test database(using for trending tutorials right now)
-		allTutorials: async() =>{
+		//to test database(using for trending tutorials right now)
+		allTutorials: async () => {
 			return Tutorial.find({})
-			.populate('author')
-			.populate('comments')
+				.populate('author')
+				.populate('comments')
 		},
-	// triggered by clicking on 'read tutorial' button on card
-		tutorialById: async (_parent, {id}) => {
-			return await Tutorial.find({_id: {$in: id}})
-			.populate('author')
-			.populate('comments')
+		// triggered by clicking on 'read tutorial' button on card
+		tutorialById: async (_parent, { id }) => {
+			return await Tutorial.find({ _id: { $in: id } })
+				.populate('author')
+				.populate('comments')
 		},
 
 		// !not working on back end yet.
-		clickedTutorial: async (_parent, {id}) => {
+		clickedTutorial: async (_parent, { id }) => {
 			return await Tutorial.findById(id)
-			.populate('author')
-			.populate('comments')
+				.populate('author')
+				.populate('comments')
 		},
+
+		
 	},
 
 	Mutation: {
-	
 
 		createTutorial: async (parent, { tutorial }, context) => {
 			if (context.user) {
@@ -43,15 +44,12 @@ const resolvers = {
 						content: tutorial.content,
 						tags: tutorial.tags
 					});
-		
+
 					const updatedUser = await User.findByIdAndUpdate(
 						context.user._id,
 						{ $push: { createdTutorials: newTutorial._id } },  // Ensure this line correctly updates the user
 						{ new: true }
 					);
-		
-					console.log('Updated User:', updatedUser); // <-- Add this line to verify the update
-		
 					return newTutorial;
 				} catch (error) {
 					console.log(`Error creating tutorial: ${error}`);
@@ -61,33 +59,27 @@ const resolvers = {
 				throw new Error('Authorization required');
 			}
 		},
-		
-		
-		  
-		
-		  
-		
-		updateTutorial: async(parent, {_id, tutorial}) => {
+
+		updateTutorial: async (parent, { _id, tutorial }) => {
 			console.log(tutorial)
-			try{
-				return (await Tutorial.findByIdAndUpdate(_id, tutorial, {new: true}))
-				// .populate('author')
-				.populate('comments')
-			} catch(error){
+			try {
+				return (await Tutorial.findByIdAndUpdate(_id, tutorial, { new: true }))
+					.populate('author')
+					.populate('comments')
+			} catch (error) {
 				console.log(`error updating tutorial, ${error}`)
 			}
 		},
 
 		// todo: add context for user._id auth when working on front end:
-			// if(!context.user._id) {
-			// 	throw AuthenticationError
-			// }
-		deleteCreatedTutorial: async (parent, _id) =>{
+		deleteCreatedTutorial: async (parent, _id) => {
 			console.log(_id)
 
 			try {
-				const deletedTutorial = await Tutorial.findByIdAndDelete(_id).populate('author')
-				if(!deletedTutorial){
+				const deletedTutorial = await Tutorial.findByIdAndDelete(_id)
+				.populate('author')
+				
+				if (!deletedTutorial) {
 					console.log('tutorial not found')
 				}
 
@@ -98,13 +90,13 @@ const resolvers = {
 			}
 		},
 
-		
+
 		// todo add context auth when working
-			// if (!context.user) {
-			// 	throw new AuthenticationError("User must be logged in");
-			//   }
-			// author: context.user._id(hardcoding for now)
-		addComment: async (parent, {tutorialId, comment}) => {
+		// if (!context.user) {
+		// 	throw new AuthenticationError("User must be logged in");
+		//   }
+		// author: context.user._id(hardcoding for now)
+		addComment: async (parent, { tutorialId, comment }) => {
 			try {
 				const newComment = {
 					content: comment.content,
@@ -113,11 +105,11 @@ const resolvers = {
 
 				const updatedTutorial = await Tutorial.findByIdAndUpdate(
 					tutorialId,
-					{ $push: { comments: newComment} },
+					{ $push: { comments: newComment } },
 					{ new: true })
 					// .populate('author')
 					.populate('comments')
-					
+
 				console.log(updatedTutorial)
 				return updatedTutorial
 			} catch (error) {

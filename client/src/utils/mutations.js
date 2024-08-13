@@ -36,19 +36,6 @@ export const UPDATE_BIO = gql `
 }
 `
 
-
-// todo, not working yet.
-export const UPLOAD_PROFILE_PICTURE = gql`
-  mutation uploadProfilePicture($file: Upload!) {
-    uploadProfilePicture(file: $file) {
-      success
-      message
-      profilePictureUrl
-    }
-  }
-  `
-// !tutorialInput not found
-
 export const CREATE_TUTORIAL = gql `
   mutation createTutorial($tutorial: TutorialInput!) {
     createTutorial(tutorial: $tutorial) {
@@ -63,7 +50,27 @@ export const CREATE_TUTORIAL = gql `
 }
 
 `
+export const DELETE_TUTORIAL = gql `
+  mutation DeleteCreatedTutorial($id: ID!) {
+  deleteCreatedTutorial(_id: $id) {
+    author {
+      username
+      _id
+    }
+    title
+  }
+}
+`
 
-// # author {
-//   #   username
-//   # }
+
+
+// todo, not working yet.
+export const UPLOAD_PROFILE_PICTURE = gql`
+  mutation uploadProfilePicture($file: Upload!) {
+    uploadProfilePicture(file: $file) {
+      success
+      message
+      profilePictureUrl
+    }
+  }
+  `

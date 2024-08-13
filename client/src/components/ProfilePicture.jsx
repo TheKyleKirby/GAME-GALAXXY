@@ -15,7 +15,6 @@ const ProfilePicture = ({picture}) => {
 	}
 
 
-
 // previewing pic when dropping in
 	const onDrop = useCallback(async (acceptedFiles) => {
 		console.log('onDrop Started')
@@ -32,16 +31,13 @@ const ProfilePicture = ({picture}) => {
 	const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop
 	})
-
 	const [preview, setPreview] = useState(null)
-
 	const [uploadProfilePicture] = useMutation(UPLOAD_PROFILE_PICTURE)
 
 
 // submitting pic
-// todo  I need to call this
+// todo to call this
 	const handleOnSubmit = async (event) =>{
-
 		event.preventDefault()
 
 		if( typeof acceptedFiles[0] === 'undefined') return
