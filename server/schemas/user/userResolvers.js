@@ -23,7 +23,7 @@ const resolvers = {
 						.populate('createdTutorials')
 						.populate('friends')
 		
-					console.log(`User in 'me' resolver: ${JSON.stringify(user, null, 2)}`);
+					// console.log(`User in 'me' resolver: ${JSON.stringify(user, null, 2)}`);
 		
 					if (!user) {
 						throw new Error('User not found');
