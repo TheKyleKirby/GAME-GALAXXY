@@ -1,7 +1,6 @@
 import React from "react";
 
 const GamesCardResults = ({ game }) => {
-  
   const coverUrl = game.cover?.url ? `https:${game.cover.url}` : null;
 
   console.log("Cover URL:", coverUrl);
@@ -38,7 +37,6 @@ const GamesCardResults = ({ game }) => {
 };
 
 export default GamesCardResults;
-
 
 
 

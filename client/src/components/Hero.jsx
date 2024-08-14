@@ -15,9 +15,9 @@ const Hero = () => {
         </video>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 mt-20 sm:mt-32 lg:mt-40 xl:mt-60">
-            <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 text-base sm:text-lg lg:text-xl rounded">
+            <a href="#trending-tutorials" className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 text-base sm:text-lg lg:text-xl rounded">
               Explore the Galaxy!
-            </button>
+            </a>
             <button
               onClick={() => navigate('/signup')} 
               className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 text-base sm:text-lg lg:text-xl rounded">

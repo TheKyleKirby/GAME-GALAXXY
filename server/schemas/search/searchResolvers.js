@@ -1,4 +1,3 @@
-
 const axios = require('axios');
 const { User, Tutorial } = require('../../models');
 const gameResolvers = require('../game/gameResolvers');
@@ -74,6 +73,9 @@ async function fetchGameIdBySearchString(searchString) {
 }
 
 module.exports = searchResolvers;
+
+
+
 
 	
 	// 	mainSearch: async (_, { search }) => {

@@ -9,21 +9,24 @@ Game Galaxxy is a web-based platform designed to host and showcase game tutorial
 ___
 
 ## Table of Contents
-- [Screenshots](#screenshots)
-- [Usage](#usage)
-- [Deployment](#deployment)
-- [License](#license)
-- [Tech Used](#tech-used)
-- [Credits](#credits)
+- [🕹️ GVM3 GVLVXXY 🌌](#️-gvm3-gvlvxxy-)
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+  - [Screenshots](#screenshots)
+  - [Usage](#usage)
+  - [Deployment](#deployment)
+  - [License](#license)
+  - [Tech Used](#tech-used)
+  - [Credits](#credits)
 
 ___
 
 ## Screenshots
 Here’s a preview of what you can expect from Game Galaxxy:
 
-![alt text](assets/images/screenshot.png)
+![Homescreen](client/public/images/screenshots/img.png)
 
-![alt text](assets/images/screenshot.png)
+![Tutorial](client/public/images/screenshots/img2.png)
 ___
 
 ## Usage
