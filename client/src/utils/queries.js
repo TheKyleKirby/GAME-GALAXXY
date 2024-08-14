@@ -48,8 +48,6 @@ export const QUERY_ME = gql`
   }
 `;
 
-
-
 // Query to get user by username
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -65,6 +63,20 @@ export const QUERY_USER = gql`
       savedTutorials
       createdTutorials
       isCreator
+      friends {
+        username
+      }
+      savedGames
+      savedTutorials {
+        _id
+        title
+      }
+      createdTutorials {  
+        _id
+        title
+        content
+        # Add any other fields you need
+      }
       profilePicture
     }
   }
@@ -103,6 +115,24 @@ export const GAME_BY_ID = gql`
     }
   }
 `;
+// Query to get game by name
+export const GAME_BY_NAME = gql`
+  query gameByName($name: String!) {
+    gameByName(name: $name) {
+      id
+      name
+      cover {
+        url
+      }
+      platforms
+      age_ratings {
+        rating
+      }
+      url
+    }
+  }
+`;
+
 
 // Query to search main data
 export const MAIN_SEARCH = gql`
@@ -160,3 +190,30 @@ export const TUTORIALS_BY_ID = gql`
     }
   }
 `;
+
+// Query for a clicked tutorial
+export const CLICKED_TUTORIAL = gql `
+  query clickedTutorial($id: ID) {
+  clickedTutorial(_id: $id) {
+    _id
+    author {
+      username
+      _id
+    }
+    comments {
+      commenter {
+        username
+      }
+      _id
+      content
+    }
+    content
+    tags
+    game
+    level
+    platform
+    title
+    youTubeLink
+  }
+}
+`

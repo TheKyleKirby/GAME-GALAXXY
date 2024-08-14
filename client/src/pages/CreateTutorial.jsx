@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_TUTORIAL } from "../utils/mutations";
 import { useNavigate } from "react-router-dom"
+import { QUERY_ME } from "../utils/queries";
 
 const CreateTutorial = () => {
   // State variables for the form inputs
@@ -24,7 +25,10 @@ const CreateTutorial = () => {
     tags,
   };
 
-  const [createTutorial] = useMutation(CREATE_TUTORIAL);
+  const [createTutorial] = useMutation(CREATE_TUTORIAL, {
+    refetchQueries: [{ query: QUERY_ME}],
+    awaitRefetchQueries: true
+  });
 
   const navigate = useNavigate();
 
@@ -40,24 +44,15 @@ const CreateTutorial = () => {
     }
     try {
       const { data } = await createTutorial(
-        { variables: 
-          { tutorial: tutorialInput } 
+        {
+          variables:
+            { tutorial: tutorialInput }
         })
         ;
       console.log('Tutorial created:', data);
+      // Redirect to profile page
+      navigate('/profile')
 
-         // Clear form inputs
-         setTitle('');
-         setGame('');
-         setPlatform('');
-         setLevel('');
-         setYouTubeLink('');
-         setContent('');
-         setTags('');
-   
-         // Redirect to profile page
-         navigate('/profile');
-         
     } catch (error) {
       console.error('Error creating tutorial:', JSON.stringify(error, null, 2));
     }
@@ -97,7 +92,7 @@ const CreateTutorial = () => {
               value={game}
               onChange={(event) => setGame(event.target.value)}
             />
-             <select
+            <select
               id="platform"
               name="platform"
               className="rounded-lg p-3 w-full sm:w-[48%] focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"

@@ -1,45 +1,43 @@
-import { useQuery } from "@apollo/client"
-import { TUTORIALS_BY_ID } from "../utils/queries"
+import { useMutation } from "@apollo/client";
+import { REMOVE_SAVED_TUTORIAL } from "../utils/mutations";
+import { FaDumpsterFire } from "react-icons/fa";
+import { QUERY_ME } from "../utils/queries";
 
-const ProfileSavedTutorials = ({ tutorialIds }) => {
+const ProfileSavedTutorials = ({ tutorials }) => {
+  const [removeTutorial] = useMutation(REMOVE_SAVED_TUTORIAL, {
+    refetchQueries: [{ query: QUERY_ME }],
+  });
 
-console.log(tutorialIds)
+  const handleRemove = (id) => {
+    removeTutorial({
+      variables: { savedTutorials: id },
+    });
+  };
 
-	const { data, loading, error } = useQuery(TUTORIALS_BY_ID, {
-		variables: {
-			id: tutorialIds
-		},
-		skip: !tutorialIds || tutorialIds.length === 0
-	})
+  if (!tutorials || tutorials.length === 0) {
+    return (
+      <div className="bg-gradient-to-br from-darkPurple-dark to-[#8c5b94] p-4 rounded-lg shadow-md w-full md:w-1/4 text-notWhite border-2 border-tealBlue-light">
+        <h3 className="text-3xl tracking-wide font-semibold mb-5 text-lightLavender-light">Saved Tutorials</h3>
+        <p>No Saved tutorials yet...</p>
+      </div>
+    );
+  }
 
-	if (loading) return <p>Loading...</p>
-	if (error) return <p>Error: {error.message}</p>
+  return (
+    <div className="bg-gradient-to-br from-darkPurple-dark to-[#8c5b94] p-4 rounded-lg shadow-md w-full md:w-1/4 text-notWhite border-2 border-tealBlue-light">
+      <h3 className="text-3xl tracking-wide font-semibold mb-5 text-lightLavender-light">Saved Tutorials</h3>
+      <ul>
+        {tutorials.map((tutorial) => (
+          <li key={tutorial._id} className="text-lg font-semibold text-goldenOrange my-3 flex items-center justify-between">
+            <a href={`/tutorial/${tutorial._id}`} className="hover:underline">{tutorial.title}</a>
+            <button onClick={() => handleRemove(tutorial._id)}>
+              <FaDumpsterFire className="text-sm text-notWhite" />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-	console.log(JSON.stringify(data))
-	
-	const tutorials = data ? data.tutorial : []
-
-
-	return (
-		<div className="bg-darkPurple-dark p-4 rounded-lg shadow-md w-full md:w-1/4 h-50 text-notWhite">
-			<h3 className="text-xl font-semibold mb-2 text-lightLavender-light">Saved Tutorials</h3>
-			<p className="text-notWhite">List of saved tutorials...</p>
-			<ul>
-				{tutorials.length > 0 ? (
-					tutorials.map((tutorial) => (
-						<li key={tutorial.id}>
-							<a href={`/tutorial/${tutorial.id}`}>{tutorial.name}</a>
-						</li>
-					))
-				) :
-					(<li> No game favorites yet </li>)
-				}
-				<li>
-
-				</li>
-			</ul>
-		</div>
-	)
-}
-
-export default ProfileSavedTutorials
+export default ProfileSavedTutorials;

@@ -1,9 +1,33 @@
-import React from "react";
-import { useState } from "react";
+import { useMutation } from "@apollo/client"
+import { ADD_FRIEND } from "../utils/mutations"
+import { useNavigate } from "react-router-dom"
 
 
 
 const UserCardResults = ({ user }) => {
+    
+    const [addFriend] = useMutation(ADD_FRIEND)
+    const navigate = useNavigate()
+    
+    const handleAddFriend = async (id) => {
+
+        try {
+            await addFriend({
+                variables: {
+                    friends: id
+                }
+            })
+
+            alert("New Friend saved!")
+            navigate('/profile')
+        } catch (error) {
+            console.log(error)
+            alert("Failed to add friend.")
+        }
+    }
+
+
+
     console.log(JSON.stringify(user))
     return (
         <div className="max-w-sm bg-darkPurple-dark border-gray-200 rounded-lg shadow-md p-4">
@@ -17,7 +41,9 @@ const UserCardResults = ({ user }) => {
                     {/* make name link to profile with user._id */}
                     <h2 className="text-xl text-goldenOrange font-semibold">{user.username}</h2>
                     <div className="flex space-x-2 mt-2">
-                        <button className="bg-lightLavender-dark text-white px-3 py-1 rounded-md hover:bg-pinkyPink">Add Friend</button>
+                        <button
+                            onClick={() => handleAddFriend(user._id)}
+                            className="bg-lightLavender-dark text-white px-3 py-1 rounded-md hover:bg-pinkyPink">Add Friend</button>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-
   enum RatingsEnum {
     RP
     EC
@@ -12,7 +11,7 @@ const typeDefs = gql`
     AO
   }
 
-enum Platform {
+  enum Platform {
     ATARI_2600
     DREAMCAST
     GAMECUBE
@@ -36,6 +35,7 @@ enum Platform {
     LINUX     
     OTHER
   }
+
   type GameCover {
     height: Int
     image_id: String
@@ -64,12 +64,12 @@ enum Platform {
     id: ID
     name: String
     slug: String
-    cover: Int
-    platforms: [Int]
+    cover: GameCover
+    platforms: [Platform]
     url: String
     tags: [Int]
     similar_games: [Int]
-    age_rating: Int
+    age_ratings: [Rating]
   }
 
   type TestGame {
@@ -91,7 +91,7 @@ enum Platform {
     gamesByEsrbRating(rating: Int!): [GameResultCard]
     gameCoverById(id: ID): GameCover
     gameAgeRating(id: ID): Rating
-    wholeGameInfo(id: Int!): WholeGameInfo  # Update this to take an ID and return WholeGameInfo
+    wholeGameInfo(id: Int!): WholeGameInfo
   }
 `;
 
