@@ -1,6 +1,12 @@
 import hero from "/images/hero/hero.mp4";
+import { useNavigate } from 'react-router-dom'
+
+
 
 const Hero = () => {
+
+  const navigate = useNavigate()
+
   return (
     <>
       <section className="hero relative bg-deepBlue-dark">
@@ -12,7 +18,9 @@ const Hero = () => {
             <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 text-base sm:text-lg lg:text-xl rounded">
               Explore the Galaxy!
             </button>
-            <button className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 text-base sm:text-lg lg:text-xl rounded">
+            <button
+              onClick={() => navigate('/signup')} 
+              className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 text-base sm:text-lg lg:text-xl rounded">
               Join the Adventure!
             </button>
           </div>

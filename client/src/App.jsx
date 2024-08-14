@@ -8,6 +8,7 @@ import Results from './pages/Results';
 import Blog from './pages/Blog';
 import NotFound from './pages/NotFound';
 import CreateTutorial from './pages/CreateTutorial';
+import SignupModal from './components/SignupModal';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/results" element={<Results />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/createtutorial" element={<CreateTutorial />} />
+          <Route path='/signup' element={<SignupModal />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
