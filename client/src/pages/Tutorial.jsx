@@ -99,7 +99,7 @@ const Tutorial = () => {
         {/* Tutorial Content */}
         <div className="grid grid-cols-1 mb-6">
           <div className="bg-gradient-to-br from-pinkyPink-dark to-[#9f87ff] shadow-lg rounded-lg p-8 border-2 border-tealBlue-dark">
-            <h2 className="text-2xl font-bold text-brightPeach">Content & Headings</h2>
+            <h2 className="text-2xl font-bold text-brightPeach">Tutorial Content</h2>
             <p className="mt-4 text-notWhite">{tutorial.content}</p>
 
             {tutorial.tags && tutorial.tags.length > 0 && (
