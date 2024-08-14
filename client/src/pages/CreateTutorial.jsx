@@ -79,7 +79,7 @@ const CreateTutorial = () => {
             <input
               type="text"
               name="title"
-              className="rounded-lg p-3 w-full sm:w-[48%] focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
+              className="rounded-lg p-3 w-full sm:w-[48%] focus:outline-none focus:ring-4 focus:ring-offset-deepBlue "
               placeholder="Title"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
@@ -144,7 +144,7 @@ const CreateTutorial = () => {
             <label>Create your tutorial here...</label>
             <textarea
               name="content"
-              className="rounded-lg p-3 w-full h-48 focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
+              className="rounded-lg p-3 w-full h-48 focus:outline-none focus:ring-4 focus:ring-offset-deepBlue text-darkPurple"
               value={content}
               onChange={(event) => setContent(event.target.value)}
             ></textarea>
