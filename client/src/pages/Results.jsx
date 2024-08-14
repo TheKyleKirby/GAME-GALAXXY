@@ -1,10 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { useLocation } from "react-router-dom";
-import { MAIN_SEARCH } from "../utils/queries";
+import { GAME_BY_NAME, MAIN_SEARCH } from "../utils/queries";
 import GamesCardResults from "../components/GamesCardResults";
 import UserCardResults from "../components/UserCardResults";
-import SearchTutorialCard from "../components/SearchTutorialCard"; 
+import SearchTutorialCard from "../components/SearchTutorialCard";
 
 const Results = () => {
   const useQueryParams = () => {
@@ -15,20 +15,27 @@ const Results = () => {
   const searchString = queryParams.get("query") || ""; // Fallback to empty string if searchString is null
   console.log(searchString);
 
-  const { data, loading, error } = useQuery(MAIN_SEARCH, {
+  // Main search query for users and tutorials
+  const { data: mainSearchData, loading: mainSearchLoading, error: mainSearchError } = useQuery(MAIN_SEARCH, {
     variables: { searchString },
     skip: !searchString, // Skip query if searchString is empty
   });
 
+  // Game search query by name
+  const { data: gameSearchData, loading: gameSearchLoading, error: gameSearchError } = useQuery(GAME_BY_NAME, {
+    variables: { name: searchString },
+    skip: !searchString, // Skip query if searchString is empty
+  });
+
   console.log("Search String:", searchString);
-  console.log("Loading:", loading);
-  console.log("Error:", error);
-  console.log("Data:", data);  
+  console.log("Main Search Data:", mainSearchData);
+  console.log("Game Search Data:", gameSearchData);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (mainSearchLoading || gameSearchLoading) return <p>Loading...</p>;
+  if (mainSearchError || gameSearchError) return <p>Error: {mainSearchError?.message || gameSearchError?.message}</p>;
 
-  const { users, tutorials, games } = data?.mainSearch || {};
+  const { users, tutorials } = mainSearchData?.mainSearch || {};
+  const games = gameSearchData?.gameByName || [];
 
   return (
     <div className="flex flex-col justify-center min-h-screen bg-deepBlue-dark pt-8 pb-16">
@@ -78,6 +85,11 @@ const Results = () => {
 };
 
 export default Results;
+
+
+
+
+
 
 
 

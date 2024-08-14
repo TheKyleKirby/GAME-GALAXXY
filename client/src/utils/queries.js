@@ -29,33 +29,23 @@ export const FILES_QUERY = gql`
 
 // Query to get user information
 export const QUERY_ME = gql`
-query me {
-  me {
-    _id
-    username
-    email
-    bioText
-    topGames
-    friends {
-      profilePicture
+  query me {
+    me {
+      _id
       username
-      _id
-    }
-    savedTutorials {
-      title
-      _id
-    }
-    createdTutorials {
-      _id
-      author {
-        _id
+      email
+      bioText
+      friends {
+        username
       }
-      content
-      title
+      savedGames
+      savedTutorials {
+        _id
+        title
+      }
+      profilePicture
     }
-    profilePicture
   }
-}
 `;
 
 // Query to get user by username
@@ -125,6 +115,24 @@ export const GAME_BY_ID = gql`
     }
   }
 `;
+// Query to get game by name
+export const GAME_BY_NAME = gql`
+  query gameByName($name: String!) {
+    gameByName(name: $name) {
+      id
+      name
+      cover {
+        url
+      }
+      platforms
+      age_ratings {
+        rating
+      }
+      url
+    }
+  }
+`;
+
 
 // Query to search main data
 export const MAIN_SEARCH = gql`
