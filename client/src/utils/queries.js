@@ -43,6 +43,12 @@ export const QUERY_ME = gql`
         _id
         title
       }
+      createdTutorials {  
+        _id
+        title
+        content
+        # Add any other fields you need
+      }
       profilePicture
     }
   }
