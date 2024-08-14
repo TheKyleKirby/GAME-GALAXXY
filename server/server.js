@@ -35,7 +35,9 @@ const startApolloServer = async () =>{
 
 	// app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 1 }))
 	app.use('/graphql', expressMiddleware(server, {context: authMiddleware}))
-	
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+	  });
 
 	if (process.env.NODE_ENV === 'production') {
 		app.use(express.static(path.join(__dirname, '../client/dist')));
