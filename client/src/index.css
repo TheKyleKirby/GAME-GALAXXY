@@ -21,6 +21,10 @@ main {
   flex-direction: column;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .hero {
   background-attachment: fixed;
   background-position: center;
