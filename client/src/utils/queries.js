@@ -36,6 +36,7 @@ export const QUERY_ME = gql`
       email
       bioText
       friends {
+        _id
         username
       }
       savedGames
@@ -47,7 +48,6 @@ export const QUERY_ME = gql`
         _id
         title
         content
-        # Add any other fields you need
       }
       profilePicture
     }
