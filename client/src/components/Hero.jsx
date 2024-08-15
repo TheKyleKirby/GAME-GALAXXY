@@ -13,17 +13,17 @@ const Hero = () => {
         <video className="w-full mx-auto" autoPlay loop muted>
           <source src={hero} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 mt-20 sm:mt-32 lg:mt-40 xl:mt-60">
-            <a href="#trending-tutorials" className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 text-base sm:text-lg lg:text-xl rounded">
+        <div className="md:absolute md:inset-0 space-y-4 flex mt-20  flex-col items-center md:flex-row md:justify-center md:space-x-32 md:space-y-0">
+          {/* <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 mt-20 sm:mt-32 lg:mt-40 xl:mt-60"> */}
+            <a href="#trending-tutorials" className="bg-cyan-500 hover:bg-cyan-600 text-white text-xs font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 md:text-base sm:text-lg lg:text-xl rounded">
               Explore the Galaxy!
             </a>
             <button
               onClick={() => navigate('/signup')} 
-              className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 text-base sm:text-lg lg:text-xl rounded">
+              className="bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2 px-4 sm:py-3 sm:px-5 lg:py-4 lg:px-6 md:text-base sm:text-lg lg:text-xl rounded">
               Join the Adventure!
             </button>
-          </div>
+          {/* </div> */}
         </div>
       </section>
     </>

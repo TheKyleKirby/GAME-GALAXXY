@@ -39,8 +39,9 @@ const startApolloServer = async () =>{
 	if (process.env.NODE_ENV === 'production') {
 		app.use(express.static(path.join(__dirname, '../client/dist')));
 	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-	  });
+		// changed to client/dist(refresh, and profile, and 404 not working)
+		res.sendFile(path.resolve(__dirname, 'client/dist', 'index.html'));
+	});
 	}
 
 	app.listen(PORT, () =>{

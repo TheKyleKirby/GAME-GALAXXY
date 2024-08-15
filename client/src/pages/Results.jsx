@@ -13,7 +13,6 @@ const Results = () => {
 
   const queryParams = useQueryParams();
   const searchString = queryParams.get("query") || ""; // Fallback to empty string if searchString is null
-  console.log(searchString);
 
   // Main search query for users and tutorials
   const { data: mainSearchData, loading: mainSearchLoading, error: mainSearchError } = useQuery(MAIN_SEARCH, {
@@ -27,9 +26,6 @@ const Results = () => {
     skip: !searchString, // Skip query if searchString is empty
   });
 
-  console.log("Search String:", searchString);
-  console.log("Main Search Data:", mainSearchData);
-  console.log("Game Search Data:", gameSearchData);
 
   if (mainSearchLoading || gameSearchLoading) return <p>Loading...</p>;
   if (mainSearchError || gameSearchError) return <p>Error: {mainSearchError?.message || gameSearchError?.message}</p>;
