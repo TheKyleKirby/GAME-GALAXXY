@@ -1,7 +1,4 @@
-const { gql } = require('apollo-server-express')
-
-
-const typeDefs = gql`
+const typeDefs = `
 #main for all info needed(profile)
 	type User {
 		_id: ID!

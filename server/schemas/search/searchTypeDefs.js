@@ -1,6 +1,4 @@
-const { gql } = require('apollo-server-express');
-
-const searchTypeDefs = gql`
+const searchTypeDefs = `
 	type SearchResults {
 		users: [User]
 		tutorials: [Tutorial]

@@ -37,7 +37,7 @@ ___
 ## Deployment
 
 Here is a link to the deployed application using Render.
-()
+(https://game-galaxxy.onrender.com/) 
 ___
 
 ## License
