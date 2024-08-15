@@ -74,7 +74,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="sticky top-0 z-50 bg-tealBlue-dark items-center flex flex-col md:flex-row md:justify-between w-full p-4">
+            <nav className="sticky top-0 z-50 bg-tealBlue-dark items-center flex flex-col md:flex-row md:flex-wrap md:justify-between w-full p-4">
                 <div className="flex flex-col items-center space-y-5 md:justify-between lg:flex-row lg:items-center w-full">
                     <Link to="/" className="flex items-center ">
                         <div 
@@ -104,7 +104,7 @@ const Navbar = () => {
                         </div>
                     </Link>
 
-                    <div className="hidden sm:flex lg:justify-center md:mt-0 lg:flex-grow">
+                    <div className="hidden md:flex lg:justify-center md:mt-0 lg:flex-grow">
                         <SearchBar />
                         </div>
                         <button
@@ -130,7 +130,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <div className={`${isMenuOpen ? 'block' : 'hidden'}  absolute top-20 md:top-16 left-0 w-full z-50`} id="navbar-hamburger">
+                <div className={`${isMenuOpen ? 'block' : 'hidden'}  absolute top-20 lg:top-16 left-0 w-full z-50`} id="navbar-hamburger">
                     <ul className="flex flex-col items-center justify-around font-medium mt-7 pb-7 rounded-bl-lg rounded-br-lg bg-tealBlue-dark h-svh md:h-full dark:border-royalBlurp-dark">
                         <li>
                             <Link to="/" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 hover:text-pinkyPink-dark" aria-current="page">Home</Link>
