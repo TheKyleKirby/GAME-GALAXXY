@@ -13,7 +13,6 @@ const handleInput = (event) =>{
 
 const handleSubmit = (event) =>{
 	event.preventDefault()
-	console.log(searchString)
 	if(searchString.trim()){
 		navigate(`/results?query=${encodeURIComponent(searchString)}`)
 	}

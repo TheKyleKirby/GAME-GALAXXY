@@ -7,7 +7,6 @@ const searchResolvers = {
     mainSearch: async (parent, { searchString }) => {
       const query = searchString;
       
-      console.log(`mainsearch resolver query ${query}`.cyan);
       let users = [];
       let tutorials = [];
       let games = [];
@@ -15,11 +14,9 @@ const searchResolvers = {
       try {
         // Search for users
         users = await User.find({ username: new RegExp(query, 'i') });
-        console.log(`users mainsearch resolvers ${JSON.stringify(users)}`.blue);
 
         // Search for tutorials
         tutorials = await Tutorial.find({ title: new RegExp(query, 'i') });
-        console.log(`tutorials mainsearch resolvers ${JSON.stringify(tutorials)}`.green);
 
         // Fetch game ID using search string
         const gameId = await fetchGameIdBySearchString(query);
@@ -36,7 +33,6 @@ const searchResolvers = {
         console.log(`error in main search ${error}`.red);
       }
 
-      console.log(`games mainsearch resolvers ${JSON.stringify(games)}`.yellow);
 
       return {
         users,
