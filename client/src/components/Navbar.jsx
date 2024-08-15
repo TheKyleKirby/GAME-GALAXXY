@@ -131,18 +131,18 @@ const Navbar = () => {
                 </div>
 
                 <div className={`${isMenuOpen ? 'block' : 'hidden'}  absolute top-20 lg:top-16 left-0 w-full z-50`} id="navbar-hamburger">
-                    <ul className="flex flex-col items-center justify-around font-medium mt-7 pb-7 rounded-bl-lg rounded-br-lg bg-tealBlue-dark h-svh md:h-full dark:border-royalBlurp-dark">
+                    <ul className="flex flex-col items-center justify-around font-medium mt-7 pb-7 rounded-bl-lg rounded-br-lg bg-tealBlue-dark h-96 md:h-full dark:border-royalBlurp-dark">
                         <li>
                             <Link to="/" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 hover:text-pinkyPink-dark" aria-current="page">Home</Link>
                         </li>
-                        <li>
                             {isLoggedIn && (
-                                <Link to="/Profile" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 hover:text-pinkyPink-dark">Profile</Link>
-                            )}
-                        </li>
                         <li>
-                            <Link to="/Results" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 hover:text-pinkyPink-dark">Results</Link>
+                                <Link to="/Profile" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 hover:text-pinkyPink-dark">Profile</Link>
                         </li>
+                            )}
+                        {/* <li>
+                            <Link to="/Results" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 hover:text-pinkyPink-dark">Results</Link>
+                        </li> */}
                         <li>
                             <Link to="/Blog" className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 hover:text-pinkyPink-dark">Blog</Link>
                         </li>
@@ -160,7 +160,7 @@ const Navbar = () => {
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
                     <div className="bg-white p-6 rounded-md shadow-md w-96 relative">
                         <button
-                            onClick={toggleLoginModal} className="text-gray-500 hover:text-gray-700">&times;
+                            onClick={toggleLoginModal} className="absolute top-2 right-4 text-gray-500 hover:text-gray-700">&times;
                         </button>
                         <h2 className="text-xl mb-4">Login</h2>
                         <input
