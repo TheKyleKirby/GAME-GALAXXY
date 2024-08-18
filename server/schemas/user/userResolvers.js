@@ -197,7 +197,6 @@ const resolvers = {
 
 			const profilePictureUrl = file
 
-
 			await User.findByIdAndUpdate(user._id, { profilePicture: profilePictureUrl })
 
 			return {

@@ -57,9 +57,7 @@ const gameResolvers = {
           }
         );
 
-        if (!response.data || response.data.length === 0) {
-          throw new Error("No games found with the provided name");
-        }
+
 
         return response.data.map((game) => {
           const platforms = game.platforms
