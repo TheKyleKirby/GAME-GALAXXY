@@ -113,6 +113,15 @@ const gameResolvers = {
           ?.map((platformId) => reverseConsoleIds[platformId])
           .filter(Boolean);
 
+        let age_ratings = []
+        console.log(`age_ratings ${JSON.stringify(game.age_ratings)}`)
+          if(game.age_ratings){
+            age_ratings = game.age_ratings.map((rating) => ({
+              category: rating.category,
+              rating: reverseAgeRatingMap[rating.rating]
+            }))
+          }
+          console.log(`processed ${age_ratings}`)
         return {
           id: game.id,
           name: game.name,
@@ -122,11 +131,8 @@ const gameResolvers = {
           url: game.url,
           tags: game.tags,
           similar_games: game.similar_games,
-          age_ratings: game.age_ratings.map((rating) => ({
-            category: rating.category,
-            rating: reverseAgeRatingMap[rating.rating],
-          })),
-        };
+          age_ratings
+        }
       } catch (error) {
         console.error("Error fetching game info:", error);
         throw new Error("Failed to fetch game info");
@@ -136,3 +142,56 @@ const gameResolvers = {
 };
 
 module.exports = gameResolvers;
+
+// get age rating code...
+// gameAgeRating: async(_, {id}) =>{
+//   // search for age_rating
+// try {
+// const response = await axios.post(
+//   'https://api.igdb.com/v4/age_ratings',
+//   `fields category, rating; where id = ${id};`,
+//   {
+//     headers: {
+//       'Client-ID': process.env.IGDB_CLIENT_ID,
+//       Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN}`
+//     }
+//   }
+// )
+
+// console.log(`IGDB API response for Ratings: ${JSON.stringify(response.data)}`.blue)
+
+// if (response.data.length > 0) {
+//   // todo need to make ratings an array to do age rating map through (maybe filter by category, prolly not.)
+//   const ratings = response.data[0]
+
+//   const { category, rating } = ratings
+//   const ageRatingEnum = ageRatingMap[rating] || null
+
+// console.log(`ratings : ${ratings.category}, ${ratings.rating}`.green)
+//   return {
+//     category,
+//     rating: ageRatingEnum
+//   }
+// }
+// else{
+//   return null
+// }
+// } catch (error) {
+// console.log(`error getting rating ${error}`.red)
+// }
+// }
+
+// putting game and rating together...
+// const gamesWithEsrb = response.data.map((game) => {
+//   return {
+//     ...game,
+//     esrb: rating,
+//   };
+// });
+
+// return gamesWithEsrb;
+// } catch (error) {
+// console.error('Error fetching games by ESRB rating from IGDB:', error.response ? error.response.data : error.message);
+// throw new Error('Failed to fetch games by ESRB rating from IGDB');
+// }
+// }

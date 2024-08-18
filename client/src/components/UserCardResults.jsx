@@ -30,8 +30,6 @@ const UserCardResults = ({ user }) => {
     }
 
 
-
-    console.log(JSON.stringify(user))
     return (
         <div className="max-w-sm bg-darkPurple-dark border-gray-200 rounded-lg shadow-md p-4">
             <div className="flex items-center space-x-4 mb-4">

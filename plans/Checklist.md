@@ -11,53 +11,54 @@
 <!-- - [BT - BM ] Hero -->
 <!-- - [BM ] Trending section (carousel still needs some tweaking, but is implemented) -->
 <!-- - [BM ] Tutorial cards -->
-- [ ] Game cards
-- [ ] User cards
+<!-- - [ ] Game cards -->
+<!-- - [ ] User cards -->
 <!-- - [BT ] About us section -->
 <!-- - [KK] Footer -->
+  - [ ] User Profile(not logged in user)
 
 ### ResultsPage(or section) Components:
 <!-- [BT] wireFrame -->
-- [ ] Search results container
+<!-- - [ ] Search results container -->
 - [ ] Filter options
-- [ ] Tutorial result cards
-- [ ] Game result cards
-- [ ] User result cards
+<!-- - [ ] Tutorial result cards -->
+<!-- - [ ] Game result cards -->
+<!-- - [ ] User result cards -->
 
 ### TutorialPage Components:
 <!-- [BT] wireFrame -->
-- [ ] Tutorial Content (title, author, content, etc)
+<!-- - [ ] Tutorial Content (title, author, content, etc) -->
 - [ ] Comments display
-- [ ] Comment form
+<!-- - [ ] Comment form -->
 - [ ] Related chapters/levels area
 
 ### Create Tutorial Page Components:
 <!-- [BT] wireFrame -->
 - [ ] Form
-  - [ ] Game input
-  - [ ] Console input
-  - [ ] Title/Chapter/Level input
-  - [ ] Content input
-  - [ ] YouTube embed link input (optional)
-  - [ ] Tags input
-  - [ ] Images input (optional)
+  - [ ] Game input(link w/ game through IGDB?)
+  - [ ] Console input (link with enums)
+  - [ ] Title/Chapter/Level input (make grouping available)
+  - [ ] Content input (format as put in-paragraphs, list items, etc)
+  <!-- - [ ] YouTube embed link input (optional) -->
+  <!-- - [ ] Tags input -->
+  - [ ] Images input (optional)-cloudinary?
 
 ### Profile Page Components:
 <!-- [BT] wireFrame -->
-- [ ] Profile Details
-  - [ ] Picture
-  - [ ] Bio
+<!-- - [ ] Profile Details -->
+  <!-- - [ ] Picture -->
+  <!-- - [ ] Bio -->
   - [ ] Top games
-  - [ ] Date joined?
-- [ ] Friends List
+  <!-- - [ ] Date joined? -->
+<!-- - [ ] Friends List -->
 - [ ] Saved Games
 - [ ] Creators Following List
-- [ ] Tutorials Saved List
-- [ ] Created Tutorials List
-- [ ] Edit Profile Form (when button/link clicked)
+<!-- - [ ] Tutorials Saved List -->
+<!-- - [ ] Created Tutorials List -->
+<!-- - [ ] Edit Profile Form (when button/link clicked) -->
 
 ### Not Found Page
-- [ ] Not found page
+<!-- - [ ] Not found page -->
 
 ## QUERIES(typeDefs)
 ### HomePage Queries:
@@ -108,51 +109,52 @@
 ## QUERIES(resolvers)
 ### HomePage Queries:
 - [ ] Query for trending tutorials
-- [ ] Query for about us information(really, just go over a json file with our info for each card/thing)
+<!-- - [ ] Query for about us information(really, just go over a json file with our info for each card/thing) -->
 
 ### ResultsPage Queries:
-- [ ] Query for search results(one query using searchInput)
-  - [ ]  users
-  - [ ]  games
-  - [ ]  tutorials
+<!-- - [ ] Query for search results(one query using searchInput) -->
+  <!-- - [ ]  users -->
+  - [ ]  games(age_rating needs to be fetched)
+  <!-- - [ ]  tutorials -->
   - [ ]  tags
 - [ ] Query for filter options(one query using filterInput)
 
 ### TutorialPage Queries:
-- [ ] Query for single tutorial
+<!-- - [ ] Query for single tutorial -->
 - [ ] Query for related titles/chapters/levels
-- [ ] Query for game info(title, rating, etc)
+<!-- - [ ] Query for game info(title, rating, etc) -->
 
 ### Create Tutorial Page Queries:
 - [ ] Query for games (for dropdown select input field)
 - [ ] Query for tutorial groups from user (for select dropdown)
 
 ### Dashboard Page Queries:
-- [ ] Query for profile details
+<!-- - [ ] Query for profile details -->
 
 
 
 ## MUTATIONS(resolvers)
 ### HomePage Mutations:
 <!-- - [X] Mutation to addUser(need JWT auth) -->
-- [K] Mutation to login
+<!-- - [K] Mutation to login -->
 
 ### ResultsPage Mutations:
-- [ ] Mutation to update saved items(friend, tutorial, creator) on user
+<!-- - [ ] Mutation to update saved items(friend, tutorial, creator) on user -->
 
 ### TutorialPage Mutations:
 - [ ] Mutation to update rating on tutorial
-- [ ] Mutation to add comments on tutorial/user
+<!-- - [ ] Mutation to add comments on tutorial/user -->
 
 ### Create Tutorial Page Mutations:
-- [ ] Mutation to add new tutorial to database
+<!-- - [ ] Mutation to add new tutorial to database -->
 
 ### Dashboard Page Mutations:
-- [ ] Mutation to update user profile
-- [ ] Mutation to remove tutorial
+<!-- - [ ] Mutation to update user profile -->
+<!-- - [ ] Mutation to remove tutorial -->
 - [ ] Mutation to update tutorial
-- [ ] Mutation to remove friend
+<!-- - [ ] Mutation to remove friend -->
 - [ ] Mutation to unfollow creator
+- [ ] Mutation to remove saved game
 
 
 
@@ -162,39 +164,36 @@
 <!-- - [KG] Submit login/signup form -->
 <!-- - [KG] Authenticate user with JWT -->
 <!-- - [KG] Redirect to dashboard after login/signup -->
-- [ ] Handle search bar submission
-- [ ] Display search results
+<!-- - [ ] Handle search bar submission -->
+<!-- - [ ] Display search results -->
 - [ ] Filter search results
 <!-- - [BT] About us json file & mapping to show on cards on homepage -->
 
 ### ResultsPage Functions:
-- [ ] Display search results
+<!-- - [ ] Display search results -->
 - [ ] Filter search results
-- [ ] Expand user card on click(truncate-> isFullDescription? toggle)
-- [ ] Display tutorials on game click (filter allGames by Game) ICEBOX
-- [ ] Redirect to tutorial page on click
+<!-- - [ ] Redirect to tutorial page on click -->
 
 ### TutorialPage Functions:
-- [ ] Display tutorial content
+<!-- - [ ] Display tutorial content -->
 - [ ] Display comments
 - [ ] Submit new comment
 - [ ] Update tutorial rating
-- [ ] Save tutorial
+<!-- - [ ] Save tutorial -->
 - [ ] Display related titles/chapters/levels
 
 ### Create Tutorial Page Functions:
-- [ ] Handle form submission
-- [ ] Retrieve input values
-- [ ] Save new tutorial to database
-- [ ] Redirect to dashboard after tutorial creation
+<!-- - [ ] Handle form submission -->
+<!-- - [ ] Retrieve input values -->
+<!-- - [ ] Save new tutorial to database -->
+<!-- - [ ] Redirect to dashboard after tutorial creation -->
 - [ ] Fill out dropdown options for game selection
 - [ ] Fill out dropdown options with user's tutorial groups
 
 ### Dashboard Page Functions:
-- [ ] Display profile details
-- [ ] Open edit profile form
-- [ ] Submit updated profile details
-- [ ] Remove tutorial
+<!-- - [ ] Display profile details -->
+<!-- - [ ] Submit updated profile details -->
+<!-- - [ ] Remove tutorial -->
 - [ ] Remove game
-- [ ] Remove user
-- [ ] Handle photo upload
+<!-- - [ ] Remove user -->
+<!-- - [ ] Handle photo upload -->

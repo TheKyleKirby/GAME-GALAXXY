@@ -9,12 +9,12 @@
 		// // Login modal/Signup modal
 		// // Hero
 		// // Trending section
-		// ? search results page, or populate home page?
+		//// search results page, or populate home page?
 		// // Tutorial cards
-		// todo Game cards
-		// todo User cards
+		// // Game cards
+		// // User cards
 
-		// todo About us section
+		// // About us section
 		//// Footer
 
 	
@@ -40,30 +40,30 @@
 			// // Auth with jwt
 			// // Redirect to dashboard after logged in
 		//* Searchbar:
-			// todo Submit values to query 
-			// todo Query for user, game, tutorial, tags
-			// todo Organize to render by type-users, games, tutorials
+			// // Submit values to query 
+			// todo Query for tags
+			// // Organize to render by type-users, games, tutorials
 			// todo Filter options
 		//* Dashboard:
 			// // Direct to page
 			// // Query for user
-			// todo Profile info
-			// todo Render to appropriate areas
-			// todo Edit profile submit form
-			// todo Mutation to update user
-			// todo Options to remove tutorial, game,or user
+			// // Profile info
+			// // Render to appropriate areas
+			// // Edit profile submit form
+			// // Mutation to update user
+			// todo Options to remove game
 		//* New tutorial:
-			// todo Direct to page
+			// // Direct to page
 			// todo Query games for drop down select input field
-			// todo Handle submit form
-			// todo Save to database
-			// todo Redirect to dashboard
+			// // Handle submit form
+			// // Save to database
+			// // Redirect to dashboard
 
 
 // !WHEN I CLICK SIGNUP/LOGIN
 // !THEN I AM PRESENTED WITH A MODAL FOR THE OPTION TO LOGIN/SIGNUP
 	// // Create
-	// todo Style
+	// // Style
 	// // Functions to operate modal
 	// // Functions to take in values
 	// // Mutations to database
@@ -77,75 +77,62 @@
 // !WHEN I SUBMIT A SEARCH INTO THE MAIN SEARCHBAR
 // !THEN I AM PRESENTED WITH RESULTS TO VIEW, AND CLICK ON. MUST BE LOGGED IN TO RATE, COMMENT, SAVE ETC
 	//* Functions:
-		// todo mutation for updating saved items on user
+		// // mutation for updating saved items on user
 		// todo mutation for updating rating on tutorial
 		// todo mutation for comments on tutorial(logged in user id added to comment)
 	
 
 // !WHEN I AM PRESENTED WITH THE RESULTS
 // !THEN I WILL SEE RESULTS FOR CREATORS, USERS, GAMES/TUTORIALS
-	// ? what do we want on each results card?
 		// USERS-
 		// GAMES-
 		// TUTORIALS-
-	// todo Style
-	// todo Create
-	// todo Queries
+	// // Style
+	// // Create
+	// // Queries
 	// todo filter options
-	// todo Render info
+	// // Render info
 
 
-// !WHEN I CLICK ON USER
-// !THEN CARD EXPANDS TO INCLUDE A PIC, BIO, BUTTON TO ADD/FOLLOW, TOP 3 GAMES, TUTORIALS CREATED
-	// todo function to expand
 
 // !WHEN I CLICK ON A TUTORIAL/TUTORIAL
 // !THEN I AM PRESENTED WITH A PAGE THAT DISPLAYS
-	// *AUTHOR
-	// *GAME
-	// *CONSOLE
-	// *TITLE/CHAPTER/LEVEL
-	// *CONTENT
-	// *YOUTUBE EMBED LINK(optional)
-	// *TAGS
-	// *RATING
-	// *COMMENTS
-	// *OTHER RELATED TITLES/CHAPTERS/LEVELS LINKS
-	// *SAVE BUTTON
-	// *RATE OPTION
-	// *COMMENT OPTION
+	// //AUTHOR
+	// //GAME
+	// //CONSOLE
+	// //TITLE/CHAPTER/LEVEL
+	// //CONTENT
+	// //YOUTUBE EMBED LINK(optional)
+	// //TAGS
+	// todo RATING
+	// todo COMMENTS
+	// todo OTHER RELATED TITLES/CHAPTERS/LEVELS LINKS
+	// //SAVE BUTTON
+	// todo RATE OPTION
+	// // COMMENT OPTION
 
-	// *Single Tutorial Page Components:
-		// todo Tutorial Content(title, author, content, etc)
-		// todo Comments display
-		// todo Comment form
-		// todo chapters/levels area
-	// todo Style
-	// // Create
-	// todo Query for single tutorial & direct to tutorial page on link
 
 
 // !WHEN I CLICK CREATE NEW TUTORIAL(WHILE LOGGED IN)
 // !THEN I AM PRESENTED WITH A PAGE WITH A FORM
 	// *Create New Tutorial Page Components:
-		// todo Form(might break down more for function purposes)
-
 	// *INPUTS:
 		// *GAME
 		// *CONSOLE(create console options for dropdown)
 		// *TITLE/CHAPTER/LEVEL
 			// ? group with other levels/chapters -to be able to find links for other chapters easier.
-		// *CONTENT
-		// *YOUTUBE EMBED LINK(optional)
-		// *TAGS
+		// //CONTENT
+		// //YOUTUBE EMBED LINK(optional)
+		// //TAGS
 		// ? images?
-	// todo Create
-	// todo Style
+	// // Create
+	// // Style
 	// ? query for "tutorial groups" from user for select dropdown
 	// todo query for games for select dropdown
-	// todo Functions to retrieve input values
-	// todo Mutation to add to database
+	// // Functions to retrieve input values
+	// // Mutation to add to database
 	// todo figure out how to keep content input formatted as user created
+	// todo put auth on
 
 
 
@@ -153,49 +140,39 @@
 // !THEN I AM PRESENTED WITH MY DASHBOARD THAT DISPLAYS:
 	// *Dashboard Page Components:
 		// // Profile Details:
-			// *pic
-			// *bio
+			// //pic
+			// //bio
 			// *top games
-		// todo Friends List
-		// todo Saved Games
+		// // Friends List
+		// // Saved Games
 		// todo Creators Following List
-		// todo Tutorials Saved List
-		// todo Created Tutorials List
-		// todo Edit Profile Form(when button/link clicked)'
-	// todo find the best way to upload photos:
-		//* https://www.apollographql.com/docs/react/data/file-uploads/
-		// *https://github.com/jaydenseric/apollo-upload-client
+		// // Tutorials Saved List
+		// // Created Tutorials List
+		// // Edit Profile Form(when button/link clicked)'
+	// // find the best way to upload photos:
+		// //https://www.apollographql.com/docs/react/data/file-uploads/
+		// //https://github.com/jaydenseric/apollo-upload-client
 
 
 
 
 
 		// ****UPDATE PLANS TO INCLUDE****
-		// todo Remove, unfollow, or delete options.(Delete Mutation needed to meet project Criteria)
-			// *need to add to profile page
-		// todo create an error/404 page
+		// // Remove, unfollow, or delete options.(Delete Mutation needed to meet project Criteria)
+			// //need to add to profile page
+		// // create an error/404 page
 
-		// todo  do we want to use an API to retrieve game data instead of leaving it up to the user? then no redundancies will happen, and we won't have to store it on our database
-			// *Tristan's all over it!
-		// todo are we creating an array of trending tutorials, or do we want to make a query for top rated tutorials?
-			// *Going to filter by our usernames, and we will create some.
+		// //  do we want to use an API to retrieve game data instead of leaving it up to the user? then no redundancies will happen, and we won't have to store it on our database
+		// // are we creating an array of trending tutorials, or do we want to make a query for top rated tutorials?
 		// todo what do we want to filter tutorials by? (console, rating, author....)
 			// *console, rating, author, game
 // *IDEAS/QUESTIONS
 
 
 
-// TODO avatars/pics
-	// How to upload images
-	//* https://www.apollographql.com/docs/react/data/file-uploads/
-	// *https://github.com/jaydenseric/apollo-upload-client
-
-
 // *ICEBOX*
 
 	// *icebox-youtube API when no results show, maybe have a way to find a tutorial else where?
-	// Can't find it here? 
-	// Add your own. Or search from other databases.
 	// *blog/ forums
 	// *live chat
 	// *Sell digital assets
