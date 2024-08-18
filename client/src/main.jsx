@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider, InMemoryCache, HttpLink, ApolloClient, ApolloLink } from '@apollo/client'
+// import { createUploadLink } from 'apollo-upload-client'
 import { setContext} from '@apollo/client/link/context'
 
 
 
 const httpLink = new HttpLink ({
-    // changed to production site(requests were still coming from localhost.)
-    uri: 'https://game-galaxxy.onrender.com/'
+    uri: 'http://localhost:3001/graphql'
+    // change back to for production
+        // uri: 'https://game-galaxxy.onrender.com/'
 })
 
 const authLink = setContext((_, {headers} ) =>{

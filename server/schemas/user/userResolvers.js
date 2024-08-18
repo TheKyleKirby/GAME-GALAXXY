@@ -16,6 +16,7 @@ const resolvers = {
 
 		// fetch the profile of the currently authenticated user - A user wants to view or edit their own profile information. (add populate profile or populate something else ?)
 		me: async (_parent, args, context) => {
+			console.log(JSON.stringify(context.user))
 			if (context.user) {
 				try {
 					const user = await User.findById(context.user._id)
@@ -23,12 +24,12 @@ const resolvers = {
 						.populate('createdTutorials')
 						.populate('friends')
 		
-					// console.log(`User in 'me' resolver: ${JSON.stringify(user, null, 2)}`);
+					console.log(`User in 'me' resolver: ${JSON.stringify(user, null, 2)}`);
 		
 					if (!user) {
 						throw new Error('User not found');
 					}
-		
+					console.log(user)
 					return user;
 				} catch (err) {
 					console.error('Error fetching user data:', err);
@@ -81,13 +82,13 @@ const resolvers = {
 			const user = await User.findOne({ username });
 
 			if (!user) {
-				throw AuthenticationError;
+				throw new Error('username or password incorrect')
 			}
 			// checking password from bcrypt in models
 			const correctPW = await user.isCorrectPassword(password);
 
 			if (!correctPW) {
-				throw AuthenticationError;
+				throw new Error('username or password incorrect')
 			}
 
 			const token = signToken({ username: user.username, email: user.email, _id: user._id });
@@ -194,20 +195,10 @@ const resolvers = {
 				throw AuthenticationError
 			}
 
-			const { createReadStream, filename } = await file
+			const profilePictureUrl = file
 
-			const filePath = path.join(__dirname, ".../uploads", filename)
 
-			await new Promise((res, rej) =>
-				createReadStream()
-					.pipe(createWriteStream(filePath))
-					.on('finish', res)
-					.on('error', rej)
-			)
-
-			const profilePictureUrl = `http://localhost:3001/uploads/${filename}`
-
-			await User.findByIdAndDelete(user._id, { profilePicture: profilePictureUrl })
+			await User.findByIdAndUpdate(user._id, { profilePicture: profilePictureUrl })
 
 			return {
 				success: true,
@@ -218,8 +209,6 @@ const resolvers = {
 		}
 	},
 
-
-	Upload: GraphQLUpload
 }
 
 module.exports = resolvers

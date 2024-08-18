@@ -38,9 +38,6 @@ const typeDefs = `
 		profilePicture: String
 	}
 
-#testing drop upload
-	scalar Upload
-
 
 	type Query {
 		allUsers: [User]
@@ -70,7 +67,7 @@ const typeDefs = `
 		removeSavedTutorial(savedTutorials: ID!): User
 	
 	#Testing picture upload
-		uploadProfilePicture(file: Upload!): UploadResponse
+		uploadProfilePicture(file: String!): UploadResponse
 	}
 
 

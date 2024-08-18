@@ -1,12 +1,15 @@
 import { useMutation } from "@apollo/client"
 import { ADD_FRIEND } from "../utils/mutations"
 import { useNavigate } from "react-router-dom"
+import { QUERY_ME } from "../utils/queries";
 
 
 
 const UserCardResults = ({ user }) => {
     
-    const [addFriend] = useMutation(ADD_FRIEND)
+    const [addFriend] = useMutation(ADD_FRIEND, {
+        refetchQueries: [{ query: QUERY_ME }]
+    })
     const navigate = useNavigate()
     
     const handleAddFriend = async (id) => {

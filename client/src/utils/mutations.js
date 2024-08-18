@@ -109,9 +109,8 @@ export const REMOVE_SAVED_TUTORIAL = gql `
 `
 
 
-// todo, not working yet.
 export const UPLOAD_PROFILE_PICTURE = gql`
-  mutation uploadProfilePicture($file: Upload!) {
+  mutation uploadProfilePicture($file: String!) {
     uploadProfilePicture(file: $file) {
       success
       message
