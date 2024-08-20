@@ -1,36 +1,36 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useMutation, useQuery } from "@apollo/client";
-import { CLICKED_TUTORIAL, QUERY_ME } from "../utils/queries";
+import { useParams, useNavigate } from "react-router-dom"
+import { useMutation, useQuery } from "@apollo/client"
+import { CLICKED_TUTORIAL, QUERY_ME } from "../utils/queries"
 import ReactStars from 'react-rating-stars-component'
-import { useState, useEffect } from "react";
-import { SAVE_TUTORIAL } from "../utils/mutations";
+import { useState, useEffect } from "react"
+import { SAVE_TUTORIAL } from "../utils/mutations"
 
 const Tutorial = () => {
-  const { id } = useParams();
-  const [tutorial, setTutorial] = useState(null);
+  const { id } = useParams()
+  const [tutorial, setTutorial] = useState(null)
   const [saveTutorial] = useMutation(SAVE_TUTORIAL, {
-    refetchQueries: [{ query: QUERY_ME }],
-  });
+    refetchQueries: [{ query: QUERY_ME }]
+  })
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const { data, loading, error } = useQuery(CLICKED_TUTORIAL, {
     variables: { id },
-  });
+  })
 
   useEffect(() => {
     if (data && data.clickedTutorial) {
-      setTutorial(data.clickedTutorial);
+      setTutorial(data.clickedTutorial)
     }
-  }, [data]);
+  }, [data])
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error.message}</p>
 
-  if (!tutorial) return <p>Hold on</p>;
+  if (!tutorial) return <p>Hold on</p>
 
-  const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-  const randomNumber = getRandomNumber(0, 5);
+  const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+  const randomNumber = getRandomNumber(0, 5)
 
   const handleSaveTutorial = async (id) => {
     try {
@@ -38,15 +38,15 @@ const Tutorial = () => {
         variables: {
           savedTutorials: id,
         },
-      });
+      })
 
-      alert("Tutorial saved!");
-      navigate("/profile");
+      alert("Tutorial saved!")
+      navigate("/profile")
     } catch (error) {
-      console.log(error);
-      alert("Failed to save tutorial.");
+      console.log(error)
+      alert("Failed to save tutorial.")
     }
-  };
+  }
 
   return (
     <div className="flex flex-col flex-grow bg-deepBlue text-notWhite min-h-screen">
@@ -138,7 +138,7 @@ const Tutorial = () => {
           src={tutorial.youTubeLink} 
           title="YouTube video player" 
           frameBorder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allow="accelerometer autoplay clipboard-write encrypted-media gyroscope picture-in-picture" 
           allowFullScreen
         ></iframe>
       </div>
@@ -191,7 +191,7 @@ const Tutorial = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Tutorial;
+export default Tutorial

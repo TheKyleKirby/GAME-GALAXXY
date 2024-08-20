@@ -13,10 +13,18 @@ const searchResolvers = {
 
       try {
         // Search for users
-        users = await User.find({ username: new RegExp(query, 'i') });
+        users = await User.find({ username: new RegExp(query, 'i') })
+
+        const userIds = users.map(user => user._id)
 
         // Search for tutorials
-        tutorials = await Tutorial.find({ title: new RegExp(query, 'i') });
+        tutorials = await Tutorial.find({
+          $or: [ 
+            {title: new RegExp(query, 'i') }, 
+            {game: new RegExp(query, 'i')},
+            {author: {$in: userIds }}
+          ]
+        })
 
         // Fetch game ID using search string
         const gameId = await fetchGameIdBySearchString(query);

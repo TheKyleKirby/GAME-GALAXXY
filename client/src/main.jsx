@@ -9,7 +9,9 @@ import { setContext} from '@apollo/client/link/context'
 
 
 const httpLink = new HttpLink ({
-    uri: 'http://localhost:3001/graphql'
+    // uri: 'http://localhost:3001/graphql'
+    // change back to for production
+        uri: 'https://game-galaxxy.onrender.com/'
 })
 
 const authLink = setContext((_, {headers} ) =>{

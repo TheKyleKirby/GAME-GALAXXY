@@ -1,12 +1,15 @@
 import { useMutation } from "@apollo/client"
 import { ADD_FRIEND } from "../utils/mutations"
 import { useNavigate } from "react-router-dom"
+import { QUERY_ME } from "../utils/queries";
 
 
 
 const UserCardResults = ({ user }) => {
     
-    const [addFriend] = useMutation(ADD_FRIEND)
+    const [addFriend] = useMutation(ADD_FRIEND, {
+        refetchQueries: [{ query: QUERY_ME }]
+    })
     const navigate = useNavigate()
     
     const handleAddFriend = async (id) => {
@@ -27,8 +30,6 @@ const UserCardResults = ({ user }) => {
     }
 
 
-
-    console.log(JSON.stringify(user))
     return (
         <div className="max-w-sm bg-darkPurple-dark border-gray-200 rounded-lg shadow-md p-4">
             <div className="flex items-center space-x-4 mb-4">

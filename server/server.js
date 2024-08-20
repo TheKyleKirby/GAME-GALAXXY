@@ -33,14 +33,13 @@ const startApolloServer = async () =>{
 	app.use(express.json())
 	app.use(cors())
 
-	// app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 1 }))
 	app.use('/graphql', expressMiddleware(server, {context: authMiddleware}))
 
 	if (process.env.NODE_ENV === 'production') {
 		app.use(express.static(path.join(__dirname, '../client/dist')));
 	app.get('*', (req, res) => {
-		// changed to client/dist(refresh, and profile, and 404 not working)
-		res.sendFile(path.resolve(__dirname, 'client/dist', 'index.html'));
+		// changed back to just dist
+		res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 	});
 	}
 
