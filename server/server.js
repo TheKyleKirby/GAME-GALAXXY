@@ -10,8 +10,6 @@ const { typeDefs, resolvers } = require('./schemas')
 const colors = require('colors')
 const cors = require('cors')
 
-// todo, this is not working right...need to read more.
-// const graphqlUploadExpress = require('graphql-upload/public/graphqlUploadExpress.js')
 
 const PORT = process.env.PORT || 3001
 const app = express()

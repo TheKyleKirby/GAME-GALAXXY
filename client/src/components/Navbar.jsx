@@ -11,6 +11,8 @@ const Navbar = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
     const location = useLocation();
+    const [error, setError] = useState('');
+
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -62,7 +64,9 @@ const Navbar = () => {
             setIsLoggedIn(true);
 
         } catch (e) {
-            console.error(e);
+            setError(e.message);
+            console.log(e)
+
         }
     };
 
@@ -163,6 +167,7 @@ const Navbar = () => {
                             onClick={toggleLoginModal} className="absolute top-2 right-4 text-gray-500 hover:text-gray-700">&times;
                         </button>
                         <h2 className="text-xl mb-4">Login</h2>
+                        {error && <p className="text-red-500 mb-4">{error}</p>}
                         <input
                             onChange={handleChange}
                             type="text"
