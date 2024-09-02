@@ -34,7 +34,7 @@ const CustomCarousel = () => {
   }, []);
 
   if (loading) return <div className='flex justify-center items-center mx-auto bg-mutedPastelBlue-dark w-fit rounded-full'><BounceLoader  /> </div>
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p className='text-brightPeach text-center font-semibold tracking-wider'>Error: {error.message}</p>
 
   const handleReadTutorial = (id) => {
     navigate(`/tutorial/${id}`)

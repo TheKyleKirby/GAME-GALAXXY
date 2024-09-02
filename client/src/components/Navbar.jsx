@@ -64,9 +64,7 @@ const Navbar = () => {
             setIsLoggedIn(true);
 
         } catch (e) {
-            setError(e.message);
-            console.log(e)
-
+            setError(e.message)
         }
     };
 
