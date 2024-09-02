@@ -114,14 +114,14 @@ const gameResolvers = {
           .filter(Boolean);
 
         let age_ratings = []
-        console.log(`age_ratings ${JSON.stringify(game.age_ratings)}`)
-          if(game.age_ratings){
-            age_ratings = game.age_ratings.map((rating) => ({
-              category: rating.category,
-              rating: reverseAgeRatingMap[rating.rating]
-            }))
-          }
-          console.log(`processed ${age_ratings}`)
+        // console.log(`age_ratings ${JSON.stringify(game.age_ratings)}`)
+        if (game.age_ratings) {
+          age_ratings = game.age_ratings.map((rating) => ({
+            category: rating.category,
+            rating: reverseAgeRatingMap[rating.rating]
+          }))
+        }
+        // console.log(`processed ${age_ratings}`)
         return {
           id: game.id,
           name: game.name,

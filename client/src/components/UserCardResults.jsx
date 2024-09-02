@@ -23,12 +23,10 @@ const UserCardResults = ({ user }) => {
 
             alert("New Friend saved!")
             navigate('/profile')
-        } catch (error) {
-            console.log(error)
+        } catch {
             alert("Failed to add friend.")
         }
     }
-
 
     return (
         <div className="max-w-sm bg-darkPurple-dark border-gray-200 rounded-lg shadow-md p-4">

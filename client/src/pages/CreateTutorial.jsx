@@ -14,7 +14,6 @@ const CreateTutorial = () => {
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
 
-  // todo gonna have to split tags into each tag string.
   const tutorialInput = {
     title,
     game,
@@ -26,7 +25,7 @@ const CreateTutorial = () => {
   };
 
   const [createTutorial] = useMutation(CREATE_TUTORIAL, {
-    refetchQueries: [{ query: QUERY_ME}],
+    refetchQueries: [{ query: QUERY_ME }],
     awaitRefetchQueries: true
   });
 
@@ -48,8 +47,8 @@ const CreateTutorial = () => {
           variables:
             { tutorial: tutorialInput }
         })
-        ;
-      console.log('Tutorial created:', data);
+
+      alert ('Tutorial created')
       // Redirect to profile page
       navigate('/profile')
 

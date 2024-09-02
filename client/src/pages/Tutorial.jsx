@@ -42,8 +42,7 @@ const Tutorial = () => {
 
       alert("Tutorial saved!")
       navigate("/profile")
-    } catch (error) {
-      console.log(error)
+    } catch {
       alert("Failed to save tutorial.")
     }
   }

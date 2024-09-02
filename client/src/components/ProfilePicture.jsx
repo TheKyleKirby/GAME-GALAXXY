@@ -9,6 +9,7 @@ const ProfilePicture = ({ picture }) => {
     const [picStatus, setPicStatus] = useState('img')
     const [preview, setPreview] = useState(null)
     const [file, setFile] = useState([])
+    const [message, setMessage] = useState('')
     const [uploadProfilePicture] = useMutation(UPLOAD_PROFILE_PICTURE,
         {
             refetchQueries: [{ query: QUERY_ME }]
@@ -37,23 +38,15 @@ const ProfilePicture = ({ picture }) => {
 
         const newProfilePic = file[0]
 
-        console.log(newProfilePic)
-
         const formData = new FormData()
 
         formData.append('file', newProfilePic)
         formData.append('upload_preset', 'game_galaxy')
 
-        formData.forEach((value, key) => {
-            console.log(value, key)
-        })
-
         const results = await fetch('https://api.cloudinary.com/v1_1/dnvibzwty/image/upload', {
             method: 'POST',
             body: formData
         }).then(r => r.json())
-
-        console.log(results.secure_url)
 
         try {
             const { data } = await uploadProfilePicture({ variables: { file: results.secure_url } })
@@ -61,10 +54,10 @@ const ProfilePicture = ({ picture }) => {
             if (data.uploadProfilePicture.success) {
                 setPicStatus('img')
             } else {
-                console.error(data.uploadProfilePicture.message)
+                setMessage(data.uploadProfilePicture.message)
             }
         } catch (error) {
-            console.log(`Error uploading picture: ${error}`)
+            setMessage(`Error uploading picture: ${error}`)
         }
     }
 
@@ -108,7 +101,7 @@ const ProfilePicture = ({ picture }) => {
                     Save
                 </button>
             )}
-
+        {message &&  <p className="text-brightPeach-dark">{message}</p>}
         </div>
     )
 }
