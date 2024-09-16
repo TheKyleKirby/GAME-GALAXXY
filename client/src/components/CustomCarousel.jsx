@@ -18,6 +18,7 @@ const CustomCarousel = () => {
 
 
   useEffect(() => {
+    
     if (data) {
       setTrendingTutorials(data.allTutorials);
     }

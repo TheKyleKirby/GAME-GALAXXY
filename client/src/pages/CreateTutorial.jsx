@@ -150,7 +150,7 @@ const CreateTutorial = () => {
             <input
               type="text"
               name="tags"
-              className="rounded-lg p-2 w-full focus:outline-none focus:ring-4 focus:ring-offset-deepBlue"
+              className="rounded-lg p-2 w-full focus:outline-none focus:ring-4 focus:ring-offset-deepBlue  text-darkPurple"
               placeholder="Tags"
               value={tags}
               onChange={(handleTagsChange)}

@@ -5,6 +5,7 @@ import { GAME_BY_NAME, MAIN_SEARCH } from "../utils/queries";
 import GamesCardResults from "../components/GamesCardResults";
 import UserCardResults from "../components/UserCardResults";
 import SearchTutorialCard from "../components/SearchTutorialCard";
+import BounceLoader from 'react-spinners/BounceLoader'
 
 const Results = () => {
   const useQueryParams = () => {
@@ -27,7 +28,7 @@ const Results = () => {
   });
 
 
-  if (mainSearchLoading || gameSearchLoading) return <p>Loading...</p>;
+  if (mainSearchLoading || gameSearchLoading) return <div className='bg-mutedPastelBlue h-dvh flex justify-center items-center'><BounceLoader /> </div>
   if (mainSearchError || gameSearchError) return <p>Error: {mainSearchError?.message || gameSearchError?.message}</p>;
 
   const { users, tutorials } = mainSearchData?.mainSearch || {};
