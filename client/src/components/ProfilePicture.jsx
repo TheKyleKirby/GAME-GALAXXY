@@ -8,8 +8,9 @@ import { QUERY_ME } from "../utils/queries"
 const ProfilePicture = ({ picture }) => {
     const [picStatus, setPicStatus] = useState('img')
     const [preview, setPreview] = useState(null)
-    const [ file, setFile] = useState([])
-    const [uploadProfilePicture] = useMutation(UPLOAD_PROFILE_PICTURE, 
+    const [file, setFile] = useState([])
+    const [message, setMessage] = useState('')
+    const [uploadProfilePicture] = useMutation(UPLOAD_PROFILE_PICTURE,
         {
             refetchQueries: [{ query: QUERY_ME }]
         }
@@ -37,34 +38,26 @@ const ProfilePicture = ({ picture }) => {
 
         const newProfilePic = file[0]
 
-        console.log(newProfilePic)
-
         const formData = new FormData()
 
         formData.append('file', newProfilePic)
         formData.append('upload_preset', 'game_galaxy')
 
-        formData.forEach((value, key ) =>{
-            console.log(value, key)
-        })
-    
-        const results = await fetch('https://api.cloudinary.com/v1_1/dnvibzwty/image/upload',{
+        const results = await fetch('https://api.cloudinary.com/v1_1/dnvibzwty/image/upload', {
             method: 'POST',
             body: formData
         }).then(r => r.json())
 
-        console.log(results.secure_url)
-
         try {
-            const { data } = await uploadProfilePicture({ variables: { file: results.secure_url }})
-            
+            const { data } = await uploadProfilePicture({ variables: { file: results.secure_url } })
+
             if (data.uploadProfilePicture.success) {
                 setPicStatus('img')
             } else {
-                console.error(data.uploadProfilePicture.message)
+                setMessage(data.uploadProfilePicture.message)
             }
         } catch (error) {
-            console.log(`Error uploading picture: ${error}`)
+            setMessage(`Error uploading picture: ${error}`)
         }
     }
 
@@ -96,19 +89,19 @@ const ProfilePicture = ({ picture }) => {
                         alt="ProfilePic"
                         className="overflow-hidden w-56 h-56 border-none rounded-full object-cover transition-opacity duration-300 group-hover:opacity-20"
                     />
-                    
+
                 )}
             </button>
 
             {picStatus === 'preview' && (
-        <button
-            onClick={handleOnSubmit}
-            className="absolute inset-0 flex items-center justify-center w-16 h-10 bg-gradient-to-br from-darkPurple-dark to-[#8c5b94] text-goldenOrange font-extrabold rounded-full transition-colors duration-300 hover:bg-goldenOrange-dark"
-        >
-            Save
-        </button>
-    )}
-
+                <button
+                    onClick={handleOnSubmit}
+                    className="absolute inset-0 flex items-center justify-center w-16 h-10 bg-gradient-to-br from-darkPurple-dark to-[#8c5b94] text-goldenOrange font-extrabold rounded-full transition-colors duration-300 hover:bg-goldenOrange-dark"
+                >
+                    Save
+                </button>
+            )}
+        {message &&  <p className="text-brightPeach-dark">{message}</p>}
         </div>
     )
 }

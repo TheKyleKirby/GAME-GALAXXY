@@ -16,7 +16,6 @@ const resolvers = {
 
 		// fetch the profile of the currently authenticated user - A user wants to view or edit their own profile information. (add populate profile or populate something else ?)
 		me: async (_parent, args, context) => {
-			console.log(JSON.stringify(context.user))
 			if (context.user) {
 				try {
 					const user = await User.findById(context.user._id)
@@ -24,12 +23,9 @@ const resolvers = {
 						.populate('createdTutorials')
 						.populate('friends')
 		
-					console.log(`User in 'me' resolver: ${JSON.stringify(user, null, 2)}`);
-		
 					if (!user) {
 						throw new Error('User not found');
 					}
-					console.log(user)
 					return user;
 				} catch (err) {
 					console.error('Error fetching user data:', err);
@@ -102,14 +98,12 @@ const resolvers = {
 		},
 
 		updateBio: async (parent, { bioText }, context) => {
-		console.log(JSON.stringify(context))
 			if (!context.user) throw new Error("Not authenticated");
 			const updatedUserBio =  await User.findByIdAndUpdate(
 				context.user._id,
 				{ bioText },
 				{ new: true }
 			);
-			console.log(`updatedUserBio Resolver ${updatedUserBio}`)
 			return updatedUserBio
 		},
 

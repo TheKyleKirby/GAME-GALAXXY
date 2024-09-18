@@ -2,18 +2,6 @@ import {jwtDecode} from 'jwt-decode'
 
 class AuthService {
 
-	// getProfile() {
-	// 	try {
-	// 		const profile = jwtDecode(this.getToken());
-	// 		console.log('Profile:', profile);
-	// 		return profile;
-	// 	} catch (error) {
-	// 		console.error('Error decoding token:', error);
-	// 		return null;
-	// 	}
-	// }
-
-	// Retrieves and decodes the user's profile from the token
 	getProfile() {
         const token = this.getToken();
         try {

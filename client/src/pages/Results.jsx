@@ -5,6 +5,7 @@ import { GAME_BY_NAME, MAIN_SEARCH } from "../utils/queries";
 import GamesCardResults from "../components/GamesCardResults";
 import UserCardResults from "../components/UserCardResults";
 import SearchTutorialCard from "../components/SearchTutorialCard";
+import BounceLoader from 'react-spinners/BounceLoader'
 
 const Results = () => {
   const useQueryParams = () => {
@@ -12,22 +13,22 @@ const Results = () => {
   };
 
   const queryParams = useQueryParams();
-  const searchString = queryParams.get("query") || ""; // Fallback to empty string if searchString is null
+  const searchString = queryParams.get("query") || ""
 
   // Main search query for users and tutorials
   const { data: mainSearchData, loading: mainSearchLoading, error: mainSearchError } = useQuery(MAIN_SEARCH, {
     variables: { searchString },
-    skip: !searchString, // Skip query if searchString is empty
+    skip: !searchString, 
   });
 
   // Game search query by name
   const { data: gameSearchData, loading: gameSearchLoading, error: gameSearchError } = useQuery(GAME_BY_NAME, {
     variables: { name: searchString },
-    skip: !searchString, // Skip query if searchString is empty
+    skip: !searchString, 
   });
 
 
-  if (mainSearchLoading || gameSearchLoading) return <p>Loading...</p>;
+  if (mainSearchLoading || gameSearchLoading) return <div className='bg-mutedPastelBlue h-dvh flex justify-center items-center'><BounceLoader /> </div>
   if (mainSearchError || gameSearchError) return <p>Error: {mainSearchError?.message || gameSearchError?.message}</p>;
 
   const { users, tutorials } = mainSearchData?.mainSearch || {};
@@ -84,51 +85,3 @@ export default Results;
 
 
 
-
-
-
-
-
-
-
-{/* 
-// const [users, setUsers] = useState([
-//   {
-    profilePicture: "https://via.placeholder.com/150",
-    name: "Subtronics",
-    favoriteGames: ["Game 1", "Game 2", "Game 3"],
-  },
-  {
-    profilePicture: "https://via.placeholder.com/150",
-    name: "Level Up",
-    favoriteGames: ["Game A", "Game B", "Game C"],
-  },
-]);
-
-const { loading, error, data } = useQuery(GET_TUTORIALS);
-const [tutorials, setTutorials] = useState([]);
-
-useEffect(() => {
-  if (data) {
-    setTutorials(data.allTutorials);
-  } else {
-    console.log("error in getting tutorial data");
-  }
-}, [data]);
-
-const { loading: gameLoading, error: gameError, data: gameData } = useQuery(WHOLE_GAME_INFO, {
-  variables: { id: "623" }, // Replace "623" with the actual game ID you want to fetch
-});
-
-const [games, setGames] = useState([]);
-
-useEffect(() => {
-  if (gameData) {
-    setGames([gameData.wholeGameInfo]);
-  } else {
-    console.log("error in getting game data");
-  }
-}, [gameData]);
-
-if (loading || gameLoading) return <p>Loading...</p>;
-if (error || gameError) return <p>Error: {error.message}</p>; */}

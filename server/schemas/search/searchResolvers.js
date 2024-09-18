@@ -33,8 +33,6 @@ const searchResolvers = {
           // Fetch detailed game info using the game ID
           const gameInfo = await gameResolvers.Query.wholeGameInfo(null, { id: gameId });
           games.push(gameInfo);
-        } else {
-          console.log('No game found for the search string');
         }
 
       } catch (error) {

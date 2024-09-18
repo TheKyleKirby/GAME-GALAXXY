@@ -7,6 +7,7 @@ import ProfileSavedTutorials from '../components/ProfileSavedTutorials';
 import ProfileCreatedTutorials from '../components/ProfileCreatedTutorials';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+import BounceLoader from 'react-spinners/BounceLoader';
 
 const Profile = () => {
   // Query to get the profile data of the currently logged-in user
@@ -20,7 +21,7 @@ const Profile = () => {
 
   // Show loading message while data is being fetched
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='bg-darkPurple-dark h-dvh flex justify-center items-center'><BounceLoader /> </div>
   }
 
   // Handle error case and display an error message

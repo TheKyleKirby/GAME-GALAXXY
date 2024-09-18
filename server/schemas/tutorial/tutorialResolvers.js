@@ -20,12 +20,10 @@ const resolvers = {
 		},
 
 		clickedTutorial: async (_parent, id) => {
-		console.log(`clicked ${JSON.stringify(id)}`)
 			const selectedTutorial = await Tutorial.findById(id._id)
 				.populate('author')
 				.populate('comments')
 
-				console.log(selectedTutorial)
 				return selectedTutorial
 		}		
 	},
@@ -55,7 +53,6 @@ const resolvers = {
 					);
 					return newTutorial;
 				} catch (error) {
-					console.log(`Error creating tutorial: ${error}`);
 					throw new Error('Failed to create tutorial');
 				}
 			} else {
@@ -64,7 +61,6 @@ const resolvers = {
 		},
 
 		updateTutorial: async (parent, { _id, tutorial }) => {
-			console.log(tutorial)
 			try {
 				return (await Tutorial.findByIdAndUpdate(_id, tutorial, { new: true }))
 					.populate('author')
@@ -75,7 +71,6 @@ const resolvers = {
 		},
 
 		deleteCreatedTutorial: async (parent, _id) => {
-			console.log(_id)
 
 			try {
 				const deletedTutorial = await Tutorial.findByIdAndDelete(_id)
@@ -84,8 +79,6 @@ const resolvers = {
 				if (!deletedTutorial) {
 					console.log('tutorial not found')
 				}
-
-				console.log('Deleted!')
 				return deletedTutorial
 			} catch (error) {
 				console.log(`error deleting tutorial, ${error}`)
@@ -111,7 +104,6 @@ const resolvers = {
 					// .populate('author')
 					.populate('comments')
 
-				console.log(updatedTutorial)
 				return updatedTutorial
 			} catch (error) {
 				console.log(`error commenting on tutorial, ${error}`)

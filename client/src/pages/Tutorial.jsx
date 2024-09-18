@@ -4,6 +4,7 @@ import { CLICKED_TUTORIAL, QUERY_ME } from "../utils/queries"
 import ReactStars from 'react-rating-stars-component'
 import { useState, useEffect } from "react"
 import { SAVE_TUTORIAL } from "../utils/mutations"
+import BounceLoader from 'react-spinners/BounceLoader'
 
 const Tutorial = () => {
   const { id } = useParams()
@@ -24,7 +25,7 @@ const Tutorial = () => {
     }
   }, [data])
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <div className='bg-darkPurple-dark h-dvh flex justify-center items-center'><BounceLoader /> </div>
   if (error) return <p>Error: {error.message}</p>
 
   if (!tutorial) return <p>Hold on</p>
@@ -42,8 +43,7 @@ const Tutorial = () => {
 
       alert("Tutorial saved!")
       navigate("/profile")
-    } catch (error) {
-      console.log(error)
+    } catch {
       alert("Failed to save tutorial.")
     }
   }
@@ -145,7 +145,7 @@ const Tutorial = () => {
     </div>
   </div>
 ) : (
-  <p className="text-center text-brightPeach">No YouTube video available for this tutorial.</p>
+null
 )}
 
       </div>

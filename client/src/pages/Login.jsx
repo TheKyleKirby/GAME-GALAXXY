@@ -1,3 +1,5 @@
+// *is this in use? I think Navbar has login*
+
 import { LOGIN_USER } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 import { useState } from 'react';
@@ -25,7 +27,6 @@ const Login = () => {
     // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-console.log(formState);
     try {
       const { data } = await login({
         variables: { ...formState },

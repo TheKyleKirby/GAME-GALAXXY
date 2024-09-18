@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client"
 import { DELETE_TUTORIAL } from "../utils/mutations"
 import { QUERY_ME } from '../utils/queries'
+import { useState } from "react"
 
 
 
@@ -11,22 +12,24 @@ const ProfileDeleteTutorial = ({id}) => {
         },
         refetchQueries: [{ query: QUERY_ME}],
     })
+
+    const [errorMessage, setErrorMessage] = useState('')
     
     if(data){
+        // *toastify
         console.log('Tutorial Deleted!');
     }
 
     if (loading) return <p>Loading...</p>;
     if (error) {
-        console.error("ApolloError details:", error);
-        return <p>Error: {error.message}</p>;
+        setErrorMessage(error.message)
     }
 
     const handleDelete = (event) => {
         event.preventDefault()
 
         if(!id){
-            console.log(`error finding tutorial with the id of ${id}`)
+            setErrorMessage(`error finding tutorial with the id of ${id}`)
         }
         deleteTutorial(id)
         
@@ -49,6 +52,7 @@ const ProfileDeleteTutorial = ({id}) => {
             >
                 Edit
             </button>
+            {errorMessage && <p className="text-brightPeach-dark">{errorMessage}</p>}
         </div>
     );
 }

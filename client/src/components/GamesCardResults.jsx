@@ -3,7 +3,6 @@ import React from "react";
 const GamesCardResults = ({ game }) => {
   const coverUrl = game.cover?.url ? `https:${game.cover.url}` : null;
 
-  // game.age_ratings ? console.log(JSON.stringify(game.age_ratings)) : console.log('none')
 
   return (
     <div className="max-w-sm bg-darkPurple-dark border-gray-200 rounded-lg shadow-md p-4">

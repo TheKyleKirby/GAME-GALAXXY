@@ -3,22 +3,24 @@ import { useQuery } from '@apollo/client';
 import { GET_TUTORIALS } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import BounceLoader from 'react-spinners/BounceLoader'
 
 const CustomCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { loading, error, data } = useQuery(GET_TUTORIALS);
   const [trendingTutorials, setTrendingTutorials] = useState([]);
   const [isSingleSlide, setIsSingleSlide] = useState(window.innerWidth <= 1024);
+  
+
 
   const navigate = useNavigate()
 
 
 
   useEffect(() => {
+    
     if (data) {
       setTrendingTutorials(data.allTutorials);
-    } else {
-      console.log('Loading...');
     }
   }, [data]);
 
@@ -32,8 +34,8 @@ const CustomCarousel = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  if (loading) return <p>Loading...</p>; 
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) return <div className='flex justify-center items-center mx-auto bg-mutedPastelBlue-dark w-fit rounded-full'><BounceLoader  /> </div>
+  if (error) return <p className='text-brightPeach text-center font-semibold tracking-wider'>Error: {error.message}</p>
 
   const handleReadTutorial = (id) => {
     navigate(`/tutorial/${id}`)
